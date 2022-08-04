@@ -48,25 +48,37 @@ type Msg
     | CharacterMsg Character.Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model = ( model, Cmd.none )
-    -- case (model, msg) of
-    --     ( ChangedUrl url, _ ) ->
-    --                 changeRouteTo (Route.urlToRoute url) model
+update msg model =
+    case (msg, model.page) of
+        ( ChangedUrl url, _ ) ->
+            changeRouteTo (Route.urlToRoute url) model
 
-    --     ( ClickedLink urlRequest, _ ) ->
-    --         case urlRequest of
-    --             Browser.Internal url ->
-    --                 Cmd.withCmd (Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)) model
+        -- ( ClickedLink urlRequest, _ ) ->
+        --     case urlRequest of
+        --         Browser.Internal url ->
+        --             Cmd.withCmd (Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)) model
 
-    --             Browser.External href ->
-    --                 -- avoid redirecting on links with no href attribute
-    --                 if String.isEmpty href then
-    --                     Cmd.noCmd model
+        --         Browser.External href ->
+        --             -- avoid redirecting on links with no href attribute
+        --             if String.isEmpty href then
+        --                 Cmd.noCmd model
 
-    --                 else
-    --                     Cmd.withCmd (Nav.load href) model
-    --     _ -> ( model, Cmd.none )
+        --             else
+        --                 Cmd.withCmd (Nav.load href) model
 
+        ( HomeMsg subMsg, Home subModel ) ->
+            Home.update subMsg subModel
+                |> updateWith Home HomeMsg model
+
+        ( BookMsg subMsg, Book subModel ) ->
+            Book.update subMsg subModel
+                |> updateWith Book BookMsg model
+
+        ( CharacterMsg subMsg, Character subModel ) ->
+            Character.update subMsg subModel
+                |> updateWith Character CharacterMsg model
+        
+        _ -> ( model, Cmd.none )
 
 
 ---- VIEW ----
@@ -74,9 +86,6 @@ update msg model = ( model, Cmd.none )
 
 view : Model -> Document Msg
 view model =
-    -- { title = "Corato - pagina"
-    -- , body = content model
-    -- }
     case model.page of
         Redirect ->
             { title = "redirect"
