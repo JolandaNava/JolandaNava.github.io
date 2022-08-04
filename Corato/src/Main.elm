@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Browser exposing (Document)
+import Browser.Navigation exposing (Key)
 import Html exposing (Html, text, div, h1, img)
 import Html.Attributes exposing (src)
 import Url exposing (Url)
@@ -27,7 +28,7 @@ type Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
+update _ model =
     ( model, Cmd.none )
 
 
@@ -38,11 +39,11 @@ update msg model =
 view : Model -> Document Msg
 view model =
     { title = "Corato - pagina"
-    , body = view model
+    , body = content model
     }
 
 content : Model -> List (Html Msg)
-content model =
+content _ =
     [ div []
         [ h1 [] [ text "Corato" ]
         ]

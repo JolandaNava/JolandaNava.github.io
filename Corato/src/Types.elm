@@ -1,6 +1,6 @@
 module Types exposing (..)
 
-import Time exposing Posix
+import Time exposing (Posix)
 -- import Graph exposing (Edge, Graph, Node)
 
 
@@ -8,12 +8,12 @@ type Character
     = Rosetta
     | Irene
     | Panettiere
-    | Famacista
+    | Farmacista
     | Papa
     | Mamma
     -- TODO add others
 
-narrators : List Charater
+narrators : List Character
 narratros = [ Rosetta, Irene, Farmacista ]
 
 
