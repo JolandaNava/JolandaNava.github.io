@@ -1,9 +1,9 @@
 module Main exposing (..)
 
-import Browser
+import Browser exposing (Document)
 import Html exposing (Html, text, div, h1, img)
 import Html.Attributes exposing (src)
-
+import Url exposing (Url)
 
 ---- MODEL ----
 
@@ -12,10 +12,9 @@ type alias Model =
     {}
 
 
-init : ( Model, Cmd Msg )
-init =
+init : () -> Url -> Key -> ( Model, Cmd Msg )
+init _ _ _ =
     ( {}, Cmd.none )
-
 
 
 ---- UPDATE ----
@@ -23,6 +22,8 @@ init =
 
 type Msg
     = NoOp
+    | ChangedUrl Url
+    | ClickedLink Browser.UrlRequest
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -34,22 +35,29 @@ update msg model =
 ---- VIEW ----
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    div []
+    { title = "Corato - pagina"
+    , body = view model
+    }
+
+content : Model -> List (Html Msg)
+content model =
+    [ div []
         [ h1 [] [ text "Corato" ]
         ]
-
-
+    ]
 
 ---- PROGRAM ----
 
 
 main : Program () Model Msg
 main =
-    Browser.element
+    Browser.application
         { view = view
-        , init = \_ -> init
+        , init = init
         , update = update
         , subscriptions = always Sub.none
+        , onUrlChange = ChangedUrl
+        , onUrlRequest = ClickedLink
         }
