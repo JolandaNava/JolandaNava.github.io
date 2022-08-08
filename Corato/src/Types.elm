@@ -1,7 +1,8 @@
 module Types exposing (..)
 
 import Time exposing (Posix)
--- import Graph exposing (Edge, Graph, Node)
+import Graph exposing (Edge, Graph)
+import Dict exposing (Dict)
 
 
 type Character
@@ -11,21 +12,31 @@ type Character
     | Farmacista
     | Papa
     | Mamma
+    | Perpetua
     -- TODO add others
 
-narrators : List Character
-narratros = [ Rosetta, Irene, Farmacista ]
+characterUniverse : List Character
+characterUniverse =
+    [ Rosetta
+    , Irene
+    , Panettiere
+    , Farmacista
+    , Papa
+    , Mamma
+    , Perpetua
+    ]
 
 
-type alias CharacterDescription =
-    { character : Character
+type alias CharacterDescription = 
+    { description : String
     , birthday : Date
     , death : Maybe Date
-    , relations : Relation
+    -- , relations : Relation
     }
 
-type alias Relation = String -- Edge String
--- type alias Relations = Graph Character String
+type alias Relation = Edge String
+
+type alias Relations = Graph Character String
 
 
 type alias Event =
@@ -54,5 +65,7 @@ type alias Chapter =
     , period : (Date, Date)
     }
 
+type alias ChapterId = Int
 
-type Book = Dict Chapter Timeline
+
+type Book = Dict Int (Chapter, Timeline)
