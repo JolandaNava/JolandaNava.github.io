@@ -41,6 +41,6 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  _ =
-    Page.pageView "Discover the Book"
+    Page.pageView "Discover the Book" "book"
         [ div [] [ Html.text "book here!" ]
         ]

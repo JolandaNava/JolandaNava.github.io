@@ -1,6 +1,6 @@
 module Page.Home exposing (Model, Msg, init, update, view)
 
-import Html exposing (Html, text, div, h1)
+import Html exposing (Html)
 import Browser exposing (Document)
 import Cmd.Extra as Cmd
 import Html.Attributes as Attrs
@@ -45,12 +45,16 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  model =
-    Page.pageView "Home"
+    Page.pageView "Home" "home"
         [ Html.a
-            [ Route.href Route.Book ]
+            [ Attrs.class "home-page-main-button"
+            , Route.href Route.Book
+            ]
             [ Html.text "Discover the Book" ]
 
         , Html.a
-            [ Route.href Route.Characters ]
+            [ Attrs.class "home-page-main-button"
+            , Route.href Route.Characters
+            ]
             [ Html.text "Discover the Characters" ]
         ]

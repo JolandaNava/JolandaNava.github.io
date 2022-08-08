@@ -43,7 +43,7 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  _ =
-    Page.pageView "Discover the Characters"
+    Page.pageView "Discover the Characters" "characters"
         [ div []
             [ Html.text showRelations
             ]

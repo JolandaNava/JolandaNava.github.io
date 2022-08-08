@@ -5,10 +5,12 @@ import Html.Attributes as Attrs
 
 import Navigation
 
-pageView : String -> List (Html msg) -> List (Html msg)
-pageView pageName content =
+pageView : String -> String -> List (Html msg) -> List (Html msg)
+pageView pageName class content =
     [ Html.div
-        [ Attrs.class "corato-page" ]
+        [ Attrs.class "corato-page"
+        , Attrs.class class
+        ]
         <| List.append
             [ Html.div
                 [ Attrs.class "page-top-banner" ]
