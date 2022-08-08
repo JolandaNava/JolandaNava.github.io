@@ -6,6 +6,9 @@ import Cmd.Extra as Cmd
 import Html.Attributes as Attrs
 import Html.Events as Events
 
+import Route
+import Page
+
 ---- MODEL ----
 
 
@@ -23,18 +26,13 @@ init =
 
 type Msg
     = NoOp
-    | Add
-    | Subtract
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model = 
     case msg of
         NoOp -> (model, Cmd.none)
-        Add -> Cmd.withNoCmd
-            { content = model.content + 1 }
-        Subtract -> Cmd.withNoCmd
-            { content = model.content - 1 }
+
 
 ---- VIEW ----
 
@@ -47,16 +45,12 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  model =
-    [ Html.div []
-        [ Html.h1 [] [ Html.text "HOME PAGE" ]
+    Page.pageView "Home"
+        [ Html.a
+            [ Route.href Route.Book ]
+            [ Html.text "Discover the Book" ]
+
+        , Html.a
+            [ Route.href Route.Characters ]
+            [ Html.text "Discover the Characters" ]
         ]
-    , Html.button 
-        [ Events.onClick Add
-
-        ] [ Html.text "Add" ]
-    , Html.text <| String.fromInt model.content
-    , Html.button 
-        [ Events.onClick Subtract
-
-        ] [ Html.text "Subtract" ]
-    ]

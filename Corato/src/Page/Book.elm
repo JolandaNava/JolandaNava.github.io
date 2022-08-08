@@ -3,6 +3,8 @@ module Page.Book exposing (Model, Msg, init, update, view)
 import Html exposing (Html, text, div, h1)
 import Browser exposing (Document)
 
+import Page
+
 ---- MODEL ----
 
 
@@ -33,13 +35,12 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-    { title = "Corato - The book"
+    { title = "Corato - The Book"
     , body = content model
     }
 
 content :  Model -> List (Html Msg)
 content  _ =
-    [ div []
-        [ h1 [] [ text "Book page" ]
+    Page.pageView "Discover the Book"
+        [ div [] [ Html.text "book here!" ]
         ]
-    ]

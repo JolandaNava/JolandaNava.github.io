@@ -17,7 +17,7 @@ type Route
     = NotFound
     | Home
     | Book
-    | Character
+    | Characters
 
 
 parser : Parser (Route -> a) a
@@ -25,7 +25,7 @@ parser =
     oneOf
         [ Parser.map Home Parser.top
         , Parser.map Book <| s "book"
-        , Parser.map Character <| s "character"
+        , Parser.map Characters <| s "characters"
         , Parser.map NotFound <| s "404"
         ]
 
@@ -75,7 +75,7 @@ routeToString page =
             case page of
                 Home -> []
                 Book -> ["book"]
-                Character -> ["character"]
+                Characters -> ["characters"]
                 NotFound -> ["404"]
 
     in

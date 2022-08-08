@@ -8,7 +8,7 @@ import Graph exposing (Edge, Graph, Node)
 
 
 narrators : List T.Character
-narratros = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
+narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
 
 
 -- IL LIBRO
@@ -48,7 +48,7 @@ chapter2 =
 -- GLI EVENTI
 
 chapter1Timeline : T.Timeline
-chapter1Timeline = [inChiesa]
+chapter1Timeline = [ inChiesa ]
 
 inChiesa : T.Event
 inChiesa =
@@ -97,16 +97,47 @@ rosetta =
 -- LE RELAZIONI
 
 
--- characterUniverse
+relations : T.Relations
+relations =
+    Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
 
--- charactersAsNodes : List (Node T.Character)
--- charactersAsNodes =
---     let
---         mmap : Int -> T.Character -> Node T.Character
---         mmap i c =
---             { id = i
---             , label c
---             }
 
---     in
---         List.indexedMap mmap characterUniverse 
+charactersAsNodes : List (Node T.Character)
+charactersAsNodes =
+    let
+        
+        makeNode : Int -> T.Character -> Node T.Character
+        makeNode i c =
+            { id = i
+            , label = c
+            }
+
+    in
+        List.indexedMap makeNode T.characterUniverse
+
+
+
+relationsAsEdges : List T.Relation
+relationsAsEdges =
+    [ 
+        { from = 4
+        , to = 0
+        , label = "è padre di"
+        }
+    , 
+        { from = 5
+        , to = 0
+        , label = "è madre di"
+        }
+    , 
+        { from = 5
+        , to = 0
+        , label = "è promesso in sposo a"
+        }
+    , 
+        { from = 0
+        , to = 5
+        , label = "è promessa in sposa a"
+        }
+    ]
+

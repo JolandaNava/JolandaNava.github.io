@@ -15,6 +15,7 @@ type Character
     | Perpetua
     -- TODO add others
 
+-- WARNING don't change the order of these
 characterUniverse : List Character
 characterUniverse =
     [ Rosetta
@@ -51,7 +52,7 @@ type alias Event =
 
 type alias Date = Posix
 
-type Timeline = List Event
+type alias Timeline = List Event
 
 
 -- type CharacterTimeline = CharacterTimeline Character Timeline
@@ -68,4 +69,4 @@ type alias Chapter =
 type alias ChapterId = Int
 
 
-type Book = Dict Int (Chapter, Timeline)
+type alias Book = Dict Int (Chapter, Timeline)

@@ -1,7 +1,11 @@
-module Page.Character exposing (Model, Msg, init, update, view)
+module Page.Characters exposing (Model, Msg, init, update, view)
 
 import Html exposing (Html, text, div, h1)
 import Browser exposing (Document)
+
+import Data exposing (relations)
+import Show
+import Page
 
 ---- MODEL ----
 
@@ -33,13 +37,18 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-    { title = "Corato - the characters"
+    { title = "Corato - The Characters"
     , body = content model
     }
 
 content :  Model -> List (Html Msg)
 content  _ =
-    [ div []
-        [ h1 [] [ text "Character page" ]
+    Page.pageView "Discover the Characters"
+        [ div []
+            [ Html.text showRelations
+            ]
         ]
-    ]
+
+showRelations : String
+showRelations =
+    Show.relations Data.relations

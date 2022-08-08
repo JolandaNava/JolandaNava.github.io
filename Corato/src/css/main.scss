@@ -1,8 +1,7 @@
 
 body {
-    font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+    // font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
-    text-align: center;
     color: #293c4b;
   }
   
@@ -14,3 +13,34 @@ img {
   margin: 20px 0;
   max-width: 200px;
 }
+
+
+.corato-page {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.page-top-banner {
+  text-align: center;
+  padding: 10px;
+
+  .simple-nav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.simple-nav {
+  width: 200px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
