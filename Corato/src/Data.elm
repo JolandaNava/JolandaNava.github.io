@@ -6,6 +6,20 @@ import Time
 import Graph exposing (Node)
 
 
+-- I PERSONAGGI
+
+-- WARNING don't change the order of these
+characters : List T.Character
+characters =
+    [ T.Rosetta
+    , T.Irene
+    , T.Panettiere
+    , T.Farmacista
+    , T.Papa
+    , T.Mamma
+    , T.Perpetua
+    ]
+
 narrators : List T.Character
 narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
 
@@ -110,7 +124,7 @@ charactersAsNodes =
             }
 
     in
-        List.indexedMap makeNode T.characterUniverse
+        List.indexedMap makeNode characters
 
 
 

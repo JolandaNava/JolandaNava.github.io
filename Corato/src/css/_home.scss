@@ -1,3 +1,32 @@
 .home {
-    // background-color: lightsalmon;
+
+    .project-description {
+        min-width: 400px;
+        width: 40%;
+        margin: auto;
+        margin-bottom: 50px;
+
+    }
+
+    .home-page-buttons {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .home-page-main-button {
+        padding: 30px;
+        background-color: $dark;
+        margin: 10px;
+        width: 200px;
+        border-radius: 12px;
+
+        @include h2;
+        
+        a {
+            color: $beige;
+        }
+    }
+
 }

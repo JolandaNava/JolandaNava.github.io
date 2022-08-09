@@ -14,18 +14,6 @@ type Character
     | Perpetua
     -- TODO add others
 
--- WARNING don't change the order of these
-characterUniverse : List Character
-characterUniverse =
-    [ Rosetta
-    , Irene
-    , Panettiere
-    , Farmacista
-    , Papa
-    , Mamma
-    , Perpetua
-    ]
-
 
 type alias CharacterDescription = 
     { description : String

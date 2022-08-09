@@ -20,8 +20,8 @@ img {
   text-align: center;
   background-color: #F2E9E4;
   color: #22223B;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: 500; }
 
 .page-top-banner {
@@ -43,11 +43,36 @@ img {
   display: flex;
   justify-content: space-evenly; }
 
+.home .project-description {
+  min-width: 400px;
+  width: 40%;
+  margin: auto;
+  margin-bottom: 50px; }
+
+.home .home-page-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center; }
+
+.home .home-page-main-button {
+  padding: 30px;
+  background-color: #4A4E69;
+  margin: 10px;
+  width: 200px;
+  border-radius: 12px;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700; }
+  .home .home-page-main-button a {
+    color: #C9ADA7; }
+
 .book .chapter {
   display: flex;
   flex-direction: row;
   text-align: left;
-  margin: 0px 30px; }
+  width: 60%;
+  margin: auto; }
   .book .chapter:first-child .chapter-events {
     border-top-right-radius: 12px; }
   .book .chapter:last-child .chapter-events {
@@ -57,8 +82,9 @@ img {
 
 .book .chapter-details {
   padding: 20px;
-  width: 40%;
-  border-right: 4px solid #4A4E69; }
+  width: 35%;
+  border-right: 4px solid #4A4E69;
+  text-align: right; }
 
 .book .chapter-title {
   font-size: 20px;
@@ -73,9 +99,9 @@ img {
   color: #22223B; }
 
 .book .chapter-events {
-  padding: 20px 10px;
+  padding: 30px 20px;
   background-color: #C9ADA7;
-  width: 60%;
+  width: 65%;
   min-height: 150px; }
 
 .book .event-title {
@@ -98,3 +124,31 @@ img {
 
 .book .event-characters a {
   color: #22223B; }
+
+.characters .characters-page-container {
+  display: flex;
+  flex-direction: row; }
+  .characters .characters-page-container > * {
+    flex-basis: 50%;
+    padding: 20px; }
+
+.characters .characters-page-title {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  color: #4A4E69;
+  padding-bottom: 20px; }
+
+.characters .characters-relations {
+  background-color: #C9ADA7;
+  height: 300px;
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.characters .characters-list-item {
+  padding-top: 10px; }

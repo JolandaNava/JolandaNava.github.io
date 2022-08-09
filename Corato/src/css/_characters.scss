@@ -1,3 +1,32 @@
 .characters {
-    // background-color: lightseagreen;
+    .characters-page-container {
+        display: flex;
+        flex-direction: row;
+        > * {
+            flex-basis: 50%;
+            padding: 20px;
+        }
+    }
+
+    .characters-page-title {
+        @include h2;
+        color: $dark;
+        padding-bottom: 20px;
+    }
+
+    .characters-relations {
+        background-color: $beige;
+        height: 300px;
+        width: 50%;
+        margin: auto;
+        margin-top: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .characters-list-item {
+        padding-top: 10px;
+    }
 }

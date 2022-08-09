@@ -5,7 +5,8 @@
         display: flex;
         flex-direction: row;
         text-align: left;
-        margin: 0px 30px;
+        width: 60%;
+        margin: auto;
         &:first-child {
             .chapter-events {
                 border-top-right-radius: 12px;
@@ -25,8 +26,9 @@
 
     .chapter-details {
         padding : 20px;
-        width: 40%;
+        width: 35%;
         border-right: 4px solid $dark;
+        text-align: right;
     }
 
     .chapter-title {
@@ -39,9 +41,9 @@
     }
 
     .chapter-events {
-        padding: 20px 10px;
+        padding: 30px 20px;
         background-color: $beige;
-        width: 60%;
+        width: 65%;
         min-height: 150px;
     }
     

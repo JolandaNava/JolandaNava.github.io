@@ -1,11 +1,13 @@
 module Page.Characters exposing (Model, Msg, init, update, view)
 
-import Html exposing (Html, text, div, h1)
+import Html exposing (Html)
+import Html.Attributes as Attrs
 import Browser exposing (Document)
 
 import Data exposing (relations)
 import Show
 import Page
+import Types as T
 
 ---- MODEL ----
 
@@ -44,11 +46,38 @@ view model =
 content :  Model -> List (Html Msg)
 content  _ =
     Page.pageView "Scopri i Personaggi" "characters"
-        [ div []
-            [ Html.text showRelations
+        [ Html.div
+            [ Attrs.class "characters-page-container" ]
+            [ Html.div
+                [ ]
+                [ Html.div
+                    [ Attrs.class "characters-page-title" ]
+                    [ Html.text "I personaggi" ]
+                , Html.div
+                    [ ]
+                        <| List.map characterView Data.characters 
+                ]
+            , Html.div
+                [ ]
+                [ Html.div
+                    [ Attrs.class "characters-page-title" ]
+                    [ Html.text "Le relazioni" ]
+                , Html.div
+                    [ Attrs.class "characters-relations" ]
+                    [ Html.text "Coming soon..." ]
+                    -- [ Html.text showRelations ] 
+                ]
             ]
         ]
 
 showRelations : String
 showRelations =
     Show.relations Data.relations
+
+
+characterView : T.Character -> Html Msg
+characterView c =
+    Html.div
+        [ Attrs.class "characters-list-item" ]
+        [ Html.text <| Show.character c
+        ]

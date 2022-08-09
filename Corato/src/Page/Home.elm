@@ -45,15 +45,30 @@ view model =
 content :  Model -> List (Html Msg)
 content  _ =
     Page.pageView "Corato" "home"
-        [ Html.a
-            [ Attrs.class "home-page-main-button"
-            , Route.href Route.Book
-            ]
-            [ Html.text "Discover the Book" ]
+        [ Html.div
+            [ Attrs.class "project-description" ]
+            [ Html.text
+                """
+                Lorem ipsum dolor sit amet. Vel voluptatem fuga et veritatis laboriosam aut quos repudiandae est nihil quia. Ea accusantium quod ad dolores magnam et neque cupiditate? Qui deleniti vitae cum corrupti similique ut exercitationem repudiandae et repellat excepturi ex porro iste.
 
-        , Html.a
-            [ Attrs.class "home-page-main-button"
-            , Route.href Route.Characters
+                At asperiores odit sed delectus perferendis et enim quia et voluptatem officia At omnis officiis sed molestias ipsum qui accusamus enim. Vel iste earum ea voluptas maiores ex error ipsa ea assumenda asperiores aut reprehenderit quia in dolore suscipit. Id placeat sunt in magnam repellendus ea enim provident quo quos unde. Et ipsa assumenda ad minima reiciendis ut nemo earum!
+                """
+
+            ] 
+            
+        , Html.div
+            [ Attrs.class "home-page-buttons" ]
+            [ Html.div
+                [ Attrs.class "home-page-main-button" ]
+                [ Html.a
+                    [ Route.href Route.Book ]
+                    [ Html.text "Scopri il Libro" ]
+                ]
+            , Html.div
+                [ Attrs.class "home-page-main-button" ]
+                [ Html.a
+                    [ Route.href Route.Characters ]
+                    [ Html.text "Scopri i Personaggi" ]
+                ]
             ]
-            [ Html.text "Discover the Characters" ]
         ]

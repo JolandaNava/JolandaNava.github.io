@@ -24,7 +24,7 @@ icon r =
 showRoute : Route -> String
 showRoute r =
     case r of
-        Home -> "Home"
-        Book -> "Book"
-        Characters -> "Characters"
+        Home -> "Corato"
+        Book -> "Il Libro"
+        Characters -> "I Personaggi"
         NotFound -> "404"
