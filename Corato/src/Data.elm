@@ -40,6 +40,13 @@ chapter2 =
 
 -- GLI EVENTI
 
+allEvents : List T.Event
+allEvents =
+    List.concat
+        [ chapter1Events
+        , chapter2Events
+        ]
+
 chapter1Events : List T.Event
 chapter1Events = [ inChiesa ]
 

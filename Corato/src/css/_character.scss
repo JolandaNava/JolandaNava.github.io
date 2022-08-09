@@ -1,0 +1,27 @@
+.character {
+    .character-container {
+        display: flex;
+        flex-direction: row;
+        text-align: left;
+        width: 60%;
+        margin: auto;
+    }
+
+    .character-events {
+        width: 65%;
+        padding: 30px 20px;
+        background-color: $beige;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        .event-view:not(:last-child) {
+            margin-bottom: 70px;
+        }
+    }
+
+    .character-details {
+        padding : 20px;
+        width: 35%;
+        border-right: 4px solid $dark;
+        text-align: right;
+    }
+}

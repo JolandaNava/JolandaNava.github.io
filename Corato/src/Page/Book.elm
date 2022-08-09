@@ -10,6 +10,7 @@ import Page
 import Data
 import Show
 import Route
+import View
 
 ---- MODEL ----
 
@@ -72,39 +73,5 @@ chapterView c =
             ]
         , Html.div
             [ Attrs.class "chapter-events" ]
-            <| List.map eventsView c.events
+            <| List.map View.event c.events
         ]
-
-
-eventsView : T.Event -> Html Msg
-eventsView e =
-    Html.div 
-        [ Attrs.class "event" ]
-        [ Html.div
-            [ Attrs.class "event-title" ]
-            [ Html.text e.title ]
-        , Html.div
-            [ Attrs.class "event-date" ]
-            [ Html.text <| Show.fullDate e.date ]
-        , Html.div
-            [ Attrs.class "event-description" ]
-            [ Html.text e.description ]
-        , Html.div
-            [ Attrs.class "event-characters" ]
-            <| characters e.characters
-
-        ]
-
-characters : List T.Character -> List (Html Msg)
-characters cs =
-    List.concat
-        [ [ Html.text "I personaggi: " ]
-        , List.intersperse (Html.text ", ") <| List.map character cs
-        ]
-
-
-character : T.Character -> Html Msg
-character c =
-    Html.a
-        [ Route.href Route.Characters ] --todo route to proper character
-        [ Html.text <| Show.character c ]

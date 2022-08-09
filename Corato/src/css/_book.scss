@@ -1,6 +1,4 @@
 .book {
-    // background-color: lightblue;
-
     .chapter {
         display: flex;
         flex-direction: row;
@@ -47,27 +45,4 @@
         min-height: 150px;
     }
     
-    .event-title {
-        color: $dark;
-        @include h3;
-        font-weight: 700;
-    }
-
-    .event-date {
-        @include subtitle;
-        color: $grey;
-        margin-bottom: 20px;
-    }
-
-    .event-description {
-        margin-bottom: 20px;
-    }
-    
-    .event-characters {
-        a {
-            color: $black;
-        }
-        
-    }
-
 }

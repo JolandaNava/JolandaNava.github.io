@@ -1,0 +1,23 @@
+// styling for common components
+
+.event-view {
+    .event-title {
+        color: $dark;
+        @include h3;
+        font-weight: 700;
+    }
+
+    .event-date {
+        @include subtitle;
+        color: $grey;
+        margin-bottom: 20px;
+    }
+
+    .event-description {
+        margin-bottom: 20px;
+    }
+    
+    .character-view {
+        color: $black;
+    }
+}

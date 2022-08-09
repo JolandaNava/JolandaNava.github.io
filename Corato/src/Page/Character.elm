@@ -10,6 +10,7 @@ import Page
 import Types as T
 import Show
 import Data
+import View
 
 ---- MODEL ----
 
@@ -50,8 +51,22 @@ content :  Model -> List (Html Msg)
 content  { character } =
     Page.pageView (Show.character character) "character"
         [ Html.div
-            [  ]
-            [ Html.text <| .description <| Data.characterDescription character
+            [ Attrs.class "character-container" ]
+            [ Html.div
+                [ Attrs.class "character-details" ]
+                [ Html.text <| .description <| Data.characterDescription character
+                ]
+            , Html.div
+                [ Attrs.class "character-events" ]
+                <| makeTimeline character
             ]
         ]
+
+
+makeTimeline : T.Character -> List (Html Msg)
+makeTimeline c =
+    let
+        events = Data.allEvents -- TODO filter
+    in
+        List.map View.event events
 
