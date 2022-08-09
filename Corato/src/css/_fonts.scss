@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'palatino';
+    src: url('fonts/palatino-font.ttf');
+}
+
+
+@mixin h1 {
+    font-size: 48px;
+    line-height: 100px;
+    font-weight: 900;
+}
+
+@mixin h2 {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700;
+}
+
+@mixin h3 {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+@mixin subtitle {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+@mixin text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}

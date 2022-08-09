@@ -1,8 +1,11 @@
 
+@import 'colors';
+@import 'fonts';
+
 body {
     // font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+    font-family: palatino;
     margin: 0;
-    color: #293c4b;
     height: 100vh;
   }
   
@@ -20,6 +23,9 @@ img {
   height: 100%;
   width: 100%;
   text-align: center;
+  background-color: $cream;
+  color: $black;
+  @include text;
 }
 
 .page-top-banner {
@@ -34,8 +40,8 @@ img {
 }
 
 .page-title {
-  font-size: 20px;
-  font-weight: 600;
+  @include h1;
+
 }
 
 .simple-nav {

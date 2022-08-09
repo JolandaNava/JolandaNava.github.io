@@ -2,9 +2,8 @@ module Data exposing (..)
 
 
 import Types as T
-import Dict
 import Time
-import Graph exposing (Edge, Graph, Node)
+import Graph exposing (Node)
 
 
 narrators : List T.Character
@@ -14,14 +13,10 @@ narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
 -- IL LIBRO
 book : T.Book
 book =
-    Dict.fromList createBook
-
-
-createBook : List (Int, (T.Chapter, T.Timeline))
-createBook =
-    [ ( getId chapter1, (chapter1, chapter1Timeline) )
-    , ( getId chapter2, (chapter2, chapter2Timeline) )
-    ]
+    List.sortBy getId
+        [ chapter1
+        , chapter2
+        ]
 
 getId : T.Chapter -> Int
 getId = .id
@@ -34,6 +29,7 @@ chapter1 =
     , description = "Mariagreca, la perpetua"
     , narrator = T.Perpetua
     , period = (fakeDate, fakeDate)
+    , events = chapter1Events
     }
 
 chapter2 : T.Chapter
@@ -43,25 +39,26 @@ chapter2 =
     , description = "Andrea Suonatori, farmacista"
     , narrator = T.Farmacista
     , period = (fakeDate, fakeDate)
+    , events = chapter2Events
     }
 
 -- GLI EVENTI
 
-chapter1Timeline : T.Timeline
-chapter1Timeline = [ inChiesa ]
+chapter1Events : List T.Event
+chapter1Events = [ inChiesa ]
 
 inChiesa : T.Event
 inChiesa =
     { date = fakeDate
-    , title = "Startuto in Chiesa"
+    , title = "Starnuto in Chiesa"
     , description = "Rosetta starnutisce in chiesa"
     , characters = [T.Perpetua, T.Rosetta, T.Mamma, T.Papa]
     , narrator = T.Perpetua
     }
 
 
-chapter2Timeline : T.Timeline
-chapter2Timeline = [laCena]
+chapter2Events : List T.Event
+chapter2Events = [ laCena ]
 
 laCena : T.Event
 laCena =

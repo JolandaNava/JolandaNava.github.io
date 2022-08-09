@@ -2,7 +2,6 @@ module Types exposing (..)
 
 import Time exposing (Posix)
 import Graph exposing (Edge, Graph)
-import Dict exposing (Dict)
 
 
 type Character
@@ -46,16 +45,12 @@ type alias Event =
     , description : String
     , characters : List Character
     , narrator : Character
-    -- , chapter : Int
     }
 
 
 type alias Date = Posix
 
-type alias Timeline = List Event
-
-
--- type CharacterTimeline = CharacterTimeline Character Timeline
+-- type alias Timeline = List Event
 
 
 type alias Chapter =
@@ -64,9 +59,10 @@ type alias Chapter =
     , description : String
     , narrator : Character
     , period : (Date, Date)
+    , events : List Event
     }
 
 type alias ChapterId = Int
 
 
-type alias Book = Dict Int (Chapter, Timeline)
+type alias Book = List Chapter

@@ -4,7 +4,6 @@ import Html exposing (Html)
 import Browser exposing (Document)
 import Cmd.Extra as Cmd
 import Html.Attributes as Attrs
-import Html.Events as Events
 
 import Route
 import Page
@@ -44,8 +43,8 @@ view model =
     }
 
 content :  Model -> List (Html Msg)
-content  model =
-    Page.pageView "Home" "home"
+content  _ =
+    Page.pageView "Corato" "home"
         [ Html.a
             [ Attrs.class "home-page-main-button"
             , Route.href Route.Book

@@ -1,3 +1,71 @@
 .book {
-    background-color: lightblue;
+    // background-color: lightblue;
+
+    .chapter {
+        display: flex;
+        flex-direction: row;
+        text-align: left;
+        margin: 0px 30px;
+        &:first-child {
+            .chapter-events {
+                border-top-right-radius: 12px;
+            }
+        }
+        &:last-child {
+            .chapter-events {
+                border-bottom-right-radius: 12px;
+            }
+        }
+        &:not(:first-child){
+            .chapter-events {
+                border-top: 1px dashed $dark;
+            }
+        }
+    }
+
+    .chapter-details {
+        padding : 20px;
+        width: 40%;
+        border-right: 4px solid $dark;
+    }
+
+    .chapter-title {
+        @include h2;
+    }
+
+    .chapter-description {
+        @include subtitle;
+        color: $black;
+    }
+
+    .chapter-events {
+        padding: 20px 10px;
+        background-color: $beige;
+        width: 60%;
+        min-height: 150px;
+    }
+    
+    .event-title {
+        color: $dark;
+        @include h3;
+        font-weight: 700;
+    }
+
+    .event-date {
+        @include subtitle;
+        color: $grey;
+        margin-bottom: 20px;
+    }
+
+    .event-description {
+        margin-bottom: 20px;
+    }
+    
+    .event-characters {
+        a {
+            color: $black;
+        }
+        
+    }
+
 }

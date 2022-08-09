@@ -37,13 +37,13 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-    { title = "Corato - The Characters"
+    { title = "Corato - I Personaggi"
     , body = content model
     }
 
 content :  Model -> List (Html Msg)
 content  _ =
-    Page.pageView "Discover the Characters" "characters"
+    Page.pageView "Scopri i Personaggi" "characters"
         [ div []
             [ Html.text showRelations
             ]
