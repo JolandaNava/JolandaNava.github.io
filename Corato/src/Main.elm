@@ -3,6 +3,7 @@ module Main exposing (..)
 import Page.Home as Home
 import Page.Book as Book
 import Page.Characters as Characters
+import Page.Character as Character
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav exposing (Key)
@@ -25,6 +26,7 @@ type CurrentPage
     | Home Home.Model
     | Book Book.Model
     | Characters Characters.Model
+    | Character Character.Model
 
 
 init : () -> Url -> Key -> ( Model, Cmd Msg )
@@ -45,6 +47,7 @@ type Msg
     | HomeMsg Home.Msg
     | BookMsg Book.Msg
     | CharactersMsg Characters.Msg
+    | CharacterMsg Character.Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -76,6 +79,10 @@ update msg model =
         ( CharactersMsg subMsg, Characters subModel ) ->
             Characters.update subMsg subModel
                 |> updateWith Characters CharactersMsg model
+
+        ( CharacterMsg subMsg, Character subModel ) ->
+            Character.update subMsg subModel
+                |> updateWith Character CharacterMsg model
         
         _ -> ( model, Cmd.none )
 
@@ -102,6 +109,10 @@ view model =
         Characters subModel ->
             mapView CharactersMsg <|
                 Characters.view subModel
+        
+        Character subModel ->
+            mapView CharacterMsg <|
+                Character.view subModel
 
 
 mapView : (msg -> Msg) -> Document msg -> Document Msg
@@ -141,12 +152,18 @@ changeRouteTo route currentModel =
         case route of
             Route.NotFound ->
                 Cmd.withNoCmd { model | page = Redirect } -- TODO?
+            
             Route.Home ->
                 updateWith Home HomeMsg model Home.init
+            
             Route.Book ->
                 updateWith Book BookMsg model Book.init
+            
             Route.Characters ->
                 updateWith Characters CharactersMsg model Characters.init
+            
+            Route.Character character ->
+                updateWith Character CharacterMsg model <| Character.init character
 
 
 updateWith : (subModel -> CurrentPage) -> (subMsg -> Msg) -> Model -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )

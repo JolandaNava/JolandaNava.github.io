@@ -8,6 +8,7 @@ import Data exposing (relations)
 import Show
 import Page
 import Types as T
+import Route
 
 ---- MODEL ----
 
@@ -79,5 +80,7 @@ characterView : T.Character -> Html Msg
 characterView c =
     Html.div
         [ Attrs.class "characters-list-item" ]
-        [ Html.text <| Show.character c
+        [ Html.a
+            [ Route.href <| Route.Character c ]
+            [ Html.text <| Show.character c ]
         ]

@@ -27,4 +27,4 @@ showRoute r =
         Home -> "Corato"
         Book -> "Il Libro"
         Characters -> "I Personaggi"
-        NotFound -> "404"
+        _ -> "" -- other routes should not get shown

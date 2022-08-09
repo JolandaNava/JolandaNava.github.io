@@ -6,24 +6,6 @@ import Time
 import Graph exposing (Node)
 
 
--- I PERSONAGGI
-
--- WARNING don't change the order of these
-characters : List T.Character
-characters =
-    [ T.Rosetta
-    , T.Irene
-    , T.Panettiere
-    , T.Farmacista
-    , T.Papa
-    , T.Mamma
-    , T.Perpetua
-    ]
-
-narrators : List T.Character
-narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
-
-
 -- IL LIBRO
 book : T.Book
 book =
@@ -89,17 +71,44 @@ fakeDate = Time.millisToPosix 0
 
 -- I PERSONAGGI
 
+-- WARNING don't change the order of these
+characters : List T.Character
+characters =
+    [ T.Rosetta
+    , T.Irene
+    , T.Panettiere
+    , T.Farmacista
+    , T.Papa
+    , T.Mamma
+    , T.Perpetua
+    ]
+
+narrators : List T.Character
+narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
+
 
 characterDescription : T.Character -> T.CharacterDescription
 characterDescription c =
     case c of
         T.Rosetta -> rosetta
-        _ -> rosetta
+        T.Irene -> placeholder
+        T.Panettiere -> placeholder
+        T.Farmacista -> placeholder
+        T.Papa -> placeholder
+        T.Mamma -> placeholder
+        T.Perpetua -> placeholder
 
 
 rosetta : T.CharacterDescription
 rosetta =
     { description = "La protagonista"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+placeholder : T.CharacterDescription
+placeholder =
+    { description = "Placeholder"
     , birthday = fakeDate
     , death = Nothing
     }
