@@ -38,10 +38,12 @@ img {
   font-weight: 900; }
 
 .simple-nav {
-  width: 200px;
   padding: 10px;
   display: flex;
   justify-content: space-evenly; }
+  .simple-nav a {
+    color: #4A4E69;
+    padding: 10px; }
 
 .home .project-description {
   min-width: 400px;

@@ -45,10 +45,13 @@ img {
 }
 
 .simple-nav {
-  width: 200px;
   padding: 10px;
   display: flex;
   justify-content: space-evenly;
+  a {
+    color: $dark;
+    padding: 10px;
+  }
 }
 
 @import 'home';
