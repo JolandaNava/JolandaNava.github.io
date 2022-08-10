@@ -5,18 +5,40 @@ import Graph exposing (Edge, Graph)
 
 
 type Character
-    = Rosetta
+    -- I Suonatori
+    = Andrea -- la farmacista
+    | Rocco -- il fratello, avvocato
+    | SignSuonatori -- la mamma
+    | Alfredo -- il papa
+
+    -- I Tedone
+    | Riccardo -- il papa panettiere
+    | Chiara -- la moglie (cugina di papa Suonatori)
+    | Gabriele -- il figlio
+
+    -- Gli Zitoli
+    | Nunzio
+    | Rita
+    | Rosetta
+    | Grazia
+    | Isabella
+    | NonnaMaria -- mamma di Rita
+
+    | Bruno -- marito di Grazia, carabiniere
+    | Vincenzo -- bimbo di Grazia
+
+    -- Altri
     | Irene
-    | Panettiere
-    | Farmacista
-    | Papa
-    | Mamma
+    | PapaIrene
+    | DonCataldo -- D'Oria, 
+    | Livio -- Patruno, negozio di stoffe
     | Perpetua
-    -- TODO add others
+    | DonSaverio -- il parroco
 
 
 type alias CharacterDescription = 
-    { description : String
+    { fullName : String
+    , description : String
     , birthday : Date
     , death : Maybe Date
     -- , relations : Relation

@@ -41,25 +41,68 @@ characterParser =
 readCharacter : String -> Maybe T.Character
 readCharacter x =
     case x of
-        "rosetta"    -> Just T.Rosetta
-        "irene"      -> Just T.Irene
-        "panettiere" -> Just T.Panettiere
-        "farmacista" -> Just T.Farmacista
-        "papa"       -> Just T.Papa
-        "mamma"      -> Just T.Mamma
-        "perpetua"   -> Just T.Perpetua
+        "andrea" -> Just T.Andrea
+        "rocco" -> Just T.Rocco
+        "signsuonatori" -> Just T.SignSuonatori
+        "alfredo" -> Just T.Alfredo
+
+    -- I Tedone
+        "riccardo" -> Just T.Riccardo
+        "chiara" -> Just T.Chiara
+        "gabriele" -> Just T.Gabriele
+
+    -- Gli Zitoli
+        "nunzio" -> Just T.Nunzio
+        "rita" -> Just T.Rita
+        "rosetta" -> Just T.Rosetta
+        "grazia" -> Just T.Grazia
+        "isabella" -> Just T.Isabella
+        "nonnamaria" -> Just T.NonnaMaria
+
+        "bruno" -> Just T.Bruno
+        "vincenzo" -> Just T.Vincenzo
+
+    -- Altri
+        "irene" -> Just T.Irene
+        "papairene" -> Just T.PapaIrene
+        "doncataldo" -> Just T.DonCataldo
+        "livio" -> Just T.Livio
+        "perpetua" -> Just T.Perpetua
+        "donsaverio" -> Just T.DonSaverio
+
         _ -> Nothing
 
 showCharacter : T.Character -> String
 showCharacter c =
     case c of
-        T.Rosetta    -> "rosetta"
-        T.Irene      -> "irene"
-        T.Panettiere -> "panettiere"
-        T.Farmacista -> "farmacista"
-        T.Papa       -> "papa"
-        T.Mamma      -> "mamma"
-        T.Perpetua   -> "perpetua"
+        T.Andrea -> "andrea"
+        T.Rocco -> "rocco"
+        T.SignSuonatori -> "signsuonatori"
+        T.Alfredo -> "alfredo"
+
+    -- I Tedone
+        T.Riccardo -> "riccardo"
+        T.Chiara -> "chiara"
+        T.Gabriele -> "gabriele"
+
+    -- Gli Zitoli
+        T.Nunzio -> "nunzio"
+        T.Rita -> "rita"
+        T.Rosetta -> "rosetta"
+        T.Grazia -> "grazia"
+        T.Isabella -> "isabella"
+        T.NonnaMaria -> "nonnamaria"
+
+        T.Bruno -> "bruno"
+        T.Vincenzo -> "vincenzo"
+
+    -- Altri
+        T.Irene -> "irene"
+        T.PapaIrene -> "papairene"
+        T.DonCataldo -> "doncataldo"
+        T.Livio -> "livio"
+        T.Perpetua -> "perpetua"
+        T.DonSaverio -> "donsaverio"
 
 -- HELPERS
 

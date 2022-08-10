@@ -4,6 +4,7 @@ import Types as T
 import Time
 -- import Graph exposing (Edge, Graph, Node)
 import Graph.DOT as Graph
+import Data
 
 
 -- SHOW RELATIONS
@@ -25,15 +26,8 @@ showNode = Just << character
 -- SHOW CHARACTERS 
 
 character : T.Character -> String
-character x =
-    case x of
-        T.Rosetta ->  "Rosetta"
-        T.Irene -> "Irene"
-        T.Panettiere -> "Panettiere"
-        T.Farmacista -> "Farmacista"
-        T.Papa -> "Papa"
-        T.Mamma -> "Mamma"
-        T.Perpetua -> "Perpetua"
+character =
+    .fullName << Data.characterDescription
 
 
 -- SHOW Date

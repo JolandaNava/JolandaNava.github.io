@@ -33,7 +33,7 @@ chapter2 =
     { id = 2
     , title = "Splendida e sola"
     , description = "Andrea Suonatori, farmacista"
-    , narrator = T.Farmacista
+    , narrator = T.Andrea
     , period = (fakeDate, fakeDate)
     , events = chapter2Events
     }
@@ -55,7 +55,7 @@ inChiesa =
     { date = fakeDate
     , title = "Starnuto in Chiesa"
     , description = "Rosetta starnutisce in chiesa"
-    , characters = [T.Perpetua, T.Rosetta, T.Mamma, T.Papa]
+    , characters = [T.Perpetua, T.Rosetta, T.Rita, T.Nunzio]
     , narrator = T.Perpetua
     }
 
@@ -68,8 +68,8 @@ laCena =
     { date = fakeDate
     , title = "Annuncio del matrimonio"
     , description = "Il papà annuncia il matrimonio tra Rosetta e il panettiere"
-    , characters = [T.Rosetta, T.Mamma, T.Papa, T.Farmacista, T.Panettiere]
-    , narrator = T.Farmacista
+    , characters = [T.Rosetta, T.Rita, T.Nunzio, T.Andrea, T.Gabriele]
+    , narrator = T.Andrea
     }
 
 fakeDate : T.Date
@@ -81,41 +81,127 @@ fakeDate = Time.millisToPosix 0
 -- WARNING don't change the order of these
 characters : List T.Character
 characters =
-    [ T.Rosetta
+    [ T.Andrea
+    , T.Rocco
+    , T.SignSuonatori
+    , T.Alfredo
+
+    -- I Tedone
+    , T.Riccardo
+    , T.Chiara
+    , T.Gabriele
+
+    -- Gli Zitoli
+    , T.Nunzio
+    , T.Rita
+    , T.Rosetta
+    , T.Grazia
+    , T.Isabella
+    , T.NonnaMaria
+
+    , T.Bruno
+    , T.Vincenzo
+
+    -- Altri
     , T.Irene
-    , T.Panettiere
-    , T.Farmacista
-    , T.Papa
-    , T.Mamma
+    , T.PapaIrene
+    , T.DonCataldo
+    , T.Livio
     , T.Perpetua
+    , T.DonSaverio
+
     ]
 
 narrators : List T.Character
-narrators = [ T.Rosetta, T.Irene, T.Farmacista, T.Perpetua ]
+narrators = [ T.Perpetua, T.Andrea, T.Irene, T.Rosetta ]
 
 
 characterDescription : T.Character -> T.CharacterDescription
 characterDescription c =
     case c of
+        T.Andrea -> placeholder
+        T.Rocco -> placeholder
+        T.SignSuonatori -> placeholder
+        T.Alfredo -> placeholder
+
+    -- I Tedone
+        T.Riccardo -> placeholder
+        T.Chiara -> placeholder
+        T.Gabriele -> placeholder
+
+    -- Gli Zitoli
+        T.Nunzio -> nunzio
+        T.Rita -> rita
         T.Rosetta -> rosetta
+        T.Grazia -> grazia
+        T.Isabella -> isabella
+        T.NonnaMaria -> placeholder
+
+        T.Bruno -> placeholder
+        T.Vincenzo -> placeholder
+
+    -- Altri
         T.Irene -> placeholder
-        T.Panettiere -> placeholder
-        T.Farmacista -> placeholder
-        T.Papa -> placeholder
-        T.Mamma -> placeholder
-        T.Perpetua -> placeholder
+        T.PapaIrene -> placeholder
+        T.DonCataldo -> placeholder
+        T.Livio -> placeholder
+        T.Perpetua -> perpetua
+        T.DonSaverio -> placeholder
 
 
 rosetta : T.CharacterDescription
 rosetta =
-    { description = "La protagonista"
+    { fullName = "Rosa Maria (Rosetta) Zitoli"
+    , description = "La protagonista"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+
+perpetua : T.CharacterDescription
+perpetua =
+    { fullName = "Mariagreca"
+    , description = "La perpetua"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+nunzio : T.CharacterDescription
+nunzio =
+    { fullName = "Nunzio Zitoli"
+    , description = "Il papà di Rosetta, maestro di musica"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+rita : T.CharacterDescription
+rita =
+    { fullName = "Rita Zitoli"
+    , description = "La mamma di Rosetta, la sarta"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+grazia : T.CharacterDescription
+grazia =
+    { fullName = "Grazia Zitoli"
+    , description = "La sorella di Rosetta, quella bella"
+    , birthday = fakeDate
+    , death = Nothing
+    }
+
+isabella : T.CharacterDescription
+isabella =
+    { fullName = "Isabella Zitoli"
+    , description = "La sorella di Rosetta, la suora"
     , birthday = fakeDate
     , death = Nothing
     }
 
 placeholder : T.CharacterDescription
 placeholder =
-    { description = "Placeholder"
+    { fullName = "placeholder"
+    , description = "Placeholder"
     , birthday = fakeDate
     , death = Nothing
     }
