@@ -29,9 +29,8 @@ event e =
 
 characters : List T.Character -> List (Html msg)
 characters cs =
-    List.concat
-        [ [ Html.text "I personaggi: " ]
-        , List.intersperse (Html.text ", ") <| List.map character cs
+        [ Html.text "I personaggi: "
+        , Html.div [] <| List.intersperse (Html.text ", ") <| List.map character cs
         ]
 
 

@@ -1,27 +1,55 @@
 .character {
-    .character-container {
+    overflow-y: scroll;
+
+    .character-content {
+        width: 100%;
+        max-height: 100%;
+        margin-top: 30px;
+        overflow: hidden;
         display: flex;
         flex-direction: row;
+    }
+
+    .character-details-column {
+        padding : 20px;
+        flex-basis: 35%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        text-align: right;
+    }
+
+    .character-events-column {
         text-align: left;
-        width: 60%;
-        margin: auto;
+        flex-basis: 65%;
+        flex-grow: 0;
+        flex-shrink: 0;
+
+        overflow-y: scroll;
     }
 
     .character-events {
-        width: 65%;
+        width: 60%;
         padding: 30px 20px;
+        margin-bottom: 70px;
         background-color: $beige;
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
+        border-left: 4px solid $dark;
+
+        
         .event-view:not(:last-child) {
-            margin-bottom: 70px;
+            margin-bottom: 50px;
         }
     }
 
-    .character-details {
-        padding : 20px;
-        width: 35%;
-        border-right: 4px solid $dark;
-        text-align: right;
+    .character-name {
+        @include h2;
     }
+
+    .dates {
+        @include subtitle;
+        color: $grey;
+        margin-bottom: 20px;
+    }
+
 }

@@ -64,10 +64,10 @@ chapterView c =
             [ Attrs.class "chapter-details" ] 
             [ Html.div
                 [ Attrs.class "chapter-title" ] 
-                [ Html.text <| c.title ]
+                [ Html.text <| String.fromInt c.id ++ ". " ++ c.title ]
             , Html.a
                 [ Attrs.class "chapter-description" 
-                , Route.href Route.Characters -- TODO link to character page
+                , Route.href <| Route.Character c.narrator
                 ] 
                 [ Html.text <| c.description ]
             ]

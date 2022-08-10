@@ -26,6 +26,12 @@ img {
   background-color: $cream;
   color: $black;
   @include text;
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex-grow: 1;
+    overflow: auto;
+  }
 }
 
 .page-top-banner {

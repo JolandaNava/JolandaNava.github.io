@@ -30,7 +30,8 @@ type Character
     -- Altri
     | Irene
     | PapaIrene
-    | DonCataldo -- D'Oria, 
+    | MammaIrene
+    | DonCataldo -- D'Oria
     | Livio -- Patruno, negozio di stoffe
     | Perpetua
     | DonSaverio -- il parroco
@@ -41,7 +42,6 @@ type alias CharacterDescription =
     , description : String
     , birthday : Date
     , death : Maybe Date
-    -- , relations : Relation
     }
 
 type alias Relation = Edge String
@@ -59,8 +59,6 @@ type alias Event =
 
 
 type alias Date = Posix
-
--- type alias Timeline = List Event
 
 
 type alias Chapter =

@@ -65,6 +65,7 @@ readCharacter x =
     -- Altri
         "irene" -> Just T.Irene
         "papairene" -> Just T.PapaIrene
+        "mammairene" -> Just T.MammaIrene
         "doncataldo" -> Just T.DonCataldo
         "livio" -> Just T.Livio
         "perpetua" -> Just T.Perpetua
@@ -99,6 +100,7 @@ showCharacter c =
     -- Altri
         T.Irene -> "irene"
         T.PapaIrene -> "papairene"
+        T.MammaIrene -> "mammairene"
         T.DonCataldo -> "doncataldo"
         T.Livio -> "livio"
         T.Perpetua -> "perpetua"

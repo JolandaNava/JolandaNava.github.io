@@ -11,6 +11,7 @@ import Types as T
 import Show
 import Data
 import View
+import Time
 
 ---- MODEL ----
 
@@ -51,22 +52,48 @@ content :  Model -> List (Html Msg)
 content  { character } =
     Page.pageView (Show.character character) "character"
         [ Html.div
-            [ Attrs.class "character-container" ]
-            [ Html.div
-                [ Attrs.class "character-details" ]
-                [ Html.text <| .description <| Data.characterDescription character
+            [ Attrs.class "character-content" ]
+            [  Html.div
+                [ Attrs.class "character-details-column" ]
+                [ Html.div 
+                    [ Attrs.class "character-details" ]
+                        <| characterView <| Data.characterDescription character
                 ]
             , Html.div
-                [ Attrs.class "character-events" ]
-                <| makeTimeline character
+                [ Attrs.class "character-events-column" ]
+                [ Html.div
+                    [ Attrs.class "character-events" ]
+                        <| makeTimeline character
+                ]
             ]
         ]
+
+
+characterView : T.CharacterDescription -> List (Html Msg)
+characterView cd =
+    [ Html.div
+        [ Attrs.class "character-name" ] 
+        [ Html.text cd.description ]
+    , Html.div
+        [ Attrs.class "dates" ]
+        [ Html.text <| Show.fullDate cd.birthday
+        , Html.text " - "
+        , Html.text <| Maybe.withDefault " " <| Maybe.map Show.fullDate cd.death
+        ]
+    ]
+
 
 
 makeTimeline : T.Character -> List (Html Msg)
 makeTimeline c =
     let
-        events = Data.allEvents -- TODO filter
+        characterIsPresent =
+            List.member c << .characters
+
+        orderByDate = List.sortBy (Time.posixToMillis << .date)
+
     in
-        List.map View.event events
+        List.map View.event
+            <| orderByDate
+            <| List.filter characterIsPresent Data.allEvents
 
