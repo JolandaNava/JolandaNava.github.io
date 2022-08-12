@@ -1,11 +1,24 @@
 .home {
+    padding-top: 150px;
+    .page-title {
+        @include h0;
+    }
 
+    .author {
+        @include h2;
+        font-style: italic;
+        color: $dark;
+        margin-bottom: 30px;
+    }
+
+    .project-description-container {
+       display: flex;
+       justify-content: center;
+       margin-bottom: 50px;
+    }
     .project-description {
         min-width: 400px;
         width: 40%;
-        margin: auto;
-        margin-bottom: 50px;
-
     }
 
     .home-page-buttons {

@@ -25,22 +25,20 @@ img {
   font-weight: 500;
   display: flex;
   flex-direction: column; }
-  .corato-page > * {
-    flex-grow: 1;
-    overflow: auto; }
+
+.simple-nav {
+  position: absolute;
+  top: 0px;
+  left: 0px; }
 
 .page-top-banner {
-  text-align: center;
-  padding: 10px; }
-  .page-top-banner .simple-nav {
-    position: absolute;
-    top: 0px;
-    left: 0px; }
+  padding: 30px; }
 
 .page-title {
   font-size: 48px;
-  line-height: 100px;
-  font-weight: 900; }
+  line-height: 50px;
+  font-weight: 900;
+  text-align: center; }
 
 .simple-nav {
   padding: 10px;
@@ -74,33 +72,47 @@ img {
   font-weight: 500;
   color: #22223B; }
 
-.home .project-description {
-  min-width: 400px;
-  width: 40%;
-  margin: auto;
-  margin-bottom: 50px; }
-
-.home .home-page-buttons {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center; }
-
-.home .home-page-main-button {
-  padding: 30px;
-  background-color: #4A4E69;
-  margin: 10px;
-  width: 200px;
-  border-radius: 12px;
-  font-size: 20px;
-  line-height: 26px;
-  font-weight: 700; }
-  .home .home-page-main-button a {
-    color: #C9ADA7; }
+.home {
+  padding-top: 150px; }
+  .home .page-title {
+    font-size: 100px;
+    line-height: 100px;
+    font-weight: 900; }
+  .home .author {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700;
+    font-style: italic;
+    color: #4A4E69;
+    margin-bottom: 30px; }
+  .home .project-description-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px; }
+  .home .project-description {
+    min-width: 400px;
+    width: 40%; }
+  .home .home-page-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center; }
+  .home .home-page-main-button {
+    padding: 30px;
+    background-color: #4A4E69;
+    margin: 10px;
+    width: 200px;
+    border-radius: 12px;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700; }
+    .home .home-page-main-button a {
+      color: #C9ADA7; }
 
 .book .chapters-container {
-  margin-top: 30px;
-  padding-bottom: 50px; }
+  margin-top: 20px;
+  padding-bottom: 50px;
+  overflow-y: scroll; }
 
 .book .chapter {
   display: flex;

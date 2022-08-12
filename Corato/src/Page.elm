@@ -12,10 +12,10 @@ pageView pageName class content =
         , Attrs.class class
         ]
         <| List.append
-            [ Html.div
+            [ Navigation.simpleNav
+            , Html.div
                 [ Attrs.class "page-top-banner" ]
-                [ Navigation.simpleNav
-                , Html.div
+                [ Html.div
                     [ Attrs.class "page-title" ]
                     [ Html.text pageName ]
                 ]
