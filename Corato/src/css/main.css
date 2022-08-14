@@ -169,19 +169,16 @@ img {
 
 .characters .characters-relations {
   background-color: #C9ADA7;
-  height: 300px;
-  width: 50%;
-  margin: auto;
   margin-top: 50px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  border-radius: 12px; }
 
 .characters .characters-list-item {
   padding-top: 10px; }
   .characters .characters-list-item a {
     color: #4A4E69; }
+
+.edge-text {
+  font-size: 5px; }
 
 .character {
   overflow-y: scroll; }

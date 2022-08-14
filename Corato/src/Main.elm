@@ -137,10 +137,17 @@ main =
         { view = view
         , init = init
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         , onUrlChange = ChangedUrl
         , onUrlRequest = ClickedLink
         }
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    case model.page of
+        Characters subModel ->
+            Sub.map CharactersMsg <| Characters.subscriptions subModel
+        _ -> Sub.none 
 
 
 changeRouteTo : Route -> Model -> ( Model, Cmd Msg )

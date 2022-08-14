@@ -3,7 +3,7 @@ module Data exposing (..)
 
 import Types as T
 import Time
-import Graph exposing (Node)
+import Graph exposing (Graph, Node, Edge)
 
 
 -- IL LIBRO
@@ -138,35 +138,36 @@ fakeDate = Time.millisToPosix -631152000000
 -- WARNING don't change the order of these
 characters : List T.Character
 characters =
-    [ T.Andrea
-    , T.Rocco
-    , T.SignSuonatori
-    , T.Alfredo
+    -- I Suonatori
+    [ T.Andrea -- 0
+    , T.Rocco -- 1
+    , T.SignSuonatori -- 2
+    , T.Alfredo -- 3
 
     -- I Tedone
-    , T.Riccardo
-    , T.Chiara
-    , T.Gabriele
+    , T.Riccardo -- 4
+    , T.Chiara -- 5
+    , T.Gabriele -- 6
 
     -- Gli Zitoli
-    , T.Nunzio
-    , T.Rita
-    , T.Rosetta
-    , T.Grazia
-    , T.Isabella
-    , T.NonnaMaria
+    , T.Nunzio -- 7
+    , T.Rita -- 8
+    , T.Rosetta  -- 9
+    , T.Grazia -- 10
+    , T.Isabella -- 11
+    , T.NonnaMaria -- 12
 
-    , T.Bruno
-    , T.Vincenzo
+    , T.Bruno -- 13
+    , T.Vincenzo -- 14
 
     -- Altri
-    , T.Irene
-    , T.PapaIrene
-    , T.MammaIrene
-    , T.DonCataldo
-    , T.Livio
-    , T.Perpetua
-    , T.DonSaverio
+    , T.Irene -- 15
+    , T.PapaIrene -- 16
+    , T.MammaIrene -- 17
+    , T.DonCataldo -- 18
+    , T.Livio -- 19
+    , T.Perpetua -- 20
+    , T.DonSaverio -- 21
 
     ]
 
@@ -399,6 +400,19 @@ placeholder =
 -- LE RELAZIONI
 
 
+graphRelations : Graph String String
+graphRelations =
+    let
+        toString : Node T.Character -> Node String
+        toString node =
+            { id = node.id
+            , label = .fullName <| characterDescription node.label
+            }
+    in
+        Graph.fromNodesAndEdges
+            (List.map toString charactersAsNodes)
+            relationsAsEdges
+
 relations : T.Relations
 relations =
     Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
@@ -421,25 +435,37 @@ charactersAsNodes =
 
 relationsAsEdges : List T.Relation
 relationsAsEdges =
-    [ 
-        { from = 4
-        , to = 0
-        , label = "è padre di"
-        }
-    , 
-        { from = 5
-        , to = 0
-        , label = "è madre di"
-        }
-    , 
-        { from = 5
-        , to = 0
-        , label = "è promesso in sposo a"
-        }
-    , 
-        { from = 0
-        , to = 5
-        , label = "è promessa in sposa a"
-        }
-    ]
+    -- Zitoli
+    [ Edge 7 9 "è padre di"
+    , Edge 8 9 "è madre di"
+    , Edge 10 9 "è sorella di" 
+    , Edge 11 9 "è sorella di" 
+    , Edge 12 8 "è madre di"
 
+    , Edge 13 10 "è sposato con"
+    , Edge 14 10 "è figlio di"
+
+    -- Tedone
+    , Edge 4 6 "è padre di"
+    , Edge 5 6 "è madre di"
+    , Edge 6 9 "è promesso in sposo a"
+
+    -- Suonatori
+    , Edge 2 0 "è madre di"
+    , Edge 2 1 "è madre di"
+    , Edge 3 0 "è padre di"
+    , Edge 3 1 "è padre di"
+    , Edge 0 1 "è fratello di"
+    , Edge 0 11 "è innamorata di"
+
+    -- Altri
+    , Edge 16 15 "è madre di"
+    , Edge 17 15 "è padre di"
+    , Edge 15 9 "è migliore amica di"
+    , Edge 15 6 "è innamorata di"
+    
+    , Edge 20 21 "è impiegata di"
+
+    , Edge 19 8 "è amico di"
+    , Edge 18 7 ""
+    ]

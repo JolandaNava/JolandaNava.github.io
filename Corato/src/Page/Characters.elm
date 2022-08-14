@@ -1,10 +1,12 @@
-module Page.Characters exposing (Model, Msg, init, update, view)
+module Page.Characters exposing (Model, Msg, init, update, view, subscriptions)
 
 import Html exposing (Html)
 import Html.Attributes as Attrs
 import Browser exposing (Document)
 
-import Data exposing (relations)
+import Cmd.Extra as Cmd
+import RelationsGraph as Relations
+import Data
 import Show
 import Page
 import Types as T
@@ -14,12 +16,14 @@ import Route
 
 
 type alias Model =
-    {}
+    { relations : Relations.Model
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    Cmd.withNoCmd
+    { relations = Relations.init }
 
 
 ---- UPDATE ----
@@ -27,12 +31,24 @@ init =
 
 type Msg
     = NoOp
+    | RelationsMsg Relations.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model = 
     case msg of
-        NoOp -> (model, Cmd.none)
+        NoOp ->
+            Cmd.withNoCmd model
+        RelationsMsg subMsg ->
+            Cmd.withNoCmd 
+                { relations = Relations.update subMsg model.relations }
+
+
+---- SUBSCRIPTIONS ----
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.map RelationsMsg <| Relations.subscriptions model.relations
+
 
 
 ---- VIEW ----
@@ -45,7 +61,7 @@ view model =
     }
 
 content :  Model -> List (Html Msg)
-content  _ =
+content  model =
     Page.pageView "Scopri i Personaggi" "characters"
         [ Html.div
             [ Attrs.class "characters-page-container" ]
@@ -65,15 +81,14 @@ content  _ =
                     [ Html.text "Le relazioni" ]
                 , Html.div
                     [ Attrs.class "characters-relations" ]
-                    [ Html.text "Coming soon..." ]
-                    -- [ Html.text showRelations ] 
+                    [ showRelations model.relations ]
                 ]
             ]
         ]
 
-showRelations : String
-showRelations =
-    Show.relations Data.relations
+showRelations : Relations.Model -> Html Msg
+showRelations model =
+    Html.map RelationsMsg <| Relations.view model
 
 
 characterView : T.Character -> Html Msg

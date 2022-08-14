@@ -15,15 +15,12 @@
     }
 
     .characters-relations {
+        // position: absolute;
+        // left: 0;
+        // width: 100%;
         background-color: $beige;
-        height: 300px;
-        width: 50%;
-        margin: auto;
         margin-top: 50px;
         border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .characters-list-item {
@@ -32,4 +29,10 @@
             color: $dark;
         }
     }
+}
+
+// graph
+
+.edge-text {
+    font-size: 5px;;
 }
