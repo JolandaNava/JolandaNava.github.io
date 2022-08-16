@@ -66,20 +66,18 @@ content  model =
         [ Html.div
             [ Attrs.class "characters-page-container" ]
             [ Html.div
-                [ ]
+                [ Attrs.class "characters-list-container" ]
                 [ Html.div
                     [ Attrs.class "characters-page-title" ]
                     [ Html.text "I personaggi" ]
                 , Html.div
-                    [ ]
+                    [ Attrs.class "characters-list" ]
                         <| List.map characterView Data.characters 
                 ]
             , Html.div
-                [ ]
-                [ Html.div
-                    [ Attrs.class "characters-page-title" ]
-                    [ Html.text "Le relazioni" ]
-                , Html.div
+                [ Attrs.class "characters-relations-container" ]
+                [
+                Html.div
                     [ Attrs.class "characters-relations" ]
                     [ showRelations model.relations ]
                 ]

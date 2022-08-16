@@ -155,10 +155,20 @@ img {
 
 .characters .characters-page-container {
   display: flex;
-  flex-direction: row; }
-  .characters .characters-page-container > * {
-    flex-basis: 50%;
+  flex-direction: row;
+  max-height: 100%;
+  overflow-y: scroll; }
+
+.characters .characters-list-container {
+  flex-basis: 20%; }
+  .characters .characters-list-container .characters-list {
+    background-color: #C9ADA7;
+    border-radius: 12px;
+    margin-left: 30px;
     padding: 20px; }
+
+.characters .characters-relations-container {
+  flex-basis: 80%; }
 
 .characters .characters-page-title {
   font-size: 20px;
@@ -168,9 +178,10 @@ img {
   padding-bottom: 20px; }
 
 .characters .characters-relations {
-  background-color: #C9ADA7;
-  margin-top: 50px;
-  border-radius: 12px; }
+  min-width: 700px;
+  max-width: 1000px;
+  margin-right: 20px;
+  margin-top: 20px; }
 
 .characters .characters-list-item {
   padding-top: 10px; }
@@ -178,7 +189,17 @@ img {
     color: #4A4E69; }
 
 .edge-text {
-  font-size: 5px; }
+  font-size: 8px;
+  display: none; }
+
+.node-text {
+  font-size: 12px; }
+
+.links g:hover .edge-text {
+  display: block; }
+
+.links g:hover .edge {
+  stroke: #9A8C98; }
 
 .character {
   overflow-y: scroll; }

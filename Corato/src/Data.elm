@@ -465,6 +465,7 @@ relationsAsEdges =
     , Edge 15 6 "è innamorata di"
     
     , Edge 20 21 "è impiegata di"
+    , Edge 20 7 "frequenta la casa di"
 
     , Edge 19 8 "è amico di"
     , Edge 18 7 ""
