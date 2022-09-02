@@ -3,8 +3,7 @@
 @import 'fonts';
 
 body {
-    // font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
-    font-family: palatino;
+    font-family: jost;
     margin: 0;
     height: 100vh;
   }
@@ -23,7 +22,7 @@ img {
   height: 100%;
   width: 100%;
   text-align: center;
-  background-color: $cream;
+  background-color: $background;
   color: $black;
   @include text;
   display: flex;
@@ -38,6 +37,8 @@ img {
 
 .page-top-banner {
   padding: 30px;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .page-title {
@@ -51,10 +52,22 @@ img {
   display: flex;
   justify-content: space-evenly;
   a {
-    color: $dark;
+    color: $black;
     padding: 10px;
   }
 }
+
+/* hide scrollbar but allow scrolling */
+* {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+*::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
 
 @import 'view';
 @import 'home';

@@ -24,29 +24,23 @@ import Html exposing (b)
 
 w : Float
 w =
-    700
+    800
 
 
 h : Float
 h =
-    550
+    800
 
 
 -- Colors
 black : Color.Color
-black = Color.rgb255 33 33 59
+black = Color.rgb255 30 30 30
 
-dark : Color.Color
-dark = Color.rgb255 74 78 105
+events : Color.Color
+events = Color.rgb255 119 70 64
 
-grey : Color.Color
-grey = Color.rgb255 154 140 152
-
-beige : Color.Color
-beige = Color.rgb255 201 173 167
-
-cream : Color.Color
-cream = Color.rgb255 242 233 228
+characters : Color.Color
+characters = Color.rgb255 160 134 56
 
 transparent : Color.Color 
 transparent = Color.rgba 0 0 0 0
@@ -95,9 +89,9 @@ init =
 
         forces =
             [ Force.links <| List.map link <| Graph.edges graph
-            , Force.manyBodyStrength (-110) <| List.map .id <| Graph.nodes graph
+            , Force.manyBodyStrength (-170) <| List.map .id <| Graph.nodes graph
             , Force.center (w / 2) (h / 2)
-            , Force.collision (5) <| List.map .id <| Graph.nodes graph
+            , Force.collision (15) <| List.map .id <| Graph.nodes graph
             ]
     in
         Model Nothing graph (Force.simulation forces)
@@ -216,7 +210,7 @@ linkElement graph int edge =
         [ Svg.path
             [ SvgAttrs.class ["edge"]
             , strokeWidth 1
-            , stroke <| Paint beige
+            , stroke <| Paint black
             , SvgAttrs.id id
             , SvgAttrs.d
                 <| String.join " " 
@@ -233,7 +227,7 @@ linkElement graph int edge =
             ]
             [ Svg.textPath 
                 [ attribute "href" <| "#" ++ id 
-                , fill <| Paint black
+                , fill <| Paint events
                 ]
                 [ text edge.label ]
             ]
@@ -253,7 +247,7 @@ nodeElement node =
     g []
         [ circle
             [ r 2
-            , fill <| Paint dark
+            , fill <| Paint black
             , stroke <| Paint transparent
             , strokeWidth 2
             , onMouseDown node.id
@@ -265,7 +259,7 @@ nodeElement node =
             [ SvgAttrs.class ["node-text"]
             , dx <| node.label.x + 5
             , dy <| node.label.y - 2
-            , fill <| Paint dark
+            , fill <| Paint characters
             ]
             [ text node.label.value ]
         ]

@@ -7,7 +7,7 @@
     .author {
         @include h2;
         font-style: italic;
-        color: $dark;
+        color: $characters;
         margin-bottom: 30px;
     }
 
@@ -30,7 +30,7 @@
 
     .home-page-main-button {
         padding: 30px;
-        background-color: $dark;
+        background-color: $black;
         margin: 10px;
         width: 200px;
         border-radius: 12px;
@@ -38,7 +38,7 @@
         @include h2;
         
         a {
-            color: $beige;
+            color: $background;
         }
     }
 

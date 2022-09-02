@@ -30,7 +30,13 @@ character =
     .fullName << Data.characterDescription
 
 
--- SHOW Date
+-- SHOW CHAPTERS
+chapterTitle : T.Chapter -> String
+chapterTitle c =
+    String.fromInt c.id ++ ". " ++ c.title
+
+
+-- SHOW DATES
 
 zone : Time.Zone
 zone = Time.utc

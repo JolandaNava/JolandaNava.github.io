@@ -8,8 +8,8 @@ import Browser exposing (Document)
 import Types as T
 import Page
 import Data
-import Show
 import Route
+import Show
 import View
 
 ---- MODEL ----
@@ -64,7 +64,7 @@ chapterView c =
             [ Attrs.class "chapter-details" ] 
             [ Html.div
                 [ Attrs.class "chapter-title" ] 
-                [ Html.text <| String.fromInt c.id ++ ". " ++ c.title ]
+                [ Html.text <| Show.chapterTitle c ]
             , Html.a
                 [ Attrs.class "chapter-description" 
                 , Route.href <| Route.Character c.narrator

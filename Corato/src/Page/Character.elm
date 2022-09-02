@@ -51,36 +51,10 @@ view model =
 content :  Model -> List (Html Msg)
 content  { character } =
     Page.pageView (Show.character character) "character"
-        [ Html.div
-            [ Attrs.class "character-content" ]
-            [  Html.div
-                [ Attrs.class "character-details-column" ]
-                [ Html.div 
-                    [ Attrs.class "character-details" ]
-                        <| characterView <| Data.characterDescription character
-                ]
-            , Html.div
-                [ Attrs.class "character-events-column" ]
-                [ Html.div
-                    [ Attrs.class "character-events" ]
-                        <| makeTimeline character
-                ]
-            ]
+        [  Html.div
+            [ Attrs.class "character-timeline" ]
+            <| (Html.div [Attrs.class "timeline-line"] []) :: View.character character :: makeTimeline character
         ]
-
-
-characterView : T.CharacterDescription -> List (Html Msg)
-characterView cd =
-    [ Html.div
-        [ Attrs.class "character-name" ] 
-        [ Html.text cd.description ]
-    , Html.div
-        [ Attrs.class "dates" ]
-        [ Html.text <| Show.fullDate cd.birthday
-        , Html.text " - "
-        , Html.text <| Maybe.withDefault " " <| Maybe.map Show.fullDate cd.death
-        ]
-    ]
 
 
 

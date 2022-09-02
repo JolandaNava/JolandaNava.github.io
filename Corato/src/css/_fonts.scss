@@ -1,6 +1,7 @@
 @font-face {
-    font-family: 'palatino';
-    src: url('fonts/palatino-font.ttf');
+    font-family: 'jost';
+    src: url('fonts/jost-variable.ttf');
+    //src: url('fonts/jost-italic-variable.ttf');
 }
 
 @mixin h0 {
@@ -11,24 +12,31 @@
 
 @mixin h1 {
     font-size: 48px;
-    line-height: 50px;
+    line-height: 58px;
     font-weight: 900;
 }
 
 @mixin h2 {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 26px;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 @mixin h3 {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 800;
+}
+
+@mixin h4 {
     font-size: 18px;
-    line-height: 20px;
-    font-weight: 700;
+    line-height: 22px;
+    font-weight: 500;
+    font-style: italic;
 }
 
 @mixin subtitle {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
     font-weight: 500;
     font-style: italic;

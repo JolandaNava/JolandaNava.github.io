@@ -1,5 +1,6 @@
 module Data exposing (..)
 
+import List.Extra as List
 
 import Types as T
 import Time
@@ -172,7 +173,12 @@ characters =
     ]
 
 narrators : List T.Character
-narrators = [ T.Perpetua, T.Andrea, T.Irene, T.Rosetta ]
+narrators = [ T.Perpetua, T.Andrea, T.PapaIrene, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
+
+chapterNarratedBy : T.Character -> Maybe T.Chapter
+chapterNarratedBy c =
+    List.find ((==) c << .narrator) book
+
 
 
 characterDescription : T.Character -> T.CharacterDescription

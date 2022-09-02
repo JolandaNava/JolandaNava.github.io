@@ -11,6 +11,7 @@ import Show
 import Page
 import Types as T
 import Route
+import View
 
 ---- MODEL ----
 
@@ -69,11 +70,14 @@ content  model =
                 [ Attrs.class "characters-list-container" ]
                 [ Html.div
                     [ Attrs.class "characters-page-title" ]
-                    [ Html.text "I personaggi" ]
+                    [ Html.text "I Narratori" ]
                 , Html.div
                     [ Attrs.class "characters-list" ]
-                        <| List.map characterView Data.characters 
+                        <| List.map View.character Data.narrators 
                 ]
+            , Html.div
+                    [ Attrs.class "characters-page-title" ]
+                    [ Html.text "Le Relazioni" ]
             , Html.div
                 [ Attrs.class "characters-relations-container" ]
                 [

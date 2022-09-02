@@ -1,15 +1,31 @@
 // styling for common components
 
 .event-view {
+    min-width: 250px;
+    max-width: 250px;
+    height: 300px;
+    border-radius: 8px;
+    border: $black solid 2px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: white;
+    text-align: center;
+
+    z-index: 1;
+
     .event-title {
-        color: $dark;
+        color: $events;
         @include h3;
         font-weight: 700;
     }
 
     .event-date {
         @include subtitle;
-        color: $grey;
+        color: $dates;
         margin-bottom: 20px;
     }
 
@@ -17,8 +33,59 @@
         margin-bottom: 20px;
     }
     
-    .character-view {
+    .event-characters {
+        height: 55px;
+        margin: -20px;
+        padding: 20px;
+        border-top: $black solid 2px;
         @include smalltext;
-        color: $black;
+        // background-color: $white;
+    }
+
+    .characte-link-view {
+        color: $characters;
+    }
+}
+
+.character-view {
+    min-width: 250px;
+    max-width: 250px;
+    height: 200px;
+    border-radius: 8px;
+    border: $black solid 2px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: white;
+
+    z-index: 1;
+
+    .character-name {
+        .characte-link-view {
+            color: $characters;
+            @include h3;
+            font-weight: 700;
+        }
+    }
+
+    .character-dates {
+        @include subtitle;
+        color: $dates;
+        margin-bottom: 20px;
+    }
+
+    .character-description {
+        margin-bottom: 20px;
+    }
+    
+    .character-chapter {
+        height: 40px;
+        margin: -20px;
+        padding: 20px;
+        border-top: $black solid 2px;
+        // background-color: $white;
     }
 }

@@ -1,43 +1,37 @@
 .characters {
-    .characters-page-container {
+
+    .characters-list {
         display: flex;
-        flex-direction: row;
-        max-height: 100%;
-        overflow-y: scroll;
-    }
-
-    .characters-list-container {
-        flex-basis: 20%;
-        .characters-list {
-            background-color: $beige;
-            border-radius: 12px;
-            margin-left: 30px;
-            padding: 20px;
+        flex-wrap: wrap;
+        padding: 20px;
+        > * {
+            margin: 10px 20px;
         }
-
     }
+
 
     .characters-relations-container {
-        flex-basis: 80%;
+        margin: 20px;
+        background-color: $white;
+        border: $black 2px solid;
+        border-radius: 8px;
     }
 
     .characters-page-title {
         @include h2;
-        color: $dark;
-        padding-bottom: 20px;
+        color: $black;
     }
 
     .characters-relations {
         min-width: 700px;
         max-width: 1000px;
-        margin-right: 20px;
-        margin-top: 20px;
+        margin: auto;
     }
 
     .characters-list-item {
         padding-top: 10px;
         a {
-            color: $dark;
+            color: $black;
         }
     }
 }
@@ -59,7 +53,7 @@
             display: block;
         }
         .edge {
-            stroke: $grey;
+            stroke: $black;
         }
     }
 }
