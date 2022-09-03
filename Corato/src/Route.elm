@@ -8,7 +8,6 @@ import Url.Parser as Parser exposing (Parser, oneOf, s, (</>))
 import Url.Builder as Builder
 import Browser.Dom exposing (Error(..))
 import Types as T
-import Html exposing (a)
 
 
 
@@ -62,14 +61,17 @@ readCharacter x =
         "bruno" -> Just T.Bruno
         "vincenzo" -> Just T.Vincenzo
 
-    -- Altri
+    -- Gli Strippoli
         "irene" -> Just T.Irene
-        "Tommaso" -> Just T.Tommaso
-        "Alessandra" -> Just T.Alessandra
+        "tommaso" -> Just T.Tommaso
+        "alessandra" -> Just T.Alessandra
+
+    -- Altri
         "doncataldo" -> Just T.DonCataldo
         "livio" -> Just T.Livio
         "perpetua" -> Just T.Perpetua
         "donsaverio" -> Just T.DonSaverio
+        "antonio" -> Just T.Antonio
 
         _ -> Nothing
 
@@ -97,14 +99,17 @@ showCharacter c =
         T.Bruno -> "bruno"
         T.Vincenzo -> "vincenzo"
 
-    -- Altri
+    -- Gli Strippoli
         T.Irene -> "irene"
-        T.Tommaso -> "Tommaso"
-        T.Alessandra -> "Alessandra"
+        T.Tommaso -> "tommaso"
+        T.Alessandra -> "alessandra"
+
+    -- Altri
         T.DonCataldo -> "doncataldo"
         T.Livio -> "livio"
         T.Perpetua -> "perpetua"
         T.DonSaverio -> "donsaverio"
+        T.Antonio -> "antonio"
 
 -- HELPERS
 
@@ -113,7 +118,9 @@ href : Route -> Attribute msg
 href targetRoute =
     Attr.href (routeToString targetRoute)
 
-
+toCharacter : T.Character -> String
+toCharacter =
+    routeToString << Character 
 
 {-| insert a page in the navigation history
 -}
@@ -129,10 +136,6 @@ replaceUrl key route =
 fromUrl : Url -> Route
 fromUrl = Maybe.withDefault NotFound << Parser.parse parser
 
-
--- goto : Session -> Route -> Cmd msg
--- goto session route =
---     pushUrl (navKey session) route
 
 urlToRoute : Url -> Route
 urlToRoute url =

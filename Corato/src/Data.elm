@@ -13,7 +13,9 @@ book =
     List.sortBy getId
         [ chapter1
         , chapter2
-
+        , chapter3
+        , chapter4
+        , chapter5
         , chapter6
 
         , chapter12
@@ -44,6 +46,36 @@ chapter2 =
     , narrator = T.Andrea
     , period = (fakeDate, fakeDate)
     , events = sorted chapter2Events
+    }
+
+chapter3 : T.Chapter
+chapter3 =
+    { id = 3
+    , title = "La bocca sporca"
+    , description = "Antonio Tandoi"
+    , narrator = T.Antonio
+    , period = (fakeDate, fakeDate)
+    , events = []
+    }
+
+chapter4 : T.Chapter
+chapter4 =
+    { id = 4
+    , title = "Le stanze che traboccano"
+    , description = "Tommaso Strippoli"
+    , narrator = T.Tommaso
+    , period = (fakeDate, fakeDate)
+    , events = []
+    }
+
+chapter5 : T.Chapter
+chapter5 =
+    { id = 5
+    , title = "Mio, mio, mio"
+    , description = "Livio Patruno, negoziante di stoffe"
+    , narrator = T.Livio
+    , period = (fakeDate, fakeDate)
+    , events = []
     }
 
 chapter6 : T.Chapter
@@ -250,7 +282,7 @@ characters =
     ]
 
 narrators : List T.Character
-narrators = [ T.Perpetua, T.Andrea, T.Tommaso, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
+narrators = [ T.Perpetua, T.Andrea, T.Antonio, T.Tommaso, T.Livio, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
 
 chapterNarratedBy : T.Character -> Maybe T.Chapter
 chapterNarratedBy c =
@@ -281,15 +313,18 @@ characterDescription c =
 
         T.Bruno -> bruno
         T.Vincenzo -> vincenzo
-
-    -- Altri
+    
+    -- Gli Strippoli
         T.Irene -> irene
         T.Tommaso -> tommaso
         T.Alessandra -> alessandra
+
+    -- Altri
         T.DonCataldo -> donCataldo
         T.Livio -> livio
         T.Perpetua -> perpetua
         T.DonSaverio -> donSaverio
+        T.Antonio -> antonio
 
 
 andrea : T.CharacterDescription
@@ -468,7 +503,13 @@ donSaverio =
     , death = Nothing
     }
 
-
+antonio : T.CharacterDescription
+antonio =
+    { fullName = "Antonio Tandoi"
+    , description = "Negoziante di stoffe"
+    , birthday = fakeDate
+    , death = Nothing
+    }
 
 
 placeholder : T.CharacterDescription
@@ -483,22 +524,22 @@ placeholder =
 -- LE RELAZIONI
 
 
-graphRelations : Graph String String
+graphRelations : Graph T.Character String
 graphRelations =
     let
-        toString : Node T.Character -> Node String
+        toString : Node T.Character -> Node T.Character
         toString node =
             { id = node.id
-            , label = .fullName <| characterDescription node.label
+            , label = node.label
             }
     in
         Graph.fromNodesAndEdges
             (List.map toString charactersAsNodes)
             relationsAsEdges
 
-relations : T.Relations
-relations =
-    Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
+-- relations : T.Relations
+-- relations =
+--     Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
 
 
 charactersAsNodes : List (Node T.Character)

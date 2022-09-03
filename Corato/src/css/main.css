@@ -249,6 +249,8 @@ img {
 
 .node-text {
   font-size: 12px; }
+  .node-text:hover {
+    text-decoration: underline; }
 
 .links g:hover .edge-text {
   display: block; }

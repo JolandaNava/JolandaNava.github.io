@@ -1,24 +1,23 @@
 module RelationsGraph exposing (view, Msg, Model, subscriptions, init, update)
 
 
-import Browser
 import Browser.Events
 import Color
-import Force exposing (State)
-import Graph exposing (Edge, Graph, Node, NodeContext, NodeId)
-import Html.Events exposing (on)
+import Force
+import Graph exposing (Edge, Graph, NodeContext, NodeId)
 import Html.Events.Extra.Mouse as Mouse
 import Json.Decode as Decode
 import Time
-import TypedSvg as Svg exposing (circle, g, line, svg, title)
+import TypedSvg as Svg exposing (circle, g, svg, title)
 import TypedSvg.Attributes as SvgAttrs exposing (class, fill, stroke, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, strokeWidth, x1, x2, y1, y2, x, y, dx, dy)
 import TypedSvg.Core exposing (Attribute, Svg, text, attribute)
 import TypedSvg.Types exposing (Paint(..), AnchorAlignment(..))
 import Data
-import TypedSvg.Attributes.InPx exposing (width)
-import TypedSvg.Attributes.InPx exposing (height)
 import Html exposing (b)
+import Types as T
+import Show
+import Route
 
 
 
@@ -67,10 +66,10 @@ type alias Drag =
 
 
 type alias Entity =
-    Force.Entity NodeId { value : String }
+    Force.Entity NodeId { value : T.Character }
 
 
-initializeNode : NodeContext String String -> NodeContext Entity String
+initializeNode : NodeContext T.Character String -> NodeContext Entity String
 initializeNode ctx =
     { node = { label = Force.entity ctx.node.id ctx.node.label, id = ctx.node.id }
     , incoming = ctx.incoming
@@ -195,12 +194,12 @@ onMouseDown index =
 
 linkElement : Graph Entity String -> Int -> Edge String -> Svg Msg
 linkElement graph int edge =
-    let
+    let  -- (.node >> (.label >> Show.character ))
         source =
-            Maybe.withDefault (Force.entity 0 "") <| Maybe.map (.node >> .label) <| Graph.get edge.from graph
+            Maybe.withDefault (Force.entity 0 T.Rosetta ) <| Maybe.map (.node >> .label) <| Graph.get edge.from graph
 
         target =
-            Maybe.withDefault (Force.entity 0 "") <| Maybe.map (.node >> .label) <| Graph.get edge.to graph
+            Maybe.withDefault (Force.entity 0 T.Rosetta ) <| Maybe.map (.node >> .label) <| Graph.get edge.to graph
         
         id =
             String.fromInt int
@@ -242,7 +241,7 @@ linkElement graph int edge =
         ]
 
 
-nodeElement : { a | id : NodeId, label : { b | x : Float, y : Float, value : String } } -> Svg Msg
+nodeElement : { a | id : NodeId, label : { b | x : Float, y : Float, value : T.Character } } -> Svg Msg
 nodeElement node =
     g []
         [ circle
@@ -254,14 +253,17 @@ nodeElement node =
             , cx node.label.x
             , cy node.label.y
             ]
-            [ title [] [ text node.label.value ] ]
-        , Svg.text_
-            [ SvgAttrs.class ["node-text"]
-            , dx <| node.label.x + 5
-            , dy <| node.label.y - 2
-            , fill <| Paint characters
+            [ title [] [ text <| Show.character node.label.value ] ]
+        , Svg.a
+            [ SvgAttrs.href <| Route.toCharacter node.label.value ]
+            [ Svg.text_
+                [ SvgAttrs.class ["node-text"]
+                , dx <| node.label.x + 5
+                , dy <| node.label.y - 2
+                , fill <| Paint characters
+                ]
+                [ text <| Show.character node.label.value ]
             ]
-            [ text node.label.value ]
         ]
 
 

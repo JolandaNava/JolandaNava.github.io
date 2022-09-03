@@ -37,6 +37,7 @@ type Character
     | Livio -- Patruno, negozio di stoffe
     | Perpetua
     | DonSaverio -- il parroco
+    | Antonio -- Antonio Tandoi
 
 
 type alias CharacterDescription = 
