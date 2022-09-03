@@ -67,7 +67,13 @@ makeTimeline c =
         orderByDate = List.sortBy (Time.posixToMillis << .date)
 
     in
-        List.map View.event
+        List.map  eventView -- View.event
             <| orderByDate
             <| List.filter characterIsPresent Data.allEvents
 
+eventView : T.Event -> Html Msg
+eventView event =
+    Html.div [ Attrs.class "character-timeline-event" ]
+        [ Html.div [ Attrs.class "timeline-event-line" ] []
+        , View.event event
+        ]

@@ -264,21 +264,38 @@ img {
     position: relative;
     height: 800px;
     padding: 20px 50px; }
-    .character .character-timeline > *:nth-child(even) {
-      align-self: flex-start; }
-    .character .character-timeline > *:nth-child(odd) {
-      align-self: flex-end; }
-    .character .character-timeline > *:nth-child(2) {
-      align-self: center;
-      margin-right: 50px; }
-    .character .character-timeline > *:not(*:nth-child(2)) {
-      margin-right: -83px; }
-    .character .character-timeline > *:last-child {
-      margin-right: 50px; }
+  .character .character-view {
+    margin-right: 50px;
+    align-self: center; }
   .character .timeline-line {
     position: absolute;
     top: 50%;
-    border: #774640 1px solid;
+    border: #FFC323 1px solid;
     width: 100%;
     z-index: 0;
     padding-right: 350px; }
+  .character .character-timeline-event {
+    position: relative;
+    flex-shrink: 0;
+    height: 400px;
+    display: flex;
+    margin-right: -83px; }
+    .character .character-timeline-event:nth-child(even) {
+      align-self: flex-start; }
+      .character .character-timeline-event:nth-child(even) .timeline-event-line {
+        bottom: 0px;
+        left: 50%; }
+    .character .character-timeline-event:nth-child(odd) {
+      align-self: flex-end; }
+      .character .character-timeline-event:nth-child(odd) .event-view {
+        align-self: flex-end; }
+      .character .character-timeline-event:nth-child(odd) .timeline-event-line {
+        top: 0px;
+        left: 50%; }
+    .character .character-timeline-event:last-child {
+      margin-right: 50px; }
+  .character .timeline-event-line {
+    position: absolute;
+    border: #FFC323 1px solid;
+    z-index: 0;
+    height: 54px; }

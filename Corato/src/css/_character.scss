@@ -7,31 +7,62 @@
         position: relative;
         height: 800px;
         padding: 20px 50px;
-        > *:nth-child(even) {
-            align-self: flex-start;
-        }
-        > *:nth-child(odd) {
-            align-self: flex-end;
-        }
-        > *:nth-child(2) {
-            align-self: center;
-            margin-right: 50px;
-        }
-        > *:not(*:nth-child(2)) {
-            margin-right: -83px;
-        }
-        > *:last-child {
-            margin-right: 50px;
-        }
+    }
+
+    .character-view {
+        margin-right: 50px;
+        align-self: center;
     }
 
     .timeline-line {
         position: absolute;
         top: 50%;
-        border: $events 1px solid;
+        border: $dates 1px solid;
         width: 100%;
         z-index: 0;
         padding-right: 350px;
     }
+
+    .character-timeline-event {
+        position: relative;
+        flex-shrink: 0;
+        height: 400px;
+        display: flex;
+        margin-right: -83px;
+
+        &:nth-child(even) {
+            align-self: flex-start;
+            
+            .timeline-event-line {
+                bottom: 0px;
+                left: 50%;
+            }
+        }
+
+        &:nth-child(odd) {
+            align-self: flex-end;
+            
+            .event-view {
+                align-self: flex-end;
+            }
+            
+            .timeline-event-line {
+                top: 0px;
+                left: 50%;
+            }
+        }
+
+        &:last-child {
+            margin-right: 50px;
+        }
+    }
+
+    .timeline-event-line {
+        position: absolute;
+        border: $dates 1px solid;
+        z-index: 0;
+        height: 54px;
+    }
+
 
 }
