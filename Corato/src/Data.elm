@@ -13,12 +13,17 @@ book =
     List.sortBy getId
         [ chapter1
         , chapter2
-        
+
+        , chapter6
+
         , chapter12
         ]
 
 getId : T.Chapter -> Int
 getId = .id
+
+sorted : List T.Event -> List T.Event
+sorted = List.sortBy (Time.posixToMillis << .date)
 
 -- I CAPITOLI
 chapter1 : T.Chapter
@@ -28,7 +33,7 @@ chapter1 =
     , description = "Mariagreca, la perpetua"
     , narrator = T.Perpetua
     , period = (fakeDate, fakeDate)
-    , events = chapter1Events
+    , events = sorted chapter1Events
     }
 
 chapter2 : T.Chapter
@@ -38,7 +43,17 @@ chapter2 =
     , description = "Andrea Suonatori, farmacista"
     , narrator = T.Andrea
     , period = (fakeDate, fakeDate)
-    , events = chapter2Events
+    , events = sorted chapter2Events
+    }
+
+chapter6 : T.Chapter
+chapter6 =
+    { id = 6
+    , title = "La Malascenima"
+    , description = "Irene Strippoli"
+    , narrator = T.Irene
+    , period = (fakeDate, fakeDate)
+    , events = sorted chapter6Events
     }
 
 chapter12 : T.Chapter
@@ -48,19 +63,14 @@ chapter12 =
     , description = "Rosetta Zitoli"
     , narrator = T.Rosetta
     , period = (fakeDate, fakeDate)
-    , events = chapter12Events
+    , events = sorted chapter12Events
     }
 
 -- GLI EVENTI
 
 allEvents : List T.Event
 allEvents =
-    List.concat
-        [ chapter1Events
-        , chapter2Events
-
-        , chapter12Events
-        ]
+    List.concat <| List.map .events book
 
 -- Chapter 1
 chapter1Events : List T.Event
@@ -116,6 +126,73 @@ comingOut =
     }
 
 
+-- Chapter 6
+chapter6Events : List T.Event
+chapter6Events = [ tommasoLasciaCasa, laPistola, mammaUbriaca, vestitoVerde, ireneVedeGabriele, ireneConosceGabriele, isabellaTrovaFede ]
+
+tommasoLasciaCasa : T.Event
+tommasoLasciaCasa =
+    { date = Time.millisToPosix -792982800000
+    , title = "Il papà di Irene le lascia"
+    , description = "Tommaso Strippoli abbandona moglie e figlia per andarsene con l'amante. Irene viene presa in casa dagli Zitoli"
+    , characters = [ T.Irene, T.Tommaso, T.Alessandra, T.Nunzio, T.Rosetta ]
+    , narrator = T.Irene
+    }
+
+laPistola : T.Event
+laPistola =
+    { date = fakeDate
+    , title = "Vincenzino spara un colpo"
+    , description = "Vincenzo trova la pistola del papà in casa e spara un colpo, forse ferendo un animale. Da allora, smette di parlare."
+    , characters = [ T.Vincenzo ]
+    , narrator = T.Irene
+    }
+
+vestitoVerde : T.Event
+vestitoVerde =
+    { date = Time.millisToPosix -760582800000
+    , title = "Il decimo compleanno di Irene"
+    , description = "Nunzio porta Irene a Bari, nel rientro comprano un vestito verde da regalare a Rosetta."
+    , characters = [T.Nunzio, T.Irene]
+    , narrator = T.Irene
+    }
+
+mammaUbriaca : T.Event
+mammaUbriaca =
+    { date = Time.millisToPosix -696992400000
+    , title = "La mamma cerca di vedere Irene"
+    , description = "La mamma di Irene si presenta dagli Zitoli ubriaca, chiedendo di riavere la figlia."
+    , characters = [ T.Alessandra, T.Nunzio, T.Rita, T.Irene, T.Rosetta]
+    , narrator = T.Irene
+    }
+
+ireneVedeGabriele : T.Event
+ireneVedeGabriele =
+    { date = Time.millisToPosix -559270800000
+    , title = "Irene vede Gabriele"
+    , description = "Irene vede Gabriele per la prima volta dietro al bancone del panificio."
+    , characters = [ T.Irene, T.Gabriele ]
+    , narrator = T.Irene
+    }
+
+ireneConosceGabriele : T.Event
+ireneConosceGabriele =
+    { date = Time.millisToPosix -554950800000
+    , title = "Irene e Gabriele si parlano"
+    , description = "Gabriele accompagna a casa Irene e per la prima volta si parlano."
+    , characters = [ T.Irene, T.Gabriele ]
+    , narrator = T.Irene
+    }
+
+isabellaTrovaFede : T.Event
+isabellaTrovaFede =
+    { date = Time.millisToPosix -570762000000
+    , title = "Isabella trova la fede"
+    , description = "Isabella dice di voler diventare suora."
+    , characters = [ T.Isabella ]
+    , narrator = T.Irene
+    }
+
 -- Chapter 12
 chapter12Events : List T.Event
 chapter12Events = [ ilfattaccio ]
@@ -163,8 +240,8 @@ characters =
 
     -- Altri
     , T.Irene -- 15
-    , T.PapaIrene -- 16
-    , T.MammaIrene -- 17
+    , T.Tommaso -- 16
+    , T.Alessandra -- 17
     , T.DonCataldo -- 18
     , T.Livio -- 19
     , T.Perpetua -- 20
@@ -173,7 +250,7 @@ characters =
     ]
 
 narrators : List T.Character
-narrators = [ T.Perpetua, T.Andrea, T.PapaIrene, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
+narrators = [ T.Perpetua, T.Andrea, T.Tommaso, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
 
 chapterNarratedBy : T.Character -> Maybe T.Chapter
 chapterNarratedBy c =
@@ -207,8 +284,8 @@ characterDescription c =
 
     -- Altri
         T.Irene -> irene
-        T.PapaIrene -> papaIrene
-        T.MammaIrene -> mammaIrene
+        T.Tommaso -> tommaso
+        T.Alessandra -> alessandra
         T.DonCataldo -> donCataldo
         T.Livio -> livio
         T.Perpetua -> perpetua
@@ -291,7 +368,7 @@ rosetta : T.CharacterDescription
 rosetta =
     { fullName = "Rosa Maria (Rosetta) Zitoli"
     , description = "La protagonista"
-    , birthday = fakeDate
+    , birthday = Time.millisToPosix -1104454800000 
     , death = Nothing
     }
 
@@ -299,7 +376,7 @@ grazia : T.CharacterDescription
 grazia =
     { fullName = "Grazia Zitoli"
     , description = "La sorella di Rosetta, quella bella"
-    , birthday = fakeDate
+    , birthday = Time.millisToPosix -1357002000000
     , death = Nothing
     }
 
@@ -307,7 +384,7 @@ isabella : T.CharacterDescription
 isabella =
     { fullName = "Isabella Zitoli"
     , description = "La sorella di Rosetta, la suora"
-    , birthday = fakeDate
+    , birthday = Time.millisToPosix -1420074000000
     , death = Nothing
     }
 
@@ -337,23 +414,23 @@ vincenzo =
 
 irene : T.CharacterDescription
 irene =
-    { fullName = "Irene ?"
+    { fullName = "Irene Strippoli"
     , description = "La migliore amica di Rosetta"
-    , birthday = fakeDate
+    , birthday = Time.millisToPosix -1076202000000
     , death = Nothing
     }
 
-papaIrene : T.CharacterDescription
-papaIrene =
-    { fullName = "Il padre di Irene"
+tommaso : T.CharacterDescription
+tommaso =
+    { fullName = "Tommaso Strippoli"
     , description = "Il padre di Irene"
     , birthday = fakeDate
     , death = Nothing
     }
 
-mammaIrene : T.CharacterDescription
-mammaIrene =
-    { fullName = "La madre di Irene"
+alessandra : T.CharacterDescription
+alessandra =
+    { fullName = "Alessandra Strippoli"
     , description = "La madre di Irene"
     , birthday = fakeDate
     , death = Nothing
@@ -361,8 +438,8 @@ mammaIrene =
 
 donCataldo : T.CharacterDescription
 donCataldo =
-    { fullName = "Don Cataldo D'Oria"
-    , description = ""
+    { fullName = "Don Cataldo Randolfi"
+    , description = "Faceva prestiti alla gente, diciamo"
     , birthday = fakeDate
     , death = Nothing
     }
@@ -370,7 +447,7 @@ donCataldo =
 livio : T.CharacterDescription
 livio =
     { fullName = "Livio Patruno"
-    , description = "Propietario del negozio di stoffe"
+    , description = "Propietario del negozio di stoffe sul Corso, davanti alla Chiesa di Santa Maria Greca"
     , birthday = fakeDate
     , death = Nothing
     }

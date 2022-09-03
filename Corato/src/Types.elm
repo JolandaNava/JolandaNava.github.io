@@ -27,11 +27,13 @@ type Character
     | Bruno -- marito di Grazia, carabiniere
     | Vincenzo -- bimbo di Grazia
 
+    -- Gli Strippoli
+    | Irene -- Irene Strippoli
+    | Tommaso -- Tommaso Strippoli
+    | Alessandra -- Alessandra Strippoli
+
     -- Altri
-    | Irene
-    | PapaIrene
-    | MammaIrene
-    | DonCataldo -- D'Oria
+    | DonCataldo -- Randolfi
     | Livio -- Patruno, negozio di stoffe
     | Perpetua
     | DonSaverio -- il parroco
