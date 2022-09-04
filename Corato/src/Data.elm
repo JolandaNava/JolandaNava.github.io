@@ -17,7 +17,11 @@ book =
         , chapter4
         , chapter5
         , chapter6
-
+        , chapter7
+        , chapter8
+        , chapter9
+        , chapter10
+        , chapter11
         , chapter12
         ]
 
@@ -34,7 +38,6 @@ chapter1 =
     , title = "Così la gente ci crede di più"
     , description = "Mariagreca, la perpetua"
     , narrator = T.Perpetua
-    , period = (fakeDate, fakeDate)
     , events = sorted chapter1Events
     }
 
@@ -44,7 +47,6 @@ chapter2 =
     , title = "Splendida e sola"
     , description = "Andrea Suonatori, farmacista"
     , narrator = T.Andrea
-    , period = (fakeDate, fakeDate)
     , events = sorted chapter2Events
     }
 
@@ -54,7 +56,6 @@ chapter3 =
     , title = "La bocca sporca"
     , description = "Antonio Tandoi"
     , narrator = T.Antonio
-    , period = (fakeDate, fakeDate)
     , events = []
     }
 
@@ -64,7 +65,6 @@ chapter4 =
     , title = "Le stanze che traboccano"
     , description = "Tommaso Strippoli"
     , narrator = T.Tommaso
-    , period = (fakeDate, fakeDate)
     , events = []
     }
 
@@ -74,7 +74,6 @@ chapter5 =
     , title = "Mio, mio, mio"
     , description = "Livio Patruno, negoziante di stoffe"
     , narrator = T.Livio
-    , period = (fakeDate, fakeDate)
     , events = []
     }
 
@@ -84,8 +83,57 @@ chapter6 =
     , title = "La Malascenima"
     , description = "Irene Strippoli"
     , narrator = T.Irene
-    , period = (fakeDate, fakeDate)
     , events = sorted chapter6Events
+    }
+
+
+chapter7 : T.Chapter
+chapter7 =
+    { id = 7
+    , title = ""
+    , description = "Nunzio Zitoli"
+    , narrator = T.Nunzio
+    , events = sorted []
+    }
+
+
+chapter8 : T.Chapter
+chapter8 =
+    { id = 8
+    , title = ""
+    , description = "Rita Zitoli"
+    , narrator = T.Rita
+    , events = sorted []
+    }
+
+
+chapter9 : T.Chapter
+chapter9 =
+    { id = 9
+    , title = ""
+    , description = "Grazia Zitoli"
+    , narrator = T.Grazia
+    , events = sorted []
+    }
+
+
+chapter10 : T.Chapter
+chapter10 =
+    { id = 10
+    , title = ""
+    , description = "Isabella Zitoli"
+    , narrator = T.Isabella
+    , events = sorted []
+    }
+
+
+chapter11 : T.Chapter
+chapter11 =
+    { id = 11
+    , title = ""
+    , description = "Rocco Suonatori"
+    , narrator = T.Rocco
+    , events = sorted []
     }
 
 chapter12 : T.Chapter
@@ -94,7 +142,6 @@ chapter12 =
     , title = "La ragione"
     , description = "Rosetta Zitoli"
     , narrator = T.Rosetta
-    , period = (fakeDate, fakeDate)
     , events = sorted chapter12Events
     }
 
@@ -102,7 +149,7 @@ chapter12 =
 
 allEvents : List T.Event
 allEvents =
-    List.concat <| List.map .events book
+    sorted <| List.concat <| List.map .events book
 
 -- Chapter 1
 chapter1Events : List T.Event

@@ -69,7 +69,6 @@ type alias Chapter =
     , title : String
     , description : String
     , narrator : Character
-    , period : (Date, Date)
     , events : List Event
     }
 

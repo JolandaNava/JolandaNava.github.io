@@ -1,4 +1,4 @@
-module View exposing (event, character)
+module View exposing (event, character, timeline)
 
 import Html exposing (Html)
 import Html.Attributes as Attrs
@@ -82,3 +82,25 @@ lifeSpan cd =
                 , "-"
                 , Show.fullDate death
                 ]
+
+timeline : Maybe T.Character -> List T.Event -> Html msg
+timeline c es =
+    let
+        timelineLine =
+            Html.div [Attrs.class "timeline-main-line"] []
+
+        wrapEvent : T.Event -> Html msg
+        wrapEvent e =
+            Html.div [ Attrs.class "timeline-view-event" ]
+                [ Html.div [ Attrs.class "timeline-event-line" ] []
+                , event e
+                ]
+
+        events = List.map wrapEvent es
+
+    in
+        Html.div
+            [ Attrs.class "timeline-view" ]
+                <| case c of
+                    Just cha -> timelineLine :: character cha :: events
+                    Nothing  -> timelineLine :: events

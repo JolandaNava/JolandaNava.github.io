@@ -86,6 +86,70 @@
         margin: -20px;
         padding: 20px;
         border-top: $black solid 2px;
-        // background-color: $white;
     }
+}
+
+.timeline-view {
+
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 800px;
+    padding: 20px 50px;
+
+    .timeline-event-line {
+        position: absolute;
+        border: $dates 1px solid;
+        z-index: 0;
+        height: 54px;
+    }
+
+    .timeline-main-line {
+        position: absolute;
+        top: 50%;
+        border: $dates 1px solid;
+        width: 100%;
+        z-index: 0;
+        padding-right: 350px;
+    }
+
+    .character-view {
+        margin-right: 50px;
+        align-self: center;
+    }
+
+    .timeline-view-event {
+        position: relative;
+        flex-shrink: 0;
+        height: 400px;
+        display: flex;
+        margin-right: -83px;
+
+        &:nth-child(even) {
+            align-self: flex-start;
+            
+            .timeline-event-line {
+                bottom: 0px;
+                left: 50%;
+            }
+        }
+
+        &:nth-child(odd) {
+            align-self: flex-end;
+            
+            .event-view {
+                align-self: flex-end;
+            }
+            
+            .timeline-event-line {
+                top: 0px;
+                left: 50%;
+            }
+        }
+
+        &:last-child {
+            margin-right: 50px;
+        }
+    }
+    
 }

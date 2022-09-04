@@ -1,11 +1,31 @@
 .book {
+    
+    .view-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .control-button {
+        @include h2;
+        color: $black;
+        cursor: pointer;
+        border-bottom: 2px solid $black;
+        flex-grow: 1;
+        &.active {
+            border-color: $dates;
+        }
+    }
+
+    .timeline-container {
+        padding:20px;
+    }
 
     .chapters-container {
-        margin: 30px;
         padding: 20px;
         overflow-y: scroll;
-        // background-color: $white;
-        border-radius: 8px;
     }
 
     .chapter {

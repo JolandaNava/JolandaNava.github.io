@@ -51,25 +51,11 @@ view model =
 content :  Model -> List (Html Msg)
 content  { character } =
     Page.pageView (Show.character character) "character"
-        [  Html.div
-            [ Attrs.class "character-timeline" ]
-            <| (Html.div [Attrs.class "timeline-line"] []) :: View.character character :: makeTimeline character
-        ]
+        [  View.timeline (Just character) <| makeTimeline character ]
 
-
-
-makeTimeline : T.Character -> List (Html Msg)
+makeTimeline : T.Character -> List T.Event
 makeTimeline c =
-    let
-        characterIsPresent =
-            List.member c << .characters
-
-        orderByDate = List.sortBy (Time.posixToMillis << .date)
-
-    in
-        List.map  eventView -- View.event
-            <| orderByDate
-            <| List.filter characterIsPresent Data.allEvents
+    List.filter (List.member c << .characters) Data.allEvents
 
 eventView : T.Event -> Html Msg
 eventView event =

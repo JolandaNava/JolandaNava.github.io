@@ -134,6 +134,48 @@ img {
     padding: 20px;
     border-top: #1e1e1e solid 2px; }
 
+.timeline-view {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 800px;
+  padding: 20px 50px; }
+  .timeline-view .timeline-event-line {
+    position: absolute;
+    border: #FFC323 1px solid;
+    z-index: 0;
+    height: 54px; }
+  .timeline-view .timeline-main-line {
+    position: absolute;
+    top: 50%;
+    border: #FFC323 1px solid;
+    width: 100%;
+    z-index: 0;
+    padding-right: 350px; }
+  .timeline-view .character-view {
+    margin-right: 50px;
+    align-self: center; }
+  .timeline-view .timeline-view-event {
+    position: relative;
+    flex-shrink: 0;
+    height: 400px;
+    display: flex;
+    margin-right: -83px; }
+    .timeline-view .timeline-view-event:nth-child(even) {
+      align-self: flex-start; }
+      .timeline-view .timeline-view-event:nth-child(even) .timeline-event-line {
+        bottom: 0px;
+        left: 50%; }
+    .timeline-view .timeline-view-event:nth-child(odd) {
+      align-self: flex-end; }
+      .timeline-view .timeline-view-event:nth-child(odd) .event-view {
+        align-self: flex-end; }
+      .timeline-view .timeline-view-event:nth-child(odd) .timeline-event-line {
+        top: 0px;
+        left: 50%; }
+    .timeline-view .timeline-view-event:last-child {
+      margin-right: 50px; }
+
 .home {
   padding-top: 150px; }
   .home .page-title {
@@ -171,11 +213,30 @@ img {
     .home .home-page-main-button a {
       color: #f6f6f6; }
 
+.book .view-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0; }
+
+.book .control-button {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 800;
+  color: #1e1e1e;
+  cursor: pointer;
+  border-bottom: 2px solid #1e1e1e;
+  flex-grow: 1; }
+  .book .control-button.active {
+    border-color: #FFC323; }
+
+.book .timeline-container {
+  padding: 20px; }
+
 .book .chapters-container {
-  margin: 30px;
   padding: 20px;
-  overflow-y: scroll;
-  border-radius: 8px; }
+  overflow-y: scroll; }
 
 .book .chapter {
   display: flex;
@@ -260,44 +321,3 @@ img {
 
 .character {
   text-align: left; }
-  .character .character-timeline {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    height: 800px;
-    padding: 20px 50px; }
-  .character .character-view {
-    margin-right: 50px;
-    align-self: center; }
-  .character .timeline-line {
-    position: absolute;
-    top: 50%;
-    border: #FFC323 1px solid;
-    width: 100%;
-    z-index: 0;
-    padding-right: 350px; }
-  .character .character-timeline-event {
-    position: relative;
-    flex-shrink: 0;
-    height: 400px;
-    display: flex;
-    margin-right: -83px; }
-    .character .character-timeline-event:nth-child(even) {
-      align-self: flex-start; }
-      .character .character-timeline-event:nth-child(even) .timeline-event-line {
-        bottom: 0px;
-        left: 50%; }
-    .character .character-timeline-event:nth-child(odd) {
-      align-self: flex-end; }
-      .character .character-timeline-event:nth-child(odd) .event-view {
-        align-self: flex-end; }
-      .character .character-timeline-event:nth-child(odd) .timeline-event-line {
-        top: 0px;
-        left: 50%; }
-    .character .character-timeline-event:last-child {
-      margin-right: 50px; }
-  .character .timeline-event-line {
-    position: absolute;
-    border: #FFC323 1px solid;
-    z-index: 0;
-    height: 54px; }

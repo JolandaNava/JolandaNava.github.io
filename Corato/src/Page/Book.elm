@@ -3,7 +3,7 @@ module Page.Book exposing (Model, Msg, init, update, view)
 import Html exposing (Html)
 import Html.Attributes as Attrs
 import Browser exposing (Document)
-
+import Html.Events as Events
 
 import Types as T
 import Page
@@ -14,27 +14,30 @@ import View
 
 ---- MODEL ----
 
+type BookView
+    = Chapters
+    | Timeline
 
 type alias Model =
-    {}
+    { view : BookView }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { view = Timeline }, Cmd.none )
 
 
 ---- UPDATE ----
 
 
 type Msg
-    = NoOp
+    = ChangeView BookView
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model = 
     case msg of
-        NoOp -> (model, Cmd.none)
+        ChangeView viewType -> ({ model| view = viewType }, Cmd.none)
 
 
 ---- VIEW ----
@@ -47,17 +50,24 @@ view model =
     }
 
 content :  Model -> List (Html Msg)
-content  _ =
+content  model =
     Page.pageView "Scopri il Libro" "book"
-        [ Html.div
-            [ Attrs.class "chapters-container" ]
-                <| List.map chapterView Data.book
-
+        [ viewControls model
+        , case model.view of
+           Chapters -> chaptersView
+           Timeline -> timelineView
         ]
 
 
-chapterView : T.Chapter -> Html Msg
-chapterView c =
+chaptersView : Html Msg
+chaptersView  =
+    Html.div
+        [ Attrs.class "chapters-container" ]
+            <| List.map chapter Data.book
+
+
+chapter : T.Chapter -> Html Msg
+chapter c =
     Html.div
         [ Attrs.class "chapter" ]
         [ Html.div 
@@ -74,4 +84,30 @@ chapterView c =
         , Html.div
             [ Attrs.class "chapter-events" ]
             <| List.map View.event c.events
+        ]
+
+timelineView : Html Msg
+timelineView =
+    Html.div
+        [ Attrs.class "timeline-container" ]
+        [ View.timeline Nothing Data.allEvents ]
+
+
+viewControls : Model -> Html Msg
+viewControls model =
+    Html.div
+        [ Attrs.class "view-controls" ]
+        [ Html.div
+            [ Attrs.class "control-button"
+            , Attrs.classList [("active", model.view == Chapters)]
+            , Events.onClick <| ChangeView Chapters
+            ]
+            [ Html.text "I capitoli" ]
+        , Html.div
+            [ Attrs.class "control-button"
+            , Attrs.classList [("active", model.view == Timeline)]
+            , Events.onClick <| ChangeView Timeline
+            ]
+            [ Html.text "Gli eventi" ]
+
         ]
