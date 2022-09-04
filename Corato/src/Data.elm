@@ -160,7 +160,18 @@ comingOut =
 
 -- Chapter 6
 chapter6Events : List T.Event
-chapter6Events = [ tommasoLasciaCasa, laPistola, mammaUbriaca, vestitoVerde, ireneVedeGabriele, ireneConosceGabriele, isabellaTrovaFede ]
+chapter6Events =
+    [ tommasoLasciaCasa
+    , laPistola
+    , mammaUbriaca
+    , vestitoVerde
+    , ireneVedeGabriele
+    , ireneConosceGabriele
+    , rosettaConosceGabriele
+    , nunzioChiedeDiGrabriele
+    , ireneScopreDelMatrimonio
+    , isabellaTrovaFede
+    ]
 
 tommasoLasciaCasa : T.Event
 tommasoLasciaCasa =
@@ -213,6 +224,33 @@ ireneConosceGabriele =
     , title = "Irene e Gabriele si parlano"
     , description = "Gabriele accompagna a casa Irene e per la prima volta si parlano."
     , characters = [ T.Irene, T.Gabriele ]
+    , narrator = T.Irene
+    }
+
+rosettaConosceGabriele : T.Event
+rosettaConosceGabriele =
+    { date = Time.millisToPosix -549680400000
+    , title = "Rosetta e Gabriele si incontrano"
+    , description = "Irene convince Rosetta ad andare a una festa assieme a Rocco e Gabriele."
+    , characters = [ T.Irene, T.Gabriele, T.Rosetta, T.Rocco ]
+    , narrator = T.Irene
+    }
+
+nunzioChiedeDiGrabriele : T.Event
+nunzioChiedeDiGrabriele =
+    { date = Time.millisToPosix -537066000000
+    , title = "Nunzio chiede di Gabriele"
+    , description = "Irene è dagli Zitoli per Natale, Nunzio le chiede se Gabriele è un buon partito."
+    , characters = [ T.Irene, T.Nunzio ]
+    , narrator = T.Irene
+    }
+
+ireneScopreDelMatrimonio : T.Event
+ireneScopreDelMatrimonio =
+    { date = Time.millisToPosix -530154000000
+    , title = "Irene scopre della proposta di matrimonio"
+    , description = "Irene porta i soldi lasciati dal padre a Nunzio, che le annuncia della proposta di matrimonio di Gabriele a Rosetta."
+    , characters = [ T.Irene, T.Nunzio, T.Rita, T.Rosetta, T.Gabriele, T.Isabella, T.Grazia, T.Bruno, T.Vincenzo ]
     , narrator = T.Irene
     }
 
@@ -270,19 +308,22 @@ characters =
     , T.Bruno -- 13
     , T.Vincenzo -- 14
 
-    -- Altri
+    -- Gli Strippoli
     , T.Irene -- 15
     , T.Tommaso -- 16
     , T.Alessandra -- 17
+
+    -- Altri
     , T.DonCataldo -- 18
     , T.Livio -- 19
     , T.Perpetua -- 20
     , T.DonSaverio -- 21
+    , T.Antonio -- 22
 
     ]
 
 narrators : List T.Character
-narrators = [ T.Perpetua, T.Andrea, T.Antonio, T.Tommaso, T.Livio, T.Irene, T.Nunzio, T.Rita, T.Isabella, T.Rosetta ]
+narrators = [ T.Perpetua, T.Andrea, T.Antonio, T.Livio, T.Tommaso, T.Irene, T.Nunzio, T.Rita, T.Grazia, T.Isabella, T.Rocco, T.Rosetta ]
 
 chapterNarratedBy : T.Character -> Maybe T.Chapter
 chapterNarratedBy c =
@@ -526,20 +567,7 @@ placeholder =
 
 graphRelations : Graph T.Character String
 graphRelations =
-    let
-        toString : Node T.Character -> Node T.Character
-        toString node =
-            { id = node.id
-            , label = node.label
-            }
-    in
-        Graph.fromNodesAndEdges
-            (List.map toString charactersAsNodes)
-            relationsAsEdges
-
--- relations : T.Relations
--- relations =
---     Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
+    Graph.fromNodesAndEdges charactersAsNodes relationsAsEdges
 
 
 charactersAsNodes : List (Node T.Character)
@@ -582,15 +610,17 @@ relationsAsEdges =
     , Edge 0 1 "è fratello di"
     , Edge 0 11 "è innamorata di"
 
-    -- Altri
+    -- Gli Strippoli
     , Edge 16 15 "è madre di"
     , Edge 17 15 "è padre di"
     , Edge 15 9 "è migliore amica di"
     , Edge 15 6 "è innamorata di"
-    
+
+    -- Altri
     , Edge 20 21 "è impiegata di"
     , Edge 20 7 "frequenta la casa di"
 
     , Edge 19 8 "è amico di"
     , Edge 18 7 ""
+    , Edge 22 7 ""
     ]
