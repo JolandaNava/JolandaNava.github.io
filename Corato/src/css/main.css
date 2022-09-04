@@ -147,32 +147,40 @@ img {
     height: 54px; }
   .timeline-view .timeline-main-line {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 2px);
     border: #FFC323 1px solid;
-    width: 100%;
+    width: 350px;
+    z-index: 0; }
+  .timeline-view .timeline-event-horizontal-line {
+    position: absolute;
+    border: #FFC323 1px solid;
     z-index: 0;
-    padding-right: 350px; }
+    width: 280px; }
   .timeline-view .character-view {
     margin-right: 50px;
     align-self: center; }
   .timeline-view .timeline-view-event {
     position: relative;
     flex-shrink: 0;
-    height: 400px;
+    height: 402px;
     display: flex;
     margin-right: -83px; }
     .timeline-view .timeline-view-event:nth-child(even) {
       align-self: flex-start; }
       .timeline-view .timeline-view-event:nth-child(even) .timeline-event-line {
-        bottom: 0px;
+        bottom: 2px;
         left: 50%; }
+      .timeline-view .timeline-view-event:nth-child(even) .timeline-event-horizontal-line {
+        bottom: 2px; }
     .timeline-view .timeline-view-event:nth-child(odd) {
       align-self: flex-end; }
       .timeline-view .timeline-view-event:nth-child(odd) .event-view {
         align-self: flex-end; }
       .timeline-view .timeline-view-event:nth-child(odd) .timeline-event-line {
-        top: 0px;
+        top: 2px;
         left: 50%; }
+      .timeline-view .timeline-view-event:nth-child(odd) .timeline-event-horizontal-line {
+        top: 0px; }
     .timeline-view .timeline-view-event:last-child {
       margin-right: 50px; }
 
@@ -275,6 +283,24 @@ img {
   .book .chapter-events > *:not(:last-child) {
     margin-right: 20px; }
 
+.characters .view-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0; }
+
+.characters .control-button {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 800;
+  color: #1e1e1e;
+  cursor: pointer;
+  border-bottom: 2px solid #1e1e1e;
+  flex-grow: 1; }
+  .characters .control-button.active {
+    border-color: #a08638; }
+
 .characters .characters-list {
   display: flex;
   flex-wrap: wrap;
@@ -286,7 +312,8 @@ img {
   margin: 20px;
   background-color: white;
   border: #1e1e1e 2px solid;
-  border-radius: 8px; }
+  border-radius: 8px;
+  overflow-y: auto; }
 
 .characters .characters-page-title {
   font-size: 22px;

@@ -39,7 +39,6 @@
         padding: 20px;
         border-top: $black solid 2px;
         @include smalltext;
-        // background-color: $white;
     }
 
     .characte-link-view {
@@ -106,11 +105,17 @@
 
     .timeline-main-line {
         position: absolute;
-        top: 50%;
+        top: calc(50% - 2px);
         border: $dates 1px solid;
-        width: 100%;
+        width: 350px;
         z-index: 0;
-        padding-right: 350px;
+    }
+
+    .timeline-event-horizontal-line {
+        position: absolute;
+        border: $dates 1px solid;
+        z-index: 0;
+        width: 280px;
     }
 
     .character-view {
@@ -121,7 +126,7 @@
     .timeline-view-event {
         position: relative;
         flex-shrink: 0;
-        height: 400px;
+        height: 402px;
         display: flex;
         margin-right: -83px;
 
@@ -129,8 +134,11 @@
             align-self: flex-start;
             
             .timeline-event-line {
-                bottom: 0px;
+                bottom: 2px;
                 left: 50%;
+            }
+            .timeline-event-horizontal-line {
+                bottom: 2px;
             }
         }
 
@@ -142,8 +150,11 @@
             }
             
             .timeline-event-line {
-                top: 0px;
+                top: 2px;
                 left: 50%;
+            }
+            .timeline-event-horizontal-line {
+                top: 0px;
             }
         }
 

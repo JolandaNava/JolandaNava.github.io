@@ -24,7 +24,7 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { view = Timeline }, Cmd.none )
+    ( { view = Chapters }, Cmd.none )
 
 
 ---- UPDATE ----

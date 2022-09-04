@@ -93,6 +93,7 @@ timeline c es =
         wrapEvent e =
             Html.div [ Attrs.class "timeline-view-event" ]
                 [ Html.div [ Attrs.class "timeline-event-line" ] []
+                , Html.div [ Attrs.class "timeline-event-horizontal-line" ] []
                 , event e
                 ]
 
