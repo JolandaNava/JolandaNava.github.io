@@ -65,13 +65,17 @@ content  _ =
         , Html.div
             [ Attrs.class "home-page-buttons" ]
             [ Html.div
-                [ Attrs.class "home-page-main-button" ]
+                [ Attrs.class "home-page-main-button"
+                , Attrs.class "book"
+                ]
                 [ Html.a
                     [ Route.href Route.Book ]
                     [ Html.text "Scopri il Libro" ]
                 ]
             , Html.div
-                [ Attrs.class "home-page-main-button" ]
+                [ Attrs.class "home-page-main-button"
+                , Attrs.class "characters"
+                ]
                 [ Html.a
                     [ Route.href Route.Characters ]
                     [ Html.text "Scopri i Personaggi" ]
