@@ -58,7 +58,15 @@ update msg model =
         ( ClickedLink urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
-                    Cmd.withCmd (Nav.load <| Url.toString url) model
+                    -- Cmd.withCmd (Nav.load <| Url.toString url) model
+                    case url.fragment of
+                        Nothing ->
+                            Cmd.withNoCmd model
+                        Just _ ->
+                            Cmd.withCmd (Nav.load <| Url.toString url) model
+                            -- Cmd.withCmd
+                            --     (Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url))
+                            --     model
 
                 Browser.External href ->
                     -- avoid redirecting on links with no href attribute

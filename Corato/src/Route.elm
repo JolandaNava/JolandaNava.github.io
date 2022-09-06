@@ -10,7 +10,6 @@ import Browser.Dom exposing (Error(..))
 import Types as T
 
 
-
 -- ROUTING
 
 
@@ -133,14 +132,20 @@ replaceUrl key route =
     Nav.replaceUrl key (routeToString route)
 
 
-fromUrl : Url -> Route
-fromUrl = Maybe.withDefault NotFound << Parser.parse parser
-
+-- urlToRoute : Url -> Route
+-- urlToRoute url =
+--     Parser.parse parser url
+--         |> Maybe.withDefault NotFound
 
 urlToRoute : Url -> Route
 urlToRoute url =
-    Parser.parse parser url
+    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+        |> Parser.parse parser
         |> Maybe.withDefault NotFound
+
+    -- The app spec treats the fragment like a path.
+    -- This makes it *literally* the path, so we can proceed
+    -- with parsing as if it had been a normal path all along.
 
 
 -- INTERNAL
@@ -159,6 +164,6 @@ routeToString page =
                 NotFound -> ["404"]
 
     in
-    
-        Builder.absolute path []
+        "#" ++ String.join "/" path
+        -- Builder.absolute path []
 
