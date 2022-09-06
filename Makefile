@@ -8,3 +8,10 @@ deploy:
 	git add .
 	git commit -m "$(M)"
 	git push origin main
+
+
+.PHONY: test $(M)
+test:
+	git add .
+	git commit -m "$(M)"
+	git push origin main
