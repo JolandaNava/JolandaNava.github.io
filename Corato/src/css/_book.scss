@@ -23,6 +23,15 @@
         padding:20px;
     }
 
+    .chapters-title {
+        @include h1;
+        color: $eerie-black;
+    }
+
+    .book-stack {
+        position: absolute;
+    }
+
     .chapters-container {
         padding: 20px;
         overflow-y: scroll;
@@ -42,9 +51,9 @@
     }
 
     .chapter-details {
-        margin-right: 20px;
-        padding-top: 20px;
-        flex-basis: 300px;
+        box-sizing: border-box;
+        flex-basis: 50%;
+        padding: 0px 20px;
         flex-shrink: 0;
         flex-grow: 0;
         text-align: right;
@@ -52,11 +61,17 @@
 
     .chapter-title {
         @include h2;
+        text-transform: uppercase;
+        .number {
+            @include h1;
+            color: $white;
+            line-height: 100px;
+        }
     }
 
     .chapter-description {
+        @include navitem ($jumbo);
         @include h4;
-        color: $characters;
     }
 
     .chapter-events {

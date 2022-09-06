@@ -5,6 +5,7 @@ import Html.Attributes as Attrs
 import Browser exposing (Document)
 import Html.Events as Events
 
+import Illustrations
 import Types as T
 import Page
 import Data
@@ -51,19 +52,26 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  model =
-    Page.pageView "Scopri il Libro" "book"
-        [ viewControls model
-        , case model.view of
+    Page.pageView "" "book"
+        [
+        -- viewControls model 
+        case model.view of
            Chapters -> chaptersView
            Timeline -> timelineView
+        -- , Html.div [Attrs.class "book-stack"] [ Illustrations.bookStack ]
         ]
 
 
 chaptersView : Html Msg
 chaptersView  =
-    Html.div
-        [ Attrs.class "chapters-container" ]
-            <| List.map chapter Data.book
+    Html.div [ Attrs.class "chapters-view" ]
+        [ Html.div
+            [ Attrs.class "chapters-title" ]
+            [ Html.text "I capitoli" ]
+        , Html.div
+            [ Attrs.class "chapters-container" ]
+                <| List.map chapter Data.book
+        ]
 
 
 chapter : T.Chapter -> Html Msg
@@ -72,18 +80,26 @@ chapter c =
         [ Attrs.class "chapter" ]
         [ Html.div 
             [ Attrs.class "chapter-details" ] 
-            [ Html.div
-                [ Attrs.class "chapter-title" ] 
-                [ Html.text <| Show.chapterTitle c ]
-            , Html.a
-                [ Attrs.class "chapter-description" 
-                , Route.href <| Route.Character c.narrator
-                ] 
-                [ Html.text <| c.description ]
+            [ chapterTitle c
+            , Html.div
+                [ Attrs.class "chapter-description" ]
+                [ Html.a
+                    [ Route.href <| Route.Character c.narrator
+                    ] 
+                    [ Html.text <| c.description ]
+                ]
             ]
         , Html.div
             [ Attrs.class "chapter-events" ]
             <| List.map View.event c.events
+        ]
+
+chapterTitle : T.Chapter -> Html Msg
+chapterTitle c =
+    Html.div
+        [ Attrs.class "chapter-title" ] 
+        [ Html.span [] [ Html.text <| c.title ]
+        , Html.span [ Attrs.class "number" ] [ Html.text <| "." ++ String.fromInt c.id ]
         ]
 
 timelineView : Html Msg
