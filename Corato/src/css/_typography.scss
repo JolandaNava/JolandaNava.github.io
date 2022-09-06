@@ -1,55 +1,74 @@
 @font-face {
     font-family: 'jost';
     src: url('fonts/jost-variable.ttf');
-    //src: url('fonts/jost-italic-variable.ttf');
+}
+
+@font-face {
+    font-family: 'jost-italic';
+    src: url('fonts/jost-italic-variable.ttf');
 }
 
 @mixin h0 {
-    font-size: 100px;
-    line-height: 100px;
-    font-weight: 900;
+    font-family: 'jost-italic';
+    font-size: 230px;
+    line-height: 250px;
+    font-variation-settings: 'wght' 400;
+    letter-spacing: 10px;
 }
 
 @mixin h1 {
+    font-family: 'jost';
     font-size: 48px;
     line-height: 58px;
-    font-weight: 900;
+    font-variation-settings: 'wght' 900;
 }
 
 @mixin h2 {
+    font-family: 'jost';
     font-size: 22px;
     line-height: 26px;
-    font-weight: 800;
+    font-variation-settings: 'wght' 800;
 }
 
 @mixin h3 {
+    font-family: 'jost';
     font-size: 20px;
     line-height: 26px;
-    font-weight: 800;
+    font-variation-settings: 'wght' 800;
 }
 
 @mixin h4 {
+    font-family: 'jost-italic';
     font-size: 18px;
     line-height: 22px;
-    font-weight: 500;
-    font-style: italic;
+    font-variation-settings: 'wght' 500;
 }
 
 @mixin subtitle {
+    font-family: 'jost';
     font-size: 14px;
     line-height: 22px;
-    font-weight: 500;
+    font-variation-settings: 'wght' 500;
     font-style: italic;
 }
 
 @mixin text {
-    font-size: 16px;
+    font-family: 'jost';
+    font-size: 18px;
     line-height: 22px;
-    font-weight: 500;
+    font-variation-settings: 'wght' 400;
 }
 
 @mixin smalltext {
+    font-family: 'jost';
     font-size: 12px;
     line-height: 18px;
-    font-weight: 500;
+    font-variation-settings: 'wght' 500;
+}
+
+@mixin author {
+    font-family: 'jost';
+    font-size: 30px;
+    line-height: 40px;
+    font-variation-settings: 'wght' 600;
 }

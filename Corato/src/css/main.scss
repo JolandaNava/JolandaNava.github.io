@@ -19,20 +19,13 @@ img {
 
 
 .corato-page {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  background-color: $background;
-  color: $black;
   @include text;
   display: flex;
   flex-direction: column;
-}
-
-.simple-nav {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  text-align: center;
+  min-height: 100vh;
+  background-color: $lily-white;
+  color: $eerie-black;
 }
 
 .page-top-banner {
@@ -47,14 +40,48 @@ img {
 
 }
 
-.simple-nav {
-  padding: 10px;
-  display: flex;
-  justify-content: space-evenly;
+@mixin navitem {
+  @include text;
   a {
-    color: $black;
-    padding: 10px;
+      position: relative;
+      color: $bunker;
+      text-decoration: none;
   }
+
+  a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $eerie-black;
+      transition: opacity 300ms, transform 500ms;
+      opacity:1;
+      transform: scale(0);
+      transform-origin: center;
+  }
+  a:hover::after,
+  a:focus::after {
+      transform: scale(1);
+  }
+}
+
+.simple-nav {
+  margin: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  .simple-nav-item {
+    @include navitem;
+
+    &:nth-child(2) {
+      @include author;
+      text-transform: uppercase;
+      padding-top: 10px;
+    }
+  }
+
 }
 
 /* hide scrollbar but allow scrolling */

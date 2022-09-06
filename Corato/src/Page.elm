@@ -1,4 +1,4 @@
-module Page exposing (pageView)
+module Page exposing (pageView, homePageView)
 
 import Html exposing (Html)
 import Html.Attributes as Attrs
@@ -21,4 +21,13 @@ pageView pageName class content =
                 ]
             ]
             content
+    ]
+
+homePageView : String -> String -> List (Html msg) -> List (Html msg)
+homePageView pageName class content =
+    [ Html.div
+        [ Attrs.class "corato-page"
+        , Attrs.class class
+        ]
+        content
     ]

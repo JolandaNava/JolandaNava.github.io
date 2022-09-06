@@ -1,15 +1,26 @@
+
+
+// Palette
+
+// $black: #000000;
+$eerie-black: #1c1c1c;
+$bunker: #2c2c2c;
+$jumbo: #868686;
+$magnesium: #b1b1b1;
+$alto: #dadada;
+$lily-white: #ebebeb;
+$white: #ffffff;
+
+
 // Colors
 
 $white: white;
-$black: #1e1e1e;
+$black: black;
 
-$background: #f6f6f6;
-$characters: #a08638;
-$events: #774640;
-$dates: #FFC323;
+$background: $lily-white; // #f6f6f6;
+$characters: $eerie-black; // #a08638;
+$events: $bunker; // #774640;
+$dates: $magnesium; // #FFC323;
 
-$beige: #dfc6ac;
-$darK: darkgrey;
-
-// Shadows
-
+$beige: $alto; // #dfc6ac;
+$darK: $eerie-black; // darkgrey;
