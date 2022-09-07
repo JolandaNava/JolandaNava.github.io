@@ -45,11 +45,12 @@
 }
 
 .character-view {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 200px;
+    max-width: 200px;
     height: 200px;
-    border-radius: 8px;
-    border: $black solid 2px;
+
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     padding: 20px;
 
     display: flex;
@@ -62,15 +63,16 @@
 
     .character-name {
         .characte-link-view {
-            color: $characters;
             @include h3;
-            font-weight: 700;
+            text-transform: uppercase;
         }
     }
 
+    @include navitem ($eerie-black);
+
     .character-dates {
         @include subtitle;
-        color: $dates;
+        color: $magnesium;
         margin-bottom: 20px;
     }
 
@@ -91,12 +93,10 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 800px;
-    padding: 20px 50px;
+    height: 680px;
 
     .timeline-event-line {
         position: absolute;
-        border: $dates 1px solid;
         z-index: 0;
         height: 54px;
     }
@@ -104,14 +104,12 @@
     .timeline-main-line {
         position: absolute;
         top: calc(50% - 2px);
-        border: $dates 1px solid;
         width: 350px;
         z-index: 0;
     }
 
     .timeline-event-horizontal-line {
         position: absolute;
-        border: $dates 1px solid;
         z-index: 0;
         width: 280px;
     }
@@ -157,7 +155,7 @@
         }
 
         &:last-child {
-            margin-right: 50px;
+            padding-right: 100px;
         }
     }
     

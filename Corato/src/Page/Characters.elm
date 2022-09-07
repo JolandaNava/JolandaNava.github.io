@@ -72,7 +72,7 @@ view model =
 content :  Model -> List (Html Msg)
 content  model =
     Page.pageView "Scopri i Personaggi" "characters"
-        [ viewControls model
+        [ titleView model
         , case model.view of
            Narrators -> narratorsView
            Relations -> relationsView model.relations
@@ -81,10 +81,19 @@ content  model =
 narratorsView : Html Msg
 narratorsView =
     Html.div
-        [ Attrs.class "characters-list-container" ]
+        [ Attrs.class "narrators-view"]
         [ Html.div
-            [ Attrs.class "characters-list" ]
-                <| List.map View.character Data.narrators 
+            [ Attrs.class "quote-container" ]
+            [ Html.div
+                [ Attrs.class "quote"]
+                [ Html.text "\"Some very poignant quote is going right here on who narrates what.\"" ]
+            ]
+        , Html.div
+            [ Attrs.class "characters-list-container" ]
+            [ Html.div
+                [ Attrs.class "characters-list" ]
+                    <| List.map View.character Data.narrators 
+            ]
         ]
 
 relationsView : Relations.Model -> Html Msg
@@ -102,21 +111,31 @@ showRelations : Relations.Model -> Html Msg
 showRelations model =
     Html.map RelationsMsg <| Relations.view model
 
-viewControls : Model -> Html Msg
-viewControls model =
+
+
+titleView : Model -> Html Msg
+titleView model =
     Html.div
-        [ Attrs.class "view-controls" ]
+        [ Attrs.class "characters-navigation" ]
         [ Html.div
-            [ Attrs.class "control-button"
-            , Attrs.classList [("active", model.view == Narrators)]
+            [ Attrs.class "characters-navigation-arrow"
+            , Attrs.class "left"
+            , Attrs.classList [("hidden", model.view == Narrators)]
             , Events.onClick <| ChangeView Narrators
             ]
-            [ Html.text "I Narratori" ]
+            [ Html.text "torna ai narratori" ]
         , Html.div
-            [ Attrs.class "control-button"
-            , Attrs.classList [("active", model.view == Relations)]
+            [ Attrs.class "characters-title" ]
+            [ Html.text <|
+                case model.view of
+                    Narrators -> "I Narratori"
+                    Relations -> "Le Relazioni"
+            ]
+        , Html.div
+            [ Attrs.class "characters-navigation-arrow"
+            , Attrs.class "right"
+            , Attrs.classList [("hidden", model.view == Relations)]
             , Events.onClick <| ChangeView Relations
             ]
-            [ Html.text "Le Relazioni" ]
-
+            [ Html.text "scopri le relazioni" ]
         ]

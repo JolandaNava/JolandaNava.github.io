@@ -53,22 +53,19 @@ view model =
 content :  Model -> List (Html Msg)
 content  model =
     Page.pageView "" "book"
-        [
-        -- viewControls model 
-        case model.view of
+        [ titleView model
+        , case model.view of
            Chapters -> chaptersView
            Timeline -> timelineView
-        -- , Html.div [Attrs.class "book-stack"] [ Illustrations.bookStack ]
+        -- , Html.div [Attrs.class "book-stack"] [ Illustrations.bookStack ] 
         ]
 
 
+-- CHAPTERS VIEW
 chaptersView : Html Msg
 chaptersView  =
     Html.div [ Attrs.class "chapters-view" ]
         [ Html.div
-            [ Attrs.class "chapters-title" ]
-            [ Html.text "I capitoli" ]
-        , Html.div
             [ Attrs.class "chapters-container" ]
                 <| List.map chapter Data.book
         ]
@@ -102,28 +99,42 @@ chapterTitle c =
         , Html.span [ Attrs.class "number" ] [ Html.text <| "." ++ String.fromInt c.id ]
         ]
 
+
+-- TIMELINE VIEW 
+
 timelineView : Html Msg
 timelineView =
-    Html.div
-        [ Attrs.class "timeline-container" ]
-        [ View.timeline Nothing Data.allEvents ]
-
-
-viewControls : Model -> Html Msg
-viewControls model =
-    Html.div
-        [ Attrs.class "view-controls" ]
+    Html.div [ Attrs.class "chapters-view" ]
         [ Html.div
-            [ Attrs.class "control-button"
-            , Attrs.classList [("active", model.view == Chapters)]
+            [ Attrs.class "timeline-container" ]
+            [ View.timeline Nothing Data.allEvents ]
+        ]
+
+
+
+titleView : Model -> Html Msg
+titleView model =
+    Html.div
+        [ Attrs.class "book-navigation" ]
+        [ Html.div
+            [ Attrs.class "book-navigation-arrow"
+            , Attrs.class "left"
+            , Attrs.classList [("hidden", model.view == Chapters)]
             , Events.onClick <| ChangeView Chapters
             ]
-            [ Html.text "I capitoli" ]
+            [ Html.text "torna ai capitoli" ]
         , Html.div
-            [ Attrs.class "control-button"
-            , Attrs.classList [("active", model.view == Timeline)]
+            [ Attrs.class "book-title" ]
+            [ Html.text <|
+                case model.view of
+                    Chapters -> "I Capitoli"
+                    Timeline -> "Gli Eventi"
+            ]
+        , Html.div
+            [ Attrs.class "book-navigation-arrow"
+            , Attrs.class "right"
+            , Attrs.classList [("hidden", model.view == Timeline)]
             , Events.onClick <| ChangeView Timeline
             ]
-            [ Html.text "Gli eventi" ]
-
+            [ Html.text "scopri gli eventi" ]
         ]

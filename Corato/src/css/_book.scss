@@ -1,32 +1,48 @@
 .book {
-    
-    .view-controls {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        flex-shrink: 0;
-    }
 
-    .control-button {
-        @include h2;
-        color: $black;
-        cursor: pointer;
-        border-bottom: 2px solid $black;
-        flex-grow: 1;
-        &.active {
-            border-color: $events;
-        }
-    }
-
-    .timeline-container {
-        padding:20px;
-    }
-
-    .chapters-title {
+    .book-title {
         @include h1;
         color: $eerie-black;
     }
+    .book-navigation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .book-navigation-arrow {
+        cursor: pointer;
+        margin: 25px;
+
+        &.hidden {
+            opacity: 0;
+        }
+        
+        position: relative;
+        color: $jumbo;
+        text-decoration: none;
+      
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $jumbo;
+            transition: opacity 300ms, transform 500ms;
+            opacity:1;
+            transform: scale(0);
+            transform-origin: center;
+        }
+        &:hover::after,
+        &:focus::after {
+            transform: scale(1);
+        }
+    }
+
+    // Chapters view
 
     .book-stack {
         position: absolute;
@@ -82,4 +98,13 @@
         }
     }
     
+
+    // Timeline view
+
+    .timeline-container {
+        width: 100%;
+        overflow-x: scroll;
+        box-sizing: border-box;
+        padding: 20px 50px;
+    }
 }

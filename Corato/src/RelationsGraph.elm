@@ -23,26 +23,49 @@ import Route
 
 w : Float
 w =
-    800
+    700
 
 
 h : Float
 h =
-    800
+    600
 
 
 -- Colors
+
+eerie_black : Color.Color
+eerie_black = Color.rgb255 28 28 28
+bunker : Color.Color
+bunker = Color.rgb255 44 44 44
+jumbo : Color.Color
+jumbo = Color.rgb255 134 134 134
+magnesium : Color.Color
+magnesium = Color.rgb255 177 177 177
+alto : Color.Color
+alto = Color.rgb255 218 218 218
+lily_white : Color.Color
+lily_white = Color.rgb255 235 235 235
+white : Color.Color
+white = Color.rgb255 255 255 255
+
 black : Color.Color
-black = Color.rgb255 30 30 30
-
-events : Color.Color
-events = Color.rgb255 119 70 64
-
-characters : Color.Color
-characters = Color.rgb255 160 134 56
+black = Color.rgb255 0 0 0
 
 transparent : Color.Color 
 transparent = Color.rgba 0 0 0 0
+
+
+edges : Color.Color
+edges = white
+
+nodes : Color.Color
+nodes = black
+
+names : Color.Color
+names = bunker
+
+relations : Color.Color
+relations = bunker
 
 type Msg
     = DragStart NodeId ( Float, Float )
@@ -88,9 +111,9 @@ init =
 
         forces =
             [ Force.links <| List.map link <| Graph.edges graph
-            , Force.manyBodyStrength (-170) <| List.map .id <| Graph.nodes graph
+            , Force.manyBodyStrength (-100) <| List.map .id <| Graph.nodes graph
             , Force.center (w / 2) (h / 2)
-            , Force.collision (15) <| List.map .id <| Graph.nodes graph
+            , Force.collision (0) <| List.map .id <| Graph.nodes graph
             ]
     in
         Model Nothing graph (Force.simulation forces)
@@ -194,7 +217,7 @@ onMouseDown index =
 
 linkElement : Graph Entity String -> Int -> Edge String -> Svg Msg
 linkElement graph int edge =
-    let  -- (.node >> (.label >> Show.character ))
+    let
         source =
             Maybe.withDefault (Force.entity 0 T.Rosetta ) <| Maybe.map (.node >> .label) <| Graph.get edge.from graph
 
@@ -209,7 +232,7 @@ linkElement graph int edge =
         [ Svg.path
             [ SvgAttrs.class ["edge"]
             , strokeWidth 1
-            , stroke <| Paint black
+            , stroke <| Paint edges
             , SvgAttrs.id id
             , SvgAttrs.d
                 <| String.join " " 
@@ -226,7 +249,7 @@ linkElement graph int edge =
             ]
             [ Svg.textPath 
                 [ attribute "href" <| "#" ++ id 
-                , fill <| Paint events
+                , fill <| Paint relations
                 ]
                 [ text edge.label ]
             ]
@@ -243,10 +266,10 @@ linkElement graph int edge =
 
 nodeElement : { a | id : NodeId, label : { b | x : Float, y : Float, value : T.Character } } -> Svg Msg
 nodeElement node =
-    g []
+    g [ SvgAttrs.class ["node-element"] ]
         [ circle
-            [ r 2
-            , fill <| Paint black
+            [ r 1.5
+            , fill <| Paint nodes
             , stroke <| Paint transparent
             , strokeWidth 2
             , onMouseDown node.id
@@ -260,7 +283,7 @@ nodeElement node =
                 [ SvgAttrs.class ["node-text"]
                 , dx <| node.label.x + 5
                 , dy <| node.label.y - 2
-                , fill <| Paint characters
+                , fill <| Paint names
                 ]
                 [ text <| Show.character node.label.value ]
             ]
