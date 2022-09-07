@@ -78,6 +78,7 @@ type alias Model =
     { drag : Maybe Drag
     , graph : Graph Entity String
     , simulation : Force.State NodeId
+    , element : (Float, Float) -- TODO better type?
     }
 
 
@@ -100,8 +101,8 @@ initializeNode ctx =
     }
 
 
-init : Model
-init =
+init : (Float, Float) -> Model
+init element =
     let
         graph =
             Graph.mapContexts initializeNode Data.graphRelations
@@ -116,7 +117,7 @@ init =
             , Force.collision (0) <| List.map .id <| Graph.nodes graph
             ]
     in
-        Model Nothing graph (Force.simulation forces)
+        Model Nothing graph (Force.simulation forces) element
 
 
 updateNode : ( Float, Float ) -> NodeContext Entity String -> NodeContext Entity String
@@ -126,6 +127,14 @@ updateNode ( x, y ) nodeCtx =
             nodeCtx.node.label
     in
     updateContextWithValue nodeCtx { nodeValue | x = x, y = y }
+
+-- scale cursor position by taking into account the graph div's actual dimensions
+scalePosition : (Float, Float) -> (Float, Float) -> (Float, Float)
+scalePosition (elementW, elementH) (diffx, diffy) =
+    let
+        ratio = w / elementW
+    in
+        ( ratio * diffx, ratio * diffy )
 
 
 updateContextWithValue : NodeContext Entity String -> Entity -> NodeContext Entity String
@@ -147,47 +156,68 @@ updateGraphWithList =
 
 
 update : Msg -> Model -> Model
-update msg ({ drag, graph, simulation } as model) =
+update msg model =
     case msg of
         Tick t ->
             let
                 ( newState, list ) =
-                    Force.tick simulation <| List.map .label <| Graph.nodes graph
+                    Force.tick model.simulation <| List.map .label <| Graph.nodes model.graph
             in
-            case drag of
+            case model.drag of
                 Nothing ->
-                    Model drag (updateGraphWithList graph list) newState
+                    { model
+                    | graph = updateGraphWithList model.graph list
+                    , simulation = newState
+                    }
 
                 Just { current, index } ->
-                    Model drag
-                        (Graph.update index
-                            (Maybe.map (updateNode current))
-                            (updateGraphWithList graph list)
-                        )
-                        newState
+                    { model
+                    | graph = Graph.update index
+                            (Maybe.map <| updateNode current)
+                            (updateGraphWithList model.graph list)
+                    , simulation = newState
+                    }
 
-        DragStart index xy ->
-            Model (Just (Drag xy xy index)) graph simulation
+        DragStart index position ->
+            let
+                scaledPosition = scalePosition model.element position 
+            in
+            { model
+            | drag = Just <| Drag scaledPosition scaledPosition index
+            }
 
-        DragAt xy ->
-            case drag of
-                Just { start, index } ->
-                    Model (Just (Drag start xy index))
-                        (Graph.update index (Maybe.map (updateNode xy)) graph)
-                        (Force.reheat simulation)
+        DragAt position ->
+            let
+                scaledPosition = scalePosition model.element position 
+            in
+            case model.drag of
+                Just { start, current, index } ->
+                    { model
+                    | drag = Just (Drag start scaledPosition index)
+                    , graph = Graph.update index
+                        (Maybe.map <| updateNode scaledPosition )
+                        model.graph
+                    , simulation = Force.reheat model.simulation
+                    }
 
                 Nothing ->
-                    Model Nothing graph simulation
+                    model
 
-        DragEnd xy ->
-            case drag of
+        DragEnd position ->
+            let
+                scaledPosition = scalePosition model.element position 
+            in
+            case model.drag of
                 Just { start, index } ->
-                    Model Nothing
-                        (Graph.update index (Maybe.map (updateNode xy)) graph)
-                        simulation
+                    { model
+                    | drag = Nothing
+                    , graph = Graph.update index
+                        ( Maybe.map <| updateNode scaledPosition )
+                        model.graph
+                    }
 
                 Nothing ->
-                    Model Nothing graph simulation
+                    model
 
 
 subscriptions : Model -> Sub Msg
@@ -204,15 +234,15 @@ subscriptions model =
 
         Just _ ->
             Sub.batch
-                [ Browser.Events.onMouseMove (Decode.map (.clientPos >> DragAt) Mouse.eventDecoder)
-                , Browser.Events.onMouseUp (Decode.map (.clientPos >> DragEnd) Mouse.eventDecoder)
+                [ Browser.Events.onMouseMove (Decode.map (.offsetPos >> DragAt) Mouse.eventDecoder)
+                , Browser.Events.onMouseUp (Decode.map (.offsetPos >> DragEnd) Mouse.eventDecoder)
                 , Browser.Events.onAnimationFrame Tick
                 ]
 
 
 onMouseDown : NodeId -> Attribute Msg
 onMouseDown index =
-    Mouse.onDown (.clientPos >> DragStart index)
+    Mouse.onDown (.offsetPos >> DragStart index)
 
 
 linkElement : Graph Entity String -> Int -> Edge String -> Svg Msg
@@ -292,7 +322,9 @@ nodeElement node =
 
 view : Model -> Svg Msg
 view model =
-    svg [ viewBox 0 0 w h ]
+    svg [ viewBox 0 0 w h 
+        , SvgAttrs.id "graph-svg"
+        ]
         [ Graph.edges model.graph
             |> List.indexedMap (linkElement model.graph)
             |> g [ class [ "links" ] ]

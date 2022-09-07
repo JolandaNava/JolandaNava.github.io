@@ -80,7 +80,6 @@
     }
 
     .characters-relations {
-        // width: 60%;
         margin: auto;
     }
 
@@ -96,6 +95,7 @@
 
 .node-element {
     // TODO animate underline in svg
+    cursor: grab;
 }
 
 .edge-text {

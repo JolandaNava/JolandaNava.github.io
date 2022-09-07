@@ -481,6 +481,9 @@ img {
   .characters .characters-list-item a {
     color: black; }
 
+.node-element {
+  cursor: grab; }
+
 .edge-text {
   font-size: 6px;
   display: none; }

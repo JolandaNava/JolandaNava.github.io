@@ -4,6 +4,9 @@ import Html exposing (Html)
 import Html.Attributes as Attrs
 import Html.Events as Events
 import Browser exposing (Document)
+import Browser.Events as Browser
+import Browser.Dom as Browser
+import Task
 
 import Cmd.Extra as Cmd
 import RelationsGraph as Relations
@@ -28,11 +31,15 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    Cmd.withNoCmd
-    { view = Narrators
-    , relations = Relations.init
-    }
+    Cmd.withCmd
+        fetchGraphElement
+        { view = Relations
+        , relations = Relations.init (0,0)
+        }
 
+fetchGraphElement : Cmd Msg
+fetchGraphElement =
+    Browser.getElement "graph-svg" |> Task.attempt GetGraphElement
 
 ---- UPDATE ----
 
@@ -40,6 +47,9 @@ init =
 type Msg
     = RelationsMsg Relations.Msg
     | ChangeView ViewCharacters
+    | GetGraphElement (Result Browser.Error Browser.Element)
+    | RefetchGraphElement
+
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -51,12 +61,24 @@ update msg model =
         
         ChangeView v ->
             Cmd.withNoCmd { model | view = v}
+        
+        GetGraphElement res ->
+            case res of
+                Ok element ->
+                    Cmd.withNoCmd { model | relations = Relations.init (element.element.width, element.element.height)}
+                Err _ -> Cmd.withNoCmd model
+        
+        RefetchGraphElement ->
+            Cmd.withCmd fetchGraphElement model
 
 
 ---- SUBSCRIPTIONS ----
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.map RelationsMsg <| Relations.subscriptions model.relations
+    Sub.batch
+        [ Sub.map RelationsMsg <| Relations.subscriptions model.relations
+        , Browser.onResize (\_ _ -> RefetchGraphElement)
+        ]
 
 
 
