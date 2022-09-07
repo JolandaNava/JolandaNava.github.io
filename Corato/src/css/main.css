@@ -324,9 +324,6 @@ img {
   .book .book-navigation-arrow:hover::after, .book .book-navigation-arrow:focus::after {
     transform: scale(1); }
 
-.book .book-stack {
-  position: absolute; }
-
 .book .chapters-container {
   padding: 20px;
   overflow-y: scroll; }
@@ -500,4 +497,16 @@ img {
   stroke: #2c2c2c; }
 
 .character {
-  text-align: left; }
+  display: flex;
+  flex-direction: column; }
+  .character .character-title {
+    font-family: 'jost-italic';
+    font-size: 100px;
+    line-height: 120px;
+    font-variation-settings: 'wght' 400;
+    color: #1c1c1c; }
+  .character .timeline-container {
+    width: 100%;
+    overflow-x: scroll;
+    box-sizing: border-box;
+    padding: 20px 50px; }

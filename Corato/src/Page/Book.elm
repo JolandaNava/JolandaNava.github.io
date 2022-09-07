@@ -104,7 +104,7 @@ chapterTitle c =
 
 timelineView : Html Msg
 timelineView =
-    Html.div [ Attrs.class "chapters-view" ]
+    Html.div [ Attrs.class "timeline-view" ]
         [ Html.div
             [ Attrs.class "timeline-container" ]
             [ View.timeline Nothing Data.allEvents ]

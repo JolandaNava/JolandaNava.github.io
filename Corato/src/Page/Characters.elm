@@ -33,7 +33,7 @@ init : ( Model, Cmd Msg )
 init =
     Cmd.withCmd
         fetchGraphElement
-        { view = Relations
+        { view = Narrators
         , relations = Relations.init (0,0)
         }
 

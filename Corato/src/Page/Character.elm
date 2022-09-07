@@ -50,16 +50,16 @@ view model =
 
 content :  Model -> List (Html Msg)
 content  { character } =
-    Page.pageView (Show.character character) "character"
-        [  View.timeline (Just character) <| makeTimeline character ]
+    Page.pageView "" "character"
+        [ Html.div
+            [ Attrs.class "character-title" ]
+            [ Html.text <| Show.character character
+            ]
+        , Html.div
+            [ Attrs.class "timeline-container" ]
+            [ View.timeline (Just character) <| makeTimeline character ]
+        ]
 
 makeTimeline : T.Character -> List T.Event
 makeTimeline c =
     List.filter (List.member c << .characters) Data.allEvents
-
-eventView : T.Event -> Html Msg
-eventView event =
-    Html.div [ Attrs.class "character-timeline-event" ]
-        [ Html.div [ Attrs.class "timeline-event-line" ] []
-        , View.event event
-        ]

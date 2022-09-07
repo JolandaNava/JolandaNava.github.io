@@ -1,4 +1,17 @@
 .character {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+
+    .character-title {
+        @include h1;
+        color: $eerie-black;
+    }
+
+    .timeline-container {
+        width: 100%;
+        overflow-x: scroll;
+        box-sizing: border-box;
+        padding: 20px 50px;
+    }
 
 }
