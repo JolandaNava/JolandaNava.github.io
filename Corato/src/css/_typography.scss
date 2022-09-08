@@ -10,8 +10,8 @@
 
 @mixin h0 {
     font-family: 'jost-italic';
-    font-size: 230px;
-    line-height: 250px;
+    font-size: 180px;
+    line-height: 200px;
     font-variation-settings: 'wght' 400;
     letter-spacing: 10px;
 }
@@ -19,22 +19,22 @@
 @mixin h1 {
     font-family: 'jost-italic';
     font-size: 100px;
-    line-height: 120px;
+    line-height: 110px;
     font-variation-settings: 'wght' 400;
 }
 
 @mixin h2 {
     font-family: 'jost';
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 25px;
+    line-height: 30px;
     font-variation-settings: 'wght' 500;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 @mixin h3 {
     font-family: 'jost';
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 23px;
     font-variation-settings: 'wght' 300;
     letter-spacing: -0.5px;
 }
@@ -56,8 +56,8 @@
 
 @mixin text {
     font-family: 'jost';
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 18px;
     font-variation-settings: 'wght' 300;
 }
 

@@ -7,13 +7,15 @@ import Data
 import Types as T
 import Show
 import Route
+import Illustrations
 
 
 event : T.Event -> Html msg
 event e =
     Html.div 
         [ Attrs.class "event-view" ]
-        [ Html.div []
+        [ Html.div
+            [ Attrs.class "event-details" ]
             [ Html.div
                 [ Attrs.class "event-title" ]
                 [ Html.text e.title ]
@@ -22,11 +24,11 @@ event e =
                 [ Html.text <| Show.fullDate e.date ]
             , Html.div
                 [ Attrs.class "event-description" ]
-                [ Html.text e.description ]
+                [ Html.div [] [Html.text e.description] ]
             ]
         , Html.div
             [ Attrs.class "event-characters" ]
-            <| charactersLink e.characters
+            [ Html.div [] <| charactersLink e.characters ]
         ]
 
 charactersLink : List T.Character -> List (Html msg)
@@ -37,7 +39,7 @@ charactersLink cs =
 characterLink : T.Character -> Html msg
 characterLink c =
     Html.a
-        [ Attrs.class "characte-link-view" 
+        [ Attrs.class "character-link-view" 
         , Route.href <| Route.Character c
         ]
         [ Html.text <| Show.character c ]
@@ -59,7 +61,6 @@ character c =
                 , Html.div
                     [ Attrs.class "character-dates" ]
                     [ Html.text <| lifeSpan cd ]
-                    -- [ Html.text <| Show.fullDate cd.birthday ]
                 , Html.div
                     [ Attrs.class "character-description" ]
                     [ Html.text cd.description ]
@@ -92,10 +93,9 @@ timeline c es =
         wrapEvent : T.Event -> Html msg
         wrapEvent e =
             Html.div [ Attrs.class "timeline-view-event" ]
-                [ Html.div [ Attrs.class "timeline-event-line" ] []
-                , Html.div [ Attrs.class "timeline-event-horizontal-line" ] []
-                , event e
-                ]
+            [ event e
+            , Html.div [ Attrs.class "timeline-arrow" ] [Illustrations.arrow]
+            ]
 
         events = List.map wrapEvent es
 
@@ -103,5 +103,5 @@ timeline c es =
         Html.div
             [ Attrs.class "timeline-view" ]
                 <| case c of
-                    Just cha -> timelineLine :: character cha :: events
-                    Nothing  -> timelineLine :: events
+                    Just cha -> character cha :: events
+                    Nothing  -> events

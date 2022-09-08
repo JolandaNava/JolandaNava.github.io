@@ -1,7 +1,7 @@
 module Illustrations exposing (..)
 
-import Svg exposing (Svg, svg, path, g, defs)
-import Svg.Attributes exposing (class, id, d, viewBox, height, preserveAspectRatio, style, width, transform)
+import Svg exposing (Svg, svg, path, g, defs, text, node)
+import Svg.Attributes exposing (class, id, d, viewBox, height, preserveAspectRatio, style, width, transform, markerHeight, refX, refY, markerWidth, orient, markerEnd, markerUnits, points)
 
 openBook : Svg msg
 openBook =
@@ -37,4 +37,20 @@ bookStack =
         [ defs []
             []
         ]
+    ]
+
+arrow : Svg msg
+arrow =
+    svg [ viewBox "0 0 800 800" ]
+    [ defs []
+        [ node "style" []
+            [ text "path, polyline {            fill: none;            stroke: #231F20;            vector-effect: non-scaling-stroke;            stroke-width: 2;       }        path {            stroke-dasharray: 11, 5;         }    " ]
+        , node "marker" [ id "pointer", markerHeight "8", markerUnits "userSpaceOnUse", markerWidth "10", orient "-45", refX "9.5", refY "5.1" ]
+            [ node "polyline" [ points "1 1, 9 5, 1 7" ]
+                []
+            , text "    "
+            ]
+        ]
+    , path [ d "M 0 600 Q 150 400 300 300 Q 550 150 800 350" ]  []
+    , text ""
     ]

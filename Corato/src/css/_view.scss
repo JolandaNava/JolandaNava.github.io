@@ -1,9 +1,9 @@
 // styling for common components
 
 .event-view {
-    min-width: 250px;
-    max-width: 250px;
-    height: 300px;
+    min-width: 220px;
+    max-width: 220px;
+    height: 250px;
     padding: 15px;
 
     border-top-right-radius: 20px;
@@ -16,6 +16,12 @@
     text-align: center;
     z-index: 1;
 
+    .event-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
     .event-title {
         @include h3;
         text-transform: uppercase;
@@ -25,21 +31,26 @@
     .event-date {
         @include subtitle;
         color: $jumbo;
-        padding: 10px 0px;
+        padding-bottom: 10px;
     }
 
     .event-description {
         @include text;
-        text-align: justify;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
     }
     
     .event-characters {
-        height: 60px;
+        height: 80px;
+        display: flex;
+        align-items: flex-end;
         color: $magnesium;
         @include smalltext;
+        text-align: justify;
     }
 
-    .characte-link-view {
+    .character-link-view {
         color: $magnesium;
     }
 }
@@ -92,26 +103,13 @@
 
     display: flex;
     flex-direction: row;
-    position: relative;
-    height: 680px;
+    height: 420px;
 
-    .timeline-event-line {
+    .timeline-arrow {
         position: absolute;
-        z-index: 0;
-        height: 54px;
-    }
-
-    .timeline-main-line {
-        position: absolute;
-        top: calc(50% - 2px);
-        width: 350px;
-        z-index: 0;
-    }
-
-    .timeline-event-horizontal-line {
-        position: absolute;
-        z-index: 0;
-        width: 280px;
+        width: 150px;
+        z-index: 2;
+        right: -150px;
     }
 
     .character-view {
@@ -121,41 +119,31 @@
 
     .timeline-view-event {
         position: relative;
-        flex-shrink: 0;
-        height: 402px;
         display: flex;
-        margin-right: -83px;
+        margin-right: 30px;
 
-        &:nth-child(even) {
+        &:nth-child(odd) {
             align-self: flex-start;
-            
-            .timeline-event-line {
-                bottom: 2px;
-                left: 50%;
-            }
-            .timeline-event-horizontal-line {
-                bottom: 2px;
+
+            .timeline-arrow {
+                top:74px;
             }
         }
 
-        &:nth-child(odd) {
+        &:nth-child(even) {
             align-self: flex-end;
             
-            .event-view {
-                align-self: flex-end;
-            }
-            
-            .timeline-event-line {
-                top: 2px;
-                left: 50%;
-            }
-            .timeline-event-horizontal-line {
-                top: 0px;
+            .timeline-arrow {
+                transform: scaleY(-1);
+                bottom: 74px;
             }
         }
 
         &:last-child {
-            padding-right: 100px;
+            padding-right: 300px;
+            .timeline-arrow {
+                display: none;
+            }
         }
     }
     
