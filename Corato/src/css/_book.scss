@@ -80,10 +80,19 @@
     .timeline-container {
         height: 100%;
         overflow-x: scroll;
-        padding-left: 50%;
+        // padding-left: 50%;
         margin-top: -20px;
         flex-grow: 1;
         display: flex;
         align-items: center;
+    }
+
+    .book-stack {
+        flex-basis: 50%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        > * {
+            width: 70%;
+        }
     }
 }

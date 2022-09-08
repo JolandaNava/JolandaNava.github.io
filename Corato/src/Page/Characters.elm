@@ -104,7 +104,9 @@ narratorsView =
             [ Attrs.class "quote-container" ]
             [ Html.div
                 [ Attrs.class "quote"]
-                [ Html.text "\"Some very poignant quote is going right here on who narrates what.\"" ]
+                [ Html.text "\"...ci piace così tanto raccontare storie. E se sono degli altri è ancora meglio\"" ]
+            
+            
             ]
         , Html.div
             [ Attrs.class "characters-list-container" ]

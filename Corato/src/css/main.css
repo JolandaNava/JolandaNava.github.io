@@ -159,7 +159,7 @@ img {
   font-size: 14px;
   line-height: 18px;
   font-variation-settings: 'wght' 300; }
-  .character-view .character-name .characte-link-view {
+  .character-view .character-name .character-link-view {
     font-family: 'jost';
     font-size: 18px;
     line-height: 23px;
@@ -210,9 +210,43 @@ img {
     width: 150px;
     z-index: 2;
     right: -150px; }
-  .timeline-view .character-view {
-    margin-right: 50px;
-    align-self: center; }
+  .timeline-view .timeline-character-view {
+    flex-basis: 50vw;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .timeline-view .timeline-character-view > * {
+      width: 70%;
+      margin-bottom: 10px; }
+    .timeline-view .timeline-character-view .tm-small-title {
+      font-family: 'jost';
+      font-size: 14px;
+      line-height: 18px;
+      font-variation-settings: 'wght' 300;
+      align-self: flex-start; }
+    .timeline-view .timeline-character-view .character-dates {
+      font-family: 'jost';
+      font-size: 14px;
+      line-height: 22px;
+      font-variation-settings: 'wght' 400;
+      font-style: italic;
+      color: #868686;
+      align-self: flex-start; }
+    .timeline-view .timeline-character-view .tm-description {
+      font-family: 'jost';
+      font-size: 25px;
+      line-height: 30px;
+      font-variation-settings: 'wght' 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase; }
+    .timeline-view .timeline-character-view .tm-narrator {
+      font-family: 'jost';
+      font-size: 14px;
+      line-height: 18px;
+      font-variation-settings: 'wght' 300;
+      text-transform: uppercase; }
   .timeline-view .timeline-view-event {
     position: relative;
     display: flex;
@@ -396,11 +430,16 @@ img {
   .book .timeline-container {
     height: 100%;
     overflow-x: scroll;
-    padding-left: 50%;
     margin-top: -20px;
     flex-grow: 1;
     display: flex;
     align-items: center; }
+  .book .book-stack {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0; }
+    .book .book-stack > * {
+      width: 70%; }
 
 .characters .characters-title {
   font-family: 'jost-italic';
@@ -471,8 +510,9 @@ img {
   padding-bottom: 100px;
   padding-top: 20px;
   flex-wrap: wrap; }
-  .characters .characters-list > * {
-    margin: 10px 10px; }
+  .characters .characters-list .character-view {
+    margin-right: 10px;
+    margin-top: 10px; }
 
 .characters .characters-relations {
   margin: auto; }
@@ -512,7 +552,6 @@ img {
   .character .timeline-container {
     height: 100%;
     overflow-x: scroll;
-    padding-left: 50%;
     margin-top: -20px;
     flex-grow: 1;
     display: flex;

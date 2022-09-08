@@ -10,7 +10,8 @@
     .timeline-container {
         height: 100%;
         overflow-x: scroll;
-        padding-left: 50%;
+        // padding-left: 50%;
+        //padding-left: calc(50% - 120px);
         margin-top: -20px;
         flex-grow: 1;
         display: flex;

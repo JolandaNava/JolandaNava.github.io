@@ -489,7 +489,7 @@ rita =
 
 rosetta : T.CharacterDescription
 rosetta =
-    { fullName = "Rosa Maria (Rosetta) Zitoli"
+    { fullName = "Rosetta Zitoli"
     , description = "La protagonista"
     , birthday = Time.millisToPosix -1104454800000 
     , death = Nothing

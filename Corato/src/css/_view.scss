@@ -73,7 +73,7 @@
     z-index: 1;
 
     .character-name {
-        .characte-link-view {
+        .character-link-view {
             @include h3;
             text-transform: uppercase;
         }
@@ -112,9 +112,35 @@
         right: -150px;
     }
 
-    .character-view {
-        margin-right: 50px;
-        align-self: center;
+    .timeline-character-view {
+        flex-basis: 50vw;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        > * {
+            width: 70%;
+            margin-bottom: 10px;
+        }
+        .tm-small-title {
+            @include text;
+            align-self: flex-start;
+            
+        }
+        .character-dates {
+            @include subtitle;
+            color: $jumbo;
+            align-self: flex-start;
+        }
+        .tm-description {
+            @include h2;
+            text-transform: uppercase;
+        }
+        .tm-narrator {
+            @include text;
+            text-transform: uppercase;
+        }
     }
 
     .timeline-view-event {

@@ -102,7 +102,9 @@ timelineView : Html Msg
 timelineView =
     Html.div
         [ Attrs.class "timeline-container" ]
-        [ View.timeline Nothing Data.allEvents ]
+        [ Html.div [Attrs.class "book-stack"] [ Illustrations.bookStack ]
+        , View.timeline Nothing Data.allEvents
+        ]
 
 
 

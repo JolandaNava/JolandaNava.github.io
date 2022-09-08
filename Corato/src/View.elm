@@ -77,19 +77,25 @@ lifeSpan cd =
         Nothing ->
             Show.fullDate cd.birthday
 
-        Just death ->
+        Just d ->
             String.join " "
                 [ Show.fullDate cd.birthday
                 , "-"
-                , Show.fullDate death
+                , Show.fullDate d
                 ]
+
+birthday : T.CharacterDescription -> String
+birthday =
+    Show.fullDate << .birthday
+
+death : T.CharacterDescription -> String
+death =
+    Maybe.withDefault "_________" << Maybe.map Show.fullDate << .death
+
 
 timeline : Maybe T.Character -> List T.Event -> Html msg
 timeline c es =
     let
-        timelineLine =
-            Html.div [Attrs.class "timeline-main-line"] []
-
         wrapEvent : T.Event -> Html msg
         wrapEvent e =
             Html.div [ Attrs.class "timeline-view-event" ]
@@ -103,5 +109,44 @@ timeline c es =
         Html.div
             [ Attrs.class "timeline-view" ]
                 <| case c of
-                    Just cha -> character cha :: events
+                    Just cha -> timelineCharacter cha :: events -- character cha ::
                     Nothing  -> events
+
+
+timelineCharacter : T.Character -> Html msg
+timelineCharacter c =
+    let
+        cd = Data.characterDescription c
+    
+    in
+        Html.div 
+            [ Attrs.class "timeline-character-view" ]
+            [ Html.div []
+                [ Html.div
+                    [ Attrs.class "tm-description" ]
+                    [ Html.text cd.description ]
+                ]
+            , Html.div []
+                [ Html.span
+                    [ Attrs.class "tm-small-title" ]
+                    [ Html.text "nat* il " ]
+                , Html.span
+                    [ Attrs.class "character-dates" ]
+                    [ Html.text <| birthday cd ]
+                , Html.span
+                    [ Attrs.class "tm-small-title" ]
+                    [ Html.text " e mort* il " ]
+                , Html.span
+                    [ Attrs.class "character-dates" ]
+                    [ Html.text <| death cd ]
+                ]
+            , case Data.chapterNarratedBy c of
+                Just chap ->
+                    Html.div
+                        [ Attrs.class "tm-narrator" ]
+                        [ Html.text <| 
+                            "Narra il capitolo \"" ++ Show.chapterTitle chap ++ "\""
+                        ]
+                Nothing -> 
+                    Html.text ""
+            ]
