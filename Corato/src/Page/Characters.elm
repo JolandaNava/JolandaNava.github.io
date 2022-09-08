@@ -60,7 +60,7 @@ update msg model =
                 { model | relations = Relations.update subMsg model.relations }
         
         ChangeView v ->
-            Cmd.withNoCmd { model | view = v}
+            Cmd.withCmd fetchGraphElement { model | view = v}
         
         GetGraphElement res ->
             case res of
