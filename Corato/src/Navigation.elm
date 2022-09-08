@@ -1,16 +1,16 @@
 module Navigation exposing (simpleNav)
 
 import Html exposing (Html)
-import Route exposing (Route(..))
+import Route exposing (Route)
 import Html.Attributes as Attrs
 
 simpleNav : Html msg
 simpleNav =
     Html.div
         [ Attrs.class "simple-nav" ]
-        [ item Book
-        , item Home
-        , item Characters
+        [ item <| Route.Book Route.Chapters
+        , item Route.Home
+        , item <| Route.Characters Route.Narrators
         ]
 
 
@@ -28,7 +28,7 @@ item r =
 showRoute : Route -> String
 showRoute r =
     case r of
-        Home -> "Corato"
-        Book -> "Scopri il Libro"
-        Characters -> "Scopri i Personaggi"
+        Route.Home -> "Corato"
+        Route.Book _ -> "Scopri il Libro"
+        Route.Characters _ -> "Scopri i Personaggi"
         _ -> "" -- other routes should not get shown

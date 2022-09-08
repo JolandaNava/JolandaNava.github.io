@@ -171,11 +171,11 @@ changeRouteTo route currentModel =
             Route.Home ->
                 updateWith Home HomeMsg model Home.init
             
-            Route.Book ->
-                updateWith Book BookMsg model Book.init
+            Route.Book bv ->
+                updateWith Book BookMsg model <| Book.init bv
             
-            Route.Characters ->
-                updateWith Characters CharactersMsg model Characters.init
+            Route.Characters cv ->
+                updateWith Characters CharactersMsg model <| Characters.init cv
             
             Route.Character character ->
                 updateWith Character CharacterMsg model <| Character.init character

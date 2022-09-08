@@ -9,23 +9,19 @@ import Illustrations
 import Types as T
 import Page
 import Data
-import Route
+import Route exposing (BookView(..))
 import Show
 import View
 
 ---- MODEL ----
 
-type BookView
-    = Chapters
-    | Timeline
-
 type alias Model =
     { view : BookView }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( { view = Chapters }, Cmd.none )
+init : BookView -> ( Model, Cmd Msg )
+init bv =
+    ( { view = bv }, Cmd.none )
 
 
 ---- UPDATE ----
@@ -120,9 +116,11 @@ titleView model =
             [ Attrs.class "book-navigation-arrow"
             , Attrs.class "left"
             , Attrs.classList [("hidden", model.view == Chapters)]
-            , Events.onClick <| ChangeView Chapters
             ]
-            [ Html.text "torna ai capitoli" ]
+            [ Html.a
+                [ Route.href <| Route.Book <| Chapters]
+                [ Html.text "torna ai capitoli" ]
+            ]
         , Html.div
             [ Attrs.class "book-title" ]
             [ Html.text <|
@@ -134,7 +132,9 @@ titleView model =
             [ Attrs.class "book-navigation-arrow"
             , Attrs.class "right"
             , Attrs.classList [("hidden", model.view == Timeline)]
-            , Events.onClick <| ChangeView Timeline
             ]
-            [ Html.text "scopri gli eventi" ]
+            [ Html.a
+                [ Route.href <| Route.Book <| Timeline]
+                [ Html.text "scopri gli eventi" ]
+            ]
         ]

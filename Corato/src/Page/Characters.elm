@@ -14,26 +14,22 @@ import Data
 import Show
 import Page
 import Types as T
-import Route
+import Route exposing (CharactersView(..))
 import View
 
 ---- MODEL ----
 
-type ViewCharacters
-    = Narrators
-    | Relations
-
 type alias Model =
-    { view : ViewCharacters
+    { view : CharactersView
     , relations : Relations.Model
     }
 
 
-init : ( Model, Cmd Msg )
-init =
+init : CharactersView -> ( Model, Cmd Msg )
+init cv =
     Cmd.withCmd
         fetchGraphElement
-        { view = Narrators
+        { view = cv
         , relations = Relations.init (0,0)
         }
 
@@ -46,7 +42,7 @@ fetchGraphElement =
 
 type Msg
     = RelationsMsg Relations.Msg
-    | ChangeView ViewCharacters
+    | ChangeView CharactersView
     | GetGraphElement (Result Browser.Error Browser.Element)
     | RefetchGraphElement
 
@@ -143,9 +139,11 @@ titleView model =
             [ Attrs.class "characters-navigation-arrow"
             , Attrs.class "left"
             , Attrs.classList [("hidden", model.view == Narrators)]
-            , Events.onClick <| ChangeView Narrators
             ]
-            [ Html.text "torna ai narratori" ]
+            [ Html.a
+                [ Route.href <| Route.Characters <| Narrators ]
+                [ Html.text "torna ai narratori" ]
+            ]
         , Html.div
             [ Attrs.class "characters-title" ]
             [ Html.text <|
@@ -157,7 +155,9 @@ titleView model =
             [ Attrs.class "characters-navigation-arrow"
             , Attrs.class "right"
             , Attrs.classList [("hidden", model.view == Relations)]
-            , Events.onClick <| ChangeView Relations
             ]
-            [ Html.text "scopri le relazioni" ]
+            [ Html.a
+                [ Route.href <| Route.Characters <| Relations ]
+                [ Html.text "scopri le relazioni" ]
+            ]
         ]

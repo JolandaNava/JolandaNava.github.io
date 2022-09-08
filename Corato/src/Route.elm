@@ -8,33 +8,80 @@ import Url.Parser as Parser exposing (Parser, oneOf, s, (</>))
 import Url.Builder as Builder
 import Browser.Dom exposing (Error(..))
 import Types as T
+import Html exposing (a)
 
 
 -- ROUTING
 
+-- Types
 
 type Route
     = NotFound
     | Home
-    | Book
-    | Characters
+    | Book BookView
+    | Characters CharactersView
     | Character T.Character
 
+type BookView
+    = Chapters
+    | Timeline
+
+type CharactersView
+    = Narrators
+    | Relations
+
+
+-- Parsers
 
 parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
-        , Parser.map Book <| s "book"
-        , Parser.map Characters <| s "characters"
+        , Parser.map Book <| s "book" </> bookViewParser
+        , Parser.map Characters <| s "characters" </> charactersViewParser
         , Parser.map Character <| s "character" </> characterParser
         , Parser.map NotFound <| s "404"
         ]
+
+bookViewParser : Parser ( BookView -> a ) a
+bookViewParser =
+    Parser.custom "bookview_parser" readBookView
+
+
+charactersViewParser : Parser ( CharactersView -> a ) a
+charactersViewParser =
+    Parser.custom "charactersview_parser" readCharactersView
 
 characterParser : Parser ( T.Character -> a) a
 characterParser =
     Parser.custom "character_parser" readCharacter
 
+
+readBookView : String -> Maybe BookView
+readBookView x =
+    case x of
+        "chapters" -> Just Chapters
+        "timeline" -> Just Timeline
+        _ -> Nothing
+
+showBookView : BookView -> String
+showBookView bv =
+    case bv of
+        Chapters -> "chapters"
+        Timeline ->  "timeline"
+
+readCharactersView : String -> Maybe CharactersView
+readCharactersView x =
+    case x of
+        "narrators" -> Just Narrators
+        "relations" -> Just Relations
+        _ -> Nothing
+
+showCharactersView : CharactersView -> String
+showCharactersView cv =
+    case cv of
+        Narrators -> "narrators"
+        Relations ->  "relations"
 
 readCharacter : String -> Maybe T.Character
 readCharacter x =
@@ -158,8 +205,8 @@ routeToString page =
         path =
             case page of
                 Home -> []
-                Book -> ["book"]
-                Characters -> ["characters"]
+                Book bv -> ["book", showBookView bv]
+                Characters cv -> ["characters", showCharactersView cv]
                 Character c -> ["character", showCharacter c]
                 NotFound -> ["404"]
 

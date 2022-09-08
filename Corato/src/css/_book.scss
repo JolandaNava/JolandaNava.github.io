@@ -12,33 +12,11 @@
     }
 
     .book-navigation-arrow {
-        cursor: pointer;
+        @include navitem($jumbo);
         margin: 25px;
 
         &.hidden {
             opacity: 0;
-        }
-        
-        position: relative;
-        color: $jumbo;
-        text-decoration: none;
-      
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: $jumbo;
-            transition: opacity 300ms, transform 500ms;
-            opacity:1;
-            transform: scale(0);
-            transform-origin: center;
-        }
-        &:hover::after,
-        &:focus::after {
-            transform: scale(1);
         }
     }
 

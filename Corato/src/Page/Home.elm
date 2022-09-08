@@ -60,7 +60,7 @@ content  _ =
                     , Attrs.class "book"
                     ]
                     [ Html.a
-                        [ Route.href Route.Book ]
+                        [ Route.href <| Route.Book Route.Chapters ]
                         [ Html.text "Scopri il Libro" ]
                     ]
                 , Html.div
@@ -68,7 +68,7 @@ content  _ =
                     , Attrs.class "characters"
                     ]
                     [ Html.a
-                        [ Route.href Route.Characters ]
+                        [ Route.href <| Route.Characters Route.Narrators ]
                         [ Html.text "Scopri i Personaggi" ]
                     ]
                 ]

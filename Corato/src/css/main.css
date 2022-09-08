@@ -302,14 +302,16 @@ img {
   justify-content: center; }
 
 .book .book-navigation-arrow {
-  cursor: pointer;
-  margin: 25px;
-  position: relative;
-  color: #868686;
-  text-decoration: none; }
-  .book .book-navigation-arrow.hidden {
-    opacity: 0; }
-  .book .book-navigation-arrow::after {
+  font-family: 'jost';
+  font-size: 16px;
+  line-height: 20px;
+  font-variation-settings: 'wght' 300;
+  margin: 25px; }
+  .book .book-navigation-arrow a {
+    position: relative;
+    color: #868686;
+    text-decoration: none; }
+  .book .book-navigation-arrow a::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -321,8 +323,11 @@ img {
     opacity: 1;
     transform: scale(0);
     transform-origin: center; }
-  .book .book-navigation-arrow:hover::after, .book .book-navigation-arrow:focus::after {
+  .book .book-navigation-arrow a:hover::after,
+  .book .book-navigation-arrow a:focus::after {
     transform: scale(1); }
+  .book .book-navigation-arrow.hidden {
+    opacity: 0; }
 
 .book .chapters-container {
   padding: 20px;
@@ -417,14 +422,16 @@ img {
   justify-content: center; }
 
 .characters .characters-navigation-arrow {
-  cursor: pointer;
-  margin: 25px;
-  position: relative;
-  color: #868686;
-  text-decoration: none; }
-  .characters .characters-navigation-arrow.hidden {
-    opacity: 0; }
-  .characters .characters-navigation-arrow::after {
+  font-family: 'jost';
+  font-size: 16px;
+  line-height: 20px;
+  font-variation-settings: 'wght' 300;
+  margin: 25px; }
+  .characters .characters-navigation-arrow a {
+    position: relative;
+    color: #868686;
+    text-decoration: none; }
+  .characters .characters-navigation-arrow a::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -436,8 +443,11 @@ img {
     opacity: 1;
     transform: scale(0);
     transform-origin: center; }
-  .characters .characters-navigation-arrow:hover::after, .characters .characters-navigation-arrow:focus::after {
+  .characters .characters-navigation-arrow a:hover::after,
+  .characters .characters-navigation-arrow a:focus::after {
     transform: scale(1); }
+  .characters .characters-navigation-arrow.hidden {
+    opacity: 0; }
 
 .characters .narrators-view {
   display: flex;
