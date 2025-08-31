@@ -1,0 +1,18 @@
+# Distribution
+build/
+
+# elm-package generated files
+elm-stuff
+
+# elm-repl generated files
+repl-temp-*
+
+# Dependency directories
+node_modules
+
+# generated css
+public/css
+
+# to disable code editors from searching in .direnv/
+# even when only the frontend subdirectory is opened
+/.direnv/

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# set -euo pipefail
+
+# if [[ $# -lt 1 || $1 == "--help" || $1 == "-h" || ($1 != "staging" && $1 != "production") ]]; then
+#     echo "USAGE: patch-live [staging/production]"
+#     exit 1
+# fi
+
+# printf "Make sure your ~/.ssh/config includes something like:\n\n"
+# echo "host i-* mi-*"
+# printf "\tProxyCommand sh -c \"aws ssm start-session --target %%h --document-name AWS-StartSSHSession --parameters 'portNumber=%%p'\"\n"
+
+# printf "\n\nand that your key is present in /home/ubuntu/.ssh/authorized_keys on the server\n\n\n"
+
+
+# PROFILE="staging-PI"
+# INST_NAME="PI staging ASG backend"
+# if [[ $1 == "production" ]]; then
+#     PROFILE="prod-PI"
+#     INST_NAME="PI production ASG backend"
+# fi
+
+# echo "Setting profile to $PROFILE"
+# export AWS_PROFILE=$PROFILE
+# echo "Instance name is '$INST_NAME'"
+
+
+# INST_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values='${INST_NAME}'" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].InstanceId" --output text)
+
+# echo "instance id is $INST_ID"
+
+# echo "RUNNING BUILD:"
+
+# npm run build
+
+# printf "\n\nNext step will replace files in /home/ubuntu/pi/frontend/ on the server!\n\n"
+
+# read -p "Do you want to continue? (y/n): " choice
+# case "$choice" in
+#   y|Y ) echo "Continuing script...";;
+#   n|N ) echo "Aborting."; exit 1;;
+#   * ) echo "Invalid input. Please enter y or n."; exit 1;;
+# esac
+
+# rsync -avz -e "ssh" ./build/ ubuntu@$INST_ID:/home/ubuntu/pi/frontend/

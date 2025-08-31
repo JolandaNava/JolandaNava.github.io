@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "lib": [ "ESNext", "dom" ],
+    "strict": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
