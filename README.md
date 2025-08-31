@@ -1,3 +1,3 @@
 # Me [ name pending ]
 
-More details to come:
+More details to come soon
