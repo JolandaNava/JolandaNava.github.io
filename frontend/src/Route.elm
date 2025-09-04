@@ -72,7 +72,8 @@ replaceUrl key route =
 
 urlToRoute : Url -> Route
 urlToRoute url =
-    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+    -- { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+    url
         |> Parser.parse parser
         |> Maybe.withDefault NotFound
 

@@ -1,0 +1,256 @@
+@forward "circle";
+@use "elements";
+@use "components";
+
+.page.home {
+
+    .main-button {
+        @include components.button;
+    }
+
+    .secondary-button {
+        @include components.secondary-button;
+    }
+
+    .intro-section {
+        width: 100%;
+        padding: 200px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 60px;
+    }
+
+    $section-side-padding : 100px;
+
+    .section {
+        position: relative;
+        width: 100%;
+        padding: 70px $section-side-padding 200px $section-side-padding;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .section-title {
+        width: 100%;
+        background-color: elements.$whiteish;
+        padding: 10px $section-side-padding;
+        &.right-align {
+            h1 {
+                text-align: right;
+            }
+        }
+    }
+
+    .footer {
+        background-color: elements.$whiteish;
+        padding: 60px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        .link {
+            @include components.link;
+            text-transform: lowercase;
+        }
+    }
+
+    // INTRO
+
+    // floating items
+    .circle-knit {
+        position: absolute;
+        top: -10px;
+        left: 10px;
+    }
+
+    .circle-living-room {
+        position: absolute;
+        top: 150px;
+        right: -120px;
+    }
+
+    .circle-gomitolo {
+        position: absolute;
+        bottom: -100px;
+        right: -170px;
+    }
+
+    .circle-basil {
+        position: absolute;
+        bottom: 240px;
+        left: -45px;
+        // TODO do I want to encode a variation of this circle in the circle file?
+        .circle_small {
+            .circle-outline {
+                transform: scaleX(-1) scaleY(-1) rotate(-45deg);
+            }
+            .circle-image {
+                top: 60px;
+                left: 70px;
+            }
+        }
+    }
+
+    // content
+    .firma {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+        h2 {
+            bottom: 18px;
+            left: 260px;
+            position: absolute;
+        }
+    }
+
+    .intro-text {
+        width: 30%;
+        text-align: center;
+        min-width: 300px;
+        max-width: 500px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    // ABOUT ME
+
+    .section.about-me {
+        align-items: flex-start;
+    }
+
+    .about-me-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+    }
+
+    .vertical-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .about-me-text {
+        width: 40%;
+        max-width: 400px;
+    }
+
+    .flower {
+        position: absolute;
+        top: -150px;
+        left: 300px;
+    }
+
+    // PAST PROJECTS
+
+    .section.past-projects {
+        align-items: flex-end;
+    }
+
+    .past-project-text {
+        text-align: right;
+        width: 40%;
+        max-width: 400px;
+    }
+
+    .branch-4 {
+        position: absolute;
+        transform: scaleX(-1) rotate(-55deg);
+        width: 300px;
+        top: -225px;
+        left: 65px;
+    }
+
+    .past-projects-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+
+    .past-project {
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+
+    .past-project-name {
+        margin-top: -30px;
+        color: elements.$yellow;
+    }
+
+    // WORK WITH ME
+    
+    .section.work-with-me {
+        align-items: flex-start;
+    }
+
+    .work-with-me-text {
+        text-align: left;
+        width: 40%;
+        max-width: 400px;
+    }
+
+    .work-with-me-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+
+    .work-proposal {
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+
+    .proposal-name {
+        color: elements.$green;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .branch-2 {
+        position: absolute;
+        width: 300px;
+        transform: scaleY(-1) rotate(45deg);
+        bottom: -80px;
+        right: -10px;
+    }
+
+    .circle-placeholder {
+        position: absolute;
+        top: -300px;
+        right: 100px;
+    }
+
+
+    // CREATIONS
+
+}

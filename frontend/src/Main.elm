@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Page.Home as Home
+import Language as Lang exposing (Language)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav exposing (Key)
@@ -16,6 +17,7 @@ import Html
 type alias Model =
     { page : CurrentPage
     , route : Route
+    , language : Language
     }
 
 type CurrentPage
@@ -27,6 +29,7 @@ init : () -> Url -> Key -> ( Model, Cmd Msg )
 init _ url _ =
     { route = Route.NotFound
     , page = Redirect
+    , language = Lang.EN -- TODO we could get this from browser preferences/settings
     }
         |> changeRouteTo (Route.urlToRoute url)
 
@@ -38,6 +41,7 @@ type Msg
     = NoOp
     | ChangedUrl Url
     | ClickedLink Browser.UrlRequest
+    | UpdateLanguage Language
     | HomeMsg Home.Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -62,6 +66,10 @@ update msg model =
 
                     else
                         Cmd.with (Nav.load href) model
+
+        ( UpdateLanguage l, _ ) ->
+            -- TODO is there a better way than refreshing everytime we change the language?
+            changeRouteTo model.route {model | language = l}
 
         ( HomeMsg subMsg, Home subModel ) ->
             Home.update subMsg subModel
@@ -89,7 +97,10 @@ view model =
 mapView : (msg -> Msg) -> Document msg -> Document Msg
 mapView subMsg {title, body} =
     { title = title
-    , body = List.map (Html.map subMsg) body
+    , body = 
+        -- TODO make the language switch always visible?
+        (Lang.languageSwitch UpdateLanguage)
+        :: List.map (Html.map subMsg) body
     }
 
 redirect_view : List (Html Msg)
@@ -98,6 +109,7 @@ redirect_view =
         [ Html.h1 [] [ Html.text "Loading" ]
         ]
     ]
+
 
 ---- PROGRAM ----
 
@@ -129,7 +141,7 @@ changeRouteTo route currentModel =
                 ({ model | page = Redirect }, Cmd.none) -- TODO?
             
             Route.Home ->
-                updateWith Home HomeMsg model Home.init
+                updateWith Home HomeMsg model <| Home.init model.language
 
 
 updateWith : (subModel -> CurrentPage) -> (subMsg -> Msg) -> Model -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )

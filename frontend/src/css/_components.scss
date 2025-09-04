@@ -1,0 +1,38 @@
+@use "elements";
+
+
+@mixin button {
+    @include elements.subtitle;
+    background-color: elements.$navy;
+    color: elements.$whiteish;
+    cursor: pointer;
+    padding: 15px 30px;
+    border: 0px;
+    border-radius: 30px;
+    text-align: center;
+    &:hover {
+        background-color: elements.$azzurro;
+    }
+}
+
+@mixin link {
+    color: elements.$blackish;
+    cursor: pointer;
+    &:hover {
+        color: elements.$azzurro;
+    }
+}
+
+@mixin secondary-button {
+    @include elements.subtitle;
+    background-color: elements.$green;
+    color: elements.$azzurro;
+    padding: 15px 30px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 30px;
+    text-align: center;
+    &:hover {
+        background-color: elements.$yellow;
+    }
+}

@@ -1,0 +1,48 @@
+
+
+// colors
+
+$blackish: #333746;
+$navy: #153A55;
+$azzurro: #3272A0;
+$whiteish: #ECEEE9;
+$green: #6F9741;
+$yellow: #DAA838;
+$red: #8B0707;
+
+
+// fonts
+// these come from google fonts, they are added as stylesheet to the index.html <head> tag
+
+$yeseva-one: "Yeseva One", serif;
+$alegraya-sans: "Alegreya Sans", sans-serif;
+
+
+// typography
+
+@mixin title {
+  font-family: $yeseva-one;
+  font-size: 40px;
+  letter-spacing: 0px;
+  line-height: 46px;
+  font-weight: 400;
+  }
+
+@mixin subtitle {
+  font-family: $alegraya-sans;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  line-height: 19px;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+@mixin text {
+  font-family: $alegraya-sans;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 19px;
+  font-weight: 400;
+  font-style: normal;
+  }

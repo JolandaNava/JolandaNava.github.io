@@ -1,0 +1,56 @@
+
+@mixin circle {
+    position: relative;
+    .circle-image {
+        position: absolute;
+    }
+    .circle-outline {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.circle_small {
+    @include circle;
+
+    width: 350px;
+    height: 350px;
+    .circle-outline {
+        width: 350px;
+    }
+    .circle-image {
+        width: 185px;
+        left: 85px;
+        top: 85px;
+    }
+}
+
+.circle_medium {
+    @include circle;
+
+    width: 400px;
+    height: 400px;
+    .circle-outline {
+        width: 400px;
+    }
+    .circle-image {
+        width: 265px;
+        left: 50px;
+        top: 70px;
+    }
+}
+
+.circle_large {
+    @include circle;
+
+    width: 500px;
+    height: 500px;
+    .circle-outline {
+        width: 500px;
+    }
+    .circle-image {
+        width: 310px;
+        left: 95px;
+        top: 100px;
+    }
+}
