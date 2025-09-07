@@ -36,13 +36,16 @@
     }
 
     .section-title {
+        box-sizing: border-box;
+        height: 66px;
         width: 100%;
         background-color: elements.$whiteish;
-        padding: 10px $section-side-padding;
+        padding: 0px $section-side-padding;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         &.right-align {
-            h1 {
-                text-align: right;
-            }
+            justify-content: flex-end;
         }
     }
 
@@ -148,6 +151,7 @@
 
     .flower {
         position: absolute;
+        pointer-events: none;
         top: -150px;
         left: 300px;
     }
@@ -166,6 +170,7 @@
 
     .branch-4 {
         position: absolute;
+        pointer-events: none;
         transform: scaleX(-1) rotate(-55deg);
         width: 300px;
         top: -225px;
@@ -188,11 +193,16 @@
         justify-content: flex-start;
         align-items: center;
         text-align: center;
+        gap: 15px;
     }
 
     .past-project-name {
         margin-top: -30px;
-        color: elements.$yellow;
+        color: elements.$red;
+    }
+
+    .past-project-link {
+        @include components.past-project-button;
     }
 
     // WORK WITH ME
@@ -223,21 +233,24 @@
         justify-content: flex-start;
         align-items: center;
         text-align: center;
+        gap: 15px;
     }
 
     .proposal-name {
         color: elements.$green;
     }
 
-    .button-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .proposal-image {
+        height: 150px;
+    }
+
+    .proposal-button {
+        @include components.proposal-button;
     }
 
     .branch-2 {
         position: absolute;
+        pointer-events: none;
         width: 300px;
         transform: scaleY(-1) rotate(45deg);
         bottom: -80px;

@@ -1,18 +1,30 @@
 @use "elements";
 
 
-@mixin button {
+@mixin base-button ($background-color, $text-color, $hover-color) {
     @include elements.subtitle;
-    background-color: elements.$navy;
-    color: elements.$whiteish;
+    background-color: $background-color;
+    color: $text-color;
     cursor: pointer;
     padding: 15px 30px;
     border: 0px;
     border-radius: 30px;
     text-align: center;
     &:hover {
-        background-color: elements.$azzurro;
+        background-color: $hover-color;
     }
+}
+
+@mixin button {
+    @include base-button(elements.$navy, elements.$whiteish, elements.$azzurro);
+}
+
+@mixin proposal-button {
+    @include base-button(elements.$green, elements.$whiteish, elements.$yellow)
+}
+
+@mixin past-project-button {
+    @include base-button(elements.$red, elements.$whiteish, elements.$yellow)
 }
 
 @mixin link {
@@ -34,5 +46,13 @@
     text-align: center;
     &:hover {
         background-color: elements.$yellow;
+    }
+}
+
+@mixin social-link {
+    color: elements.$yellow;
+    cursor: pointer;
+    &:hover {
+        color: elements.$red;
     }
 }

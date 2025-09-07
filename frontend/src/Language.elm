@@ -11,11 +11,14 @@ type Language
 
 languageSwitch : (Language -> msg) -> Html msg
 languageSwitch changeLanguageTo =
-    Html.div [ Attrs.class "language-switch" ]
-        [ Html.button [ Html.Events.onClick <| changeLanguageTo EN ] [ Html.text "EN" ]
-        , Html.text " | "
-        , Html.button [ Html.Events.onClick <| changeLanguageTo IT ] [ Html.text "IT" ]
+    Html.th [ Attrs.class "language-switch-container" ]
+        [ Html.div [ Attrs.class "language-switch" ]
+            [ Html.button [ Html.Events.onClick <| changeLanguageTo EN ] [ Html.text "EN" ]
+            , Html.text " | "
+            , Html.button [ Html.Events.onClick <| changeLanguageTo IT ] [ Html.text "IT" ]
+            ]
         ]
+
 
 
 makeString : String -> String -> Language -> String
@@ -115,17 +118,59 @@ pastProjectsBlurb =
         loremIpsum
         loremIpsum
 
-testProject : Language -> String
-testProject =
+pastProjectLink : Language -> String
+pastProjectLink =
+    makeString
+        "read more"
+        "leggi di piú"
+
+itciloTitle : Language -> String
+itciloTitle =
+    makeString
+        "Intersectionality Workshop at ITCILO"
+        "Attività sull'Intersezionalità all'ITCILO"
+
+itciloBlurb : Language -> String
+itciloBlurb =
     makeString
         loremIpsum
         loremIpsum
 
-testProjectTitle : Language -> String
-testProjectTitle =
+ribesTitle : Language -> String
+ribesTitle =
     makeString
-        "project title"
-        "project title"
+        "Active Listening & Non-Violent Communication"
+        "Ascolto Attivo & Comunicazione Non Violenta"
+
+ribesBlurb : Language -> String
+ribesBlurb =
+    makeString
+        loremIpsum
+        loremIpsum
+
+qualityAssuranceTitle : Language -> String
+qualityAssuranceTitle =
+    makeString
+        "Qality Assurance for All - Conflict Management"
+        "Quality Assurance for All - Gestione del conflitto"
+
+qualityAssuranceBlurb : Language -> String
+qualityAssuranceBlurb =
+    makeString
+        loremIpsum
+        loremIpsum
+
+gruppoLesbicoTitle : Language -> String
+gruppoLesbicoTitle =
+    makeString
+        "Lesbian learning"
+        "Autoformazione lesbica"
+
+gruppoLesbicoBlurb : Language -> String
+gruppoLesbicoBlurb =
+    makeString
+        loremIpsum
+        loremIpsum
 
 -- work with me
 
@@ -138,8 +183,8 @@ workWithMeBlurb =
 coachingTitle : Language -> String
 coachingTitle =
     makeString
-        "coaching title"
-        "coaching title"
+        "coaching"
+        "coaching"
 
 coachingBlurb : Language -> String
 coachingBlurb =
@@ -150,8 +195,8 @@ coachingBlurb =
 workshopsTitle : Language -> String
 workshopsTitle =
     makeString
-        "workshops title"
-        "workshops title"
+        "workshops"
+        "formazioni"
 
 workshopsBlurb : Language -> String
 workshopsBlurb =
@@ -162,14 +207,26 @@ workshopsBlurb =
 customTitle : Language -> String
 customTitle =
     makeString
-        "custom title"
-        "custom title"
+        "tailored"
+        "su misura"
 
 customBlurb : Language -> String
 customBlurb =
     makeString
         loremIpsum
         loremIpsum
+
+downloadWorkshopProposals : Language -> String
+downloadWorkshopProposals =
+    makeString
+        "workshop proposals"
+        "proposte di formazione"
+
+downloadCoachingProposals : Language -> String
+downloadCoachingProposals =
+    makeString
+        "coaching proposals"
+        "proposte di coaching"
 
 loremIpsum : String
 loremIpsum =

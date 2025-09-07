@@ -86,7 +86,7 @@ content  { language } =
             --     ]
             ]
         , sectionTitle Right PastProjects language
-        , section PastProjects -- TODO recent projects?
+        , section PastProjects
             [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
             , Html.div [ Attrs.class "past-projects-container" ]
                 [ pastProject itcilo language
@@ -107,7 +107,6 @@ content  { language } =
                 , proposal coaching language
                 , proposal custom language
                 ]
-            , Html.div [ Attrs.class "button-container" ] [ emailButton "write me" ] -- TODO <| L.getInTouch language
             
             -- floating elements
             , Html.img [ Attrs.class "branch-2", Attrs.src <| "/assets/branch_2.png" ] []
@@ -124,7 +123,7 @@ content  { language } =
 
 circle : String -> String -> Html Msg
 circle circle_type image =
-    Html.div [ Attrs.class <| "circle-" ++ image ]
+    Html.div [ Attrs.class <| "circle-" ++ image, Attrs.class "no-pointer-events" ]
         [ Html.div [ Attrs.class circle_type ]
             [ Html.img [ Attrs.class "circle-image", Attrs.src <| "/assets/" ++ image ++ ".png" ] []
             , Html.img [ Attrs.class "circle-outline", Attrs.src <| "/assets/" ++ circle_type ++ ".png" ] []
@@ -240,6 +239,13 @@ socialButton =
         [ Attrs.href "", Attrs.target "_blank", Attrs.class "secondary-button" ]
         [ Html.text "LI" ]
 
+pastProjectLink : String -> String -> Html Msg
+pastProjectLink externallink linkText =
+    Html.a
+        [ Attrs.href externallink, Attrs.target "_blank", Attrs.class "past-project-link" ]
+        [ Html.text linkText ]
+
+
 pastProject : PastProject -> Language -> Html Msg
 pastProject project l =
     Html.div
@@ -247,6 +253,7 @@ pastProject project l =
         [ circle_small project.image
         , Html.h2 [ Attrs.class "past-project-name" ] [ Html.text <| project.title l ]
         , Html.div [ Attrs.class "project-description" ] [ Html.text <| project.description l ]
+        , pastProjectLink project.link <| L.pastProjectLink l
         ]
 
 proposal : Proposal -> Language -> Html Msg
@@ -256,6 +263,7 @@ proposal p l =
         [ Html.img [ Attrs.class "proposal-image", Attrs.src <| "/assets/" ++ p.image ] []
         , Html.h2 [ Attrs.class "proposal-name" ] [ Html.text <| p.title l ]
         , Html.div [ Attrs.class "proposal-description" ] [ Html.text <| p.description l ]
+        , p.action l
         ]
 
 --- DATA
@@ -271,32 +279,32 @@ type alias PastProject =
 
 itcilo : PastProject
 itcilo =
-    { title = L.testProjectTitle
-    , description = L.testProject
+    { title = L.itciloTitle
+    , description = L.itciloBlurb
     , link = "https://www.linkedin.com/posts/maudritz_intersectionality-inclusion-diversity-activity-7349176762557161473-8hc4"
     , image = "past-projects/ITCILO"
     }
 
 ribes : PastProject
 ribes =
-    { title = L.testProjectTitle
-    , description = L.testProject
+    { title = L.ribesTitle
+    , description = L.ribesBlurb
     , link = "https://www.instagram.com/p/DFfM0KisOy5"
     , image = "past-projects/ribes2"
     }
 
 qualityAssurance : PastProject
 qualityAssurance =
-    { title = L.testProjectTitle
-    , description = L.testProject
+    { title = L.qualityAssuranceTitle
+    , description = L.qualityAssuranceBlurb
     , link = "https://www.instagram.com/p/DG21pFXNRhr/"
     , image = "past-projects/quality-assurance"
     }
 
 gruppoLesbico : PastProject
 gruppoLesbico =
-    { title = L.testProjectTitle
-    , description = L.testProject
+    { title = L.gruppoLesbicoTitle
+    , description = L.gruppoLesbicoBlurb
     , link = "https://www.instagram.com/p/C_2rIIOtrGT/"
     , image = "past-projects/gruppo-lesbico2"
     }
@@ -307,27 +315,52 @@ type alias Proposal =
     { title: Language -> String
     , description: Language -> String
     , image: String
+    , action: Language -> Html Msg
     }
 
 workshops : Proposal
 workshops =
     { title = L.workshopsTitle
     , description = L.workshopsBlurb
-    , image = "flower.png"
+    , image = "proposals/fern.png"
+    , action = \l ->
+        Html.a
+            [ Attrs.class "proposal-button"
+            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
+            , Attrs.download <| L.makeString
+                "workshop-proposals-Jolanda-Nava"
+                "proposte-formazione-Jolanda-Nava"
+                l
+            ]
+            [ Html.text <| L.downloadWorkshopProposals l ]
     }
 
 coaching : Proposal
 coaching =
     { title = L.coachingTitle
     , description = L.coachingBlurb
-    , image = "flower.png"
+    , image = "proposals/sprout.png"
+    , action = \l ->
+        Html.a
+            [ Attrs.class "proposal-button"
+            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf" -- TODO 
+            , Attrs.download <| L.makeString
+                "coaching-proposals-Jolanda-Nava"
+                "proposte-coaching-Jolanda-Nava"
+                l
+            ]
+            [ Html.text <| L.downloadCoachingProposals l ]
     }
 
 custom : Proposal
 custom =
     { title = L.customTitle
     , description = L.customBlurb
-    , image = "flower.png"
+    , image = "proposals/flower.png"
+    , action = \l ->
+        Html.a
+            [ Attrs.class "proposal-button", Attrs.href mailto ]
+            [ Html.text <| L.getInTouch l ]
     }
 
 -- navigation sections
