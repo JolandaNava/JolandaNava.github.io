@@ -3,16 +3,14 @@
 @use "components";
 
 .page.home {
+    overflow-x: clip;
 
     .main-button {
         @include components.button;
     }
 
-    .secondary-button {
-        @include components.secondary-button;
-    }
-
     .intro-section {
+        position: relative;
         width: 100%;
         padding: 200px 0px;
         display: flex;
@@ -67,47 +65,45 @@
     // floating items
     .circle-knit {
         position: absolute;
-        top: -10px;
-        left: 10px;
+        top: -110px;
+        left: -70px;
     }
 
     .circle-living-room {
         position: absolute;
-        top: 150px;
-        right: -120px;
+        top: 0px;
+        right: -5px;
     }
 
     .circle-gomitolo {
         position: absolute;
-        bottom: -100px;
-        right: -170px;
+        bottom: -50px;
+        right: -160px;
     }
 
     .circle-basil {
         position: absolute;
-        bottom: 240px;
-        left: -45px;
-        // TODO do I want to encode a variation of this circle in the circle file?
-        .circle_small {
-            .circle-outline {
-                transform: scaleX(-1) scaleY(-1) rotate(-45deg);
-            }
-            .circle-image {
-                top: 60px;
-                left: 70px;
-            }
-        }
+        bottom: 150px;
+        left: 20px;
     }
 
     // content
     .firma {
-        width: fit-content;
-        height: fit-content;
+        width: 100%;
+        max-width: 500px;
+        height: 162px;
         position: relative;
-        h2 {
-            bottom: 18px;
-            left: 260px;
+
+        // TODO make this more responsive
+        img {
             position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        h2 {
+            position: absolute;
+            bottom: 10px;
+            left: 230px;
         }
     }
 
@@ -141,7 +137,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 30px;
+        .main-button {
+            width: 100%;
+        }
     }
 
     .about-me-text {
@@ -152,8 +152,8 @@
     .flower {
         position: absolute;
         pointer-events: none;
-        top: -150px;
-        left: 300px;
+        top: -100px;
+        left: 370px;
     }
 
     // PAST PROJECTS
@@ -164,26 +164,50 @@
 
     .past-project-text {
         text-align: right;
-        width: 40%;
-        max-width: 400px;
+        width: 50%;
+        max-width: 530px;
     }
 
     .branch-4 {
         position: absolute;
         pointer-events: none;
-        transform: scaleX(-1) rotate(-55deg);
+        transform: scaleX(-1) rotate(-84deg);
         width: 300px;
-        top: -225px;
-        left: 65px;
+        top: -196px;
+        left: 45px;
     }
 
     .past-projects-container {
-        width: 100%;
+        margin: 0px -100px;
+        width: calc(100% + 200px);
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .past-projects-scroll {
+        width: 100%;
+        height: 100%;
+        overflow-x: scroll;
+        position: relative;
+    }
+
+    .past-projects-list {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
         gap: 60px;
-        flex-wrap: wrap;
+    }
+
+    .scroll-right, 
+    .scroll-left {
+        fill: elements.$red;
+        width: 100px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .past-project {
@@ -193,8 +217,24 @@
         justify-content: flex-start;
         align-items: center;
         text-align: center;
+        .project-description {
+            text-align: justify;
+        }
         gap: 15px;
+        &:nth-child(even) {
+            div[class^='circle-past-projects']{
+                .circle-outline {
+                    transform: scaleY(-1);
+                }
+                .circle-image {
+                    top: 50px;
+                }
+            }
+        }
     }
+
+
+
 
     .past-project-name {
         margin-top: -30px;
@@ -214,20 +254,18 @@
     .work-with-me-text {
         text-align: left;
         width: 40%;
-        max-width: 400px;
+        max-width: 500px;
     }
 
     .work-with-me-container {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        gap: 60px;
-        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     .work-proposal {
-        max-width: 300px;
+        flex-basis: 30%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -248,16 +286,7 @@
         @include components.proposal-button;
     }
 
-    .branch-2 {
-        position: absolute;
-        pointer-events: none;
-        width: 300px;
-        transform: scaleY(-1) rotate(45deg);
-        bottom: -80px;
-        right: -10px;
-    }
-
-    .circle-placeholder {
+    .circle-lemons {
         position: absolute;
         top: -300px;
         right: 100px;
@@ -265,5 +294,43 @@
 
 
     // CREATIONS
+
+    .section.creations {
+        align-items: flex-end;
+    }
+
+    .creations-text {
+        text-align: right;
+        width: 50%;
+        max-width: 600px;
+        min-width: 300px;
+    }
+
+    .creations-container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0px -20px;
+    }
+
+    .creations-picture {
+        width: 200px;
+    }
+
+    .circle-ceramica {
+        position: absolute;
+        pointer-events: none;
+        top: -200px;
+        left: 50px;
+    }
+
+    .ravelry-container {
+        width: 100%;
+        text-align: center;
+    }
+    
 
 }

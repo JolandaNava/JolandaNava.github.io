@@ -1,7 +1,7 @@
 {
   "name": "jolanda",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "a place for all my projects",
   "main": "index.js",
   "directories": {
     "test": "tests"

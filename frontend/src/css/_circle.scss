@@ -26,6 +26,17 @@
     }
 }
 
+.circle_small.rotated {
+    .circle-outline {
+        transform: scaleX(-1) scaleY(-1) rotate(-45deg);
+    }
+    .circle-image {
+        top: 60px;
+        left: 70px;
+    }
+}
+
+
 .circle_medium {
     @include circle;
 
@@ -41,6 +52,16 @@
     }
 }
 
+.circle_medium.rotated {
+    .circle-outline {
+        transform: scaleX(-1) scaleY(-1);
+    }
+    .circle-image {
+        top: 70px;
+        left: 90px;
+    }
+}
+
 .circle_large {
     @include circle;
 
@@ -53,6 +74,16 @@
         width: 310px;
         left: 95px;
         top: 100px;
+    }
+}
+
+.circle_large.rotated {
+    .circle-outline {
+        transform: scaleX(-1) scaleY(-1);
+    }
+    .circle-image {
+        top: 90px;
+        left: 100px;
     }
 }
 

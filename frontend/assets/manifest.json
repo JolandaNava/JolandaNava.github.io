@@ -3,8 +3,7 @@
   "name": "Jolanda",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "84x84",
+      "src": "/favicon.ico",
       "type": "image/png"
     }
   ],

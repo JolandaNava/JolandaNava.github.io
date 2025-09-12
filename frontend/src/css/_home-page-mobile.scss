@@ -1,0 +1,296 @@
+$small-smartphone: 550px;
+
+// GENERAL LAYOUT 
+// less than 550
+// between 551 - 800
+// above 800 (standard layout)
+
+@media (max-width: $small-smartphone) {
+    .page.home {
+
+        .circle-basil,
+        .circle-gomitolo,
+        .circle-living-room,
+        .circle-lemons,
+        .circle-ceramica {
+            display: none;
+        }
+
+        .circle-knit {
+            top: -150px;
+        }
+
+        .circle-ceramica {
+            left: -150px;
+            top: -300px;
+        }
+
+        .intro-section {
+            padding: 100px 20px;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .section {
+            padding: 70px 20px;
+            }
+        
+        .section-title {
+            padding: 0px 20px;
+        }
+
+        .flower {
+            left: 230px;
+            top: -150px;
+        }
+
+        .branch-4 {
+            width: 200px;
+            top: -130px;
+            left: 20px;
+        }
+
+        .about-me-container {
+            flex-direction: column;
+            * {
+                width: 100%;
+            }
+        }
+
+        .about-me-text {
+            max-width: 100%;
+        }
+
+        .vertical-buttons {
+            .main-button {
+                width: auto;
+            }
+        }
+        
+        .past-project-text {
+            width: 100%;
+            padding-top: 40px;
+        }
+
+        .past-projects-container {
+            width: 100%;
+            margin: 0px;
+        }
+
+        .scroll-right, 
+        .scroll-left {
+            display: none;
+        }
+
+        .past-project {
+            flex-shrink: 0;
+        }
+
+        .work-with-me-text {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .work-with-me-container {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .creations-text {
+            width: 100%;
+        }
+
+        .creations-picture {
+            width: 40%;
+        }
+    }
+}
+
+@media (min-width: calc($small-smartphone + 1px)) and (max-width: 800px) {
+    .page.home {
+        .intro-section {
+            padding: 100px 20px;
+        }
+
+        .section {
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            padding: 0px 20px;
+        }
+
+        .about-me-container {
+            gap: 20px;
+        }
+
+        .about-me-text {
+            width: 50%;
+            flex-shrink: 0;
+        }
+
+        .vertical-buttons {
+            width: 100%;
+        }
+        
+        .past-project {
+            flex-shrink: 0;
+        }
+
+        .past-project-text {
+            width: 60%;
+        }
+
+        .scroll-right, 
+        .scroll-left {
+            display: none;
+        }
+
+        .branch-4 {
+            width: 200px;
+            top: -130px;
+            left: 20px;
+        }
+
+        .work-with-me-text {
+            width: 100%;
+        }
+
+        .work-with-me-container {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .work-proposal {
+            max-width: 400px;
+        }
+
+        .creations-text {
+            width: 100%;
+        }
+
+        .creations-picture {
+            width: 30%;
+        }
+
+    }
+}
+
+// CIRCLEs 
+
+// up to 550
+// 551 - 700
+// 701  - 800
+// 801  - 1000
+// above 1000 (standard placement)
+
+@media (max-width: $small-smartphone) {
+    .page.home {
+
+        .circle-basil,
+        .circle-gomitolo,
+        .circle-living-room,
+        .circle-lemons,
+        .circle-ceramica {
+            display: none;
+        }
+
+        .circle-knit {
+            top: -250px;
+        }
+    }
+}
+
+@media (min-width: calc($small-smartphone + 1px)) and (max-width: 700px) {
+    .page.home {
+        
+        .circle-living-room,
+        .circle-lemons {
+            display: none;
+        }
+
+        .circle-basil {
+            bottom: 50px;
+            left: -150px;
+        }
+            
+        .circle-knit {
+            left: -70px;
+            top: -250px;
+        }
+
+        .circle-gomitolo {
+            right: -330px;
+            bottom: 20px;
+        }
+        
+        .circle-ceramica {
+            left: -150px;
+            top: -300px;
+        }
+    }
+}
+
+@media (min-width: 701px) and (max-width: 800px) {
+    .page.home {
+
+        .circle-knit {
+            top: -150px;
+            left: -100px;
+        }
+    
+        .circle-living-room {
+            display: none;
+        }
+    
+        .circle-gomitolo {
+            bottom: 0px;
+            right: -250px;
+        }
+    
+        .circle-basil {
+            left: -100px;
+            bottom: 50px;
+        }
+
+        .circle-lemons {
+            right: -250px;
+            top: -250px;
+        }
+
+        .circle-ceramica {
+            left: -100px;
+            top: -300px;
+        }
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+    .page.home {
+
+        .circle-living-room {
+            right: -150px;
+        }
+    
+        .circle-gomitolo {
+            right: -250px;
+        }
+    
+        .circle-basil {
+            left: -100px;
+        }
+
+        .circle-lemons {
+            right: -100px;
+            top: -250px;
+        }
+
+        .circle-ceramica {
+            left: 0px;
+        }
+    }
+}

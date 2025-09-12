@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Hack';
-    src: url('Hack-Regular.woff2') format('woff2'),
-        url('Hack-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-

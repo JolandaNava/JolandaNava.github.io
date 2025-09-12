@@ -34,25 +34,3 @@
         color: elements.$azzurro;
     }
 }
-
-@mixin secondary-button {
-    @include elements.subtitle;
-    background-color: elements.$green;
-    color: elements.$azzurro;
-    padding: 15px 30px;
-    cursor: pointer;
-    border: 0px;
-    border-radius: 30px;
-    text-align: center;
-    &:hover {
-        background-color: elements.$yellow;
-    }
-}
-
-@mixin social-link {
-    color: elements.$yellow;
-    cursor: pointer;
-    &:hover {
-        color: elements.$red;
-    }
-}

@@ -1,5 +1,6 @@
 @use "elements";
 @forward "home-page";
+@forward "home-page-mobile";
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -83,28 +84,3 @@ img {
     z-index: 3;
   }
 }
-
-
-
-
-// input[type="checkbox"],
-// input[type="radio"] {
-// vertical-align: baseline;
-// }
-
-// table {
-// border-collapse: collapse;
-// border-spacing: 0;
-
-//     td,
-//     th {
-//         vertical-align: top;
-//         &:not([align]) {
-//         text-align: inherit;
-//         }
-//     }
-// }
-
-// fieldset {
-// border: fieldset;
-// }

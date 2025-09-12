@@ -41,7 +41,7 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-    { title = "Come back later"
+    { title = "Jolanda Nava"
     , body = content model
     }
 
@@ -58,16 +58,16 @@ content  { language } =
             
             -- floating elements
             , circle_medium "knit"
-            , circle_medium "living-room" -- TODO consider changing
+            , circle_medium_rotated "living-room"
             , circle_large "gomitolo"
-            , circle_small "basil"
+            , circle_small_rotated "basil"
             ]
         , sectionTitle Left AboutMe language
         , section AboutMe
-            [ Html.div [ Attrs.class "about-me-container" ] -- TODO
+            [ Html.div [ Attrs.class "about-me-container" ]
                 [ Html.div [ Attrs.class "about-me-text" ] [ Html.text <| L.aboutMeBlurb language ]
                 , Html.div [ Attrs.class "vertical-buttons" ]
-                    -- TODO update files
+                    -- TODO update cv pdf
                     [ downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_en" <| L.downloadCVEN language
                     , downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_it" <| L.downloadCVIT language
                     , emailButton <| L.getInTouch language
@@ -78,21 +78,23 @@ content  { language } =
             
             -- floating elements
             , Html.img [ Attrs.class "flower", Attrs.src <| "/assets/flower.png" ] []
-            
-            -- , Html.div [ Attrs.class "buttons" ]
-            --     [ socialButton
-            --     , socialButton
-            --     , socialButton
-            --     ]
             ]
         , sectionTitle Right PastProjects language
         , section PastProjects
             [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
             , Html.div [ Attrs.class "past-projects-container" ]
-                [ pastProject itcilo language
-                , pastProject ribes language
-                , pastProject qualityAssurance language
-                , pastProject gruppoLesbico language
+                [ -- TODO add scrolling on click?
+                    Html.div [ Attrs.class "scroll-left" ] [ Illustrations.arrow_left ]
+                , Html.div [ Attrs.class "past-projects-scroll" ]
+                    [ Html.div [ Attrs.class "past-projects-list" ]
+                        [ pastProject qualityAssurance language
+                        , pastProject ribes language
+                        , pastProject gruppoLesbico language
+                        , pastProject itcilo language
+                        ]
+                    ]
+                -- TODO add scrolling on click?
+                , Html.div [ Attrs.class "scroll-right" ] [ Illustrations.arrow_right ]
                 ]
             
             -- floating elements
@@ -109,22 +111,52 @@ content  { language } =
                 ]
             
             -- floating elements
-            , Html.img [ Attrs.class "branch-2", Attrs.src <| "/assets/branch_2.png" ] []
-            , circle_large "placeholder" -- TODO change pciture
+            , circle_large "lemons"
             ]
         , sectionTitle Right Creations language
-        , section Creations []
-        , footer language
+        , section Creations
+            [ Html.div [ Attrs.class "creations-text" ] [ Html.text <| L.creationsBlurb language ]
+            , Html.div [ Attrs.class "creations-container" ]
+                [ picture "porta-posate"
+                , picture "catania"
+                , picture "torta"
+                , picture "ceramica-jewelry"
+                , picture "ibiscus-seeds"
+                , picture "clitoris"
+                , picture "soap-dispenser"
+                , picture "sospended-pot"
+                , picture "carved-donut"
+                , picture "mending"
+                , picture "potus"
+                , picture "bowl1"
+                , picture "tip-top-tank"
+                , picture "yarn-bowl"
+                , picture "pangolin"
+                , picture "bowl2"
+                , picture "woman"
+                , picture "donut"
+                , picture "uncinetto-top"
+                , picture "ceramic-trio"
+                , picture "tazzine"
+                , picture "pot"
+                , picture "cups"
+                ]
+            , Html.div [ Attrs.class "ravelry-container" ] [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language ]
+
+            -- floating elements
+            , circle_medium "ceramica"
+            ]
+        , footer language 
+        -- TODO add some decorations to the footer
         ]
-        -- , Html.div [ Attrs.class "open-book" ] [Illustrations.openBook]
 
 
 -- View helper functions
 
-circle : String -> String -> Html Msg
-circle circle_type image =
+circle : Bool -> String -> String -> Html Msg
+circle rotated circle_type image =
     Html.div [ Attrs.class <| "circle-" ++ image, Attrs.class "no-pointer-events" ]
-        [ Html.div [ Attrs.class circle_type ]
+        [ Html.div [ Attrs.class circle_type, Attrs.classList [("rotated", rotated)] ]
             [ Html.img [ Attrs.class "circle-image", Attrs.src <| "/assets/" ++ image ++ ".png" ] []
             , Html.img [ Attrs.class "circle-outline", Attrs.src <| "/assets/" ++ circle_type ++ ".png" ] []
             ]
@@ -132,15 +164,27 @@ circle circle_type image =
 
 circle_small : String -> Html Msg
 circle_small =
-    circle "circle_small"
+    circle False "circle_small"
 
 circle_medium : String -> Html Msg
 circle_medium =
-    circle "circle_medium"
+    circle False "circle_medium"
 
 circle_large : String -> Html Msg
 circle_large =
-    circle "circle_large"
+    circle False "circle_large"
+
+circle_small_rotated : String -> Html Msg
+circle_small_rotated =
+    circle True "circle_small"
+
+circle_medium_rotated : String -> Html Msg
+circle_medium_rotated =
+    circle True "circle_medium"
+
+circle_large_rotated : String -> Html Msg
+circle_large_rotated =
+    circle True "circle_large"
 
 firma : Language -> Html Msg
 firma l =
@@ -233,12 +277,6 @@ footer l =
             ]
         ]
 
-socialButton : Html Msg
-socialButton =
-    Html.a
-        [ Attrs.href "", Attrs.target "_blank", Attrs.class "secondary-button" ]
-        [ Html.text "LI" ]
-
 pastProjectLink : String -> String -> Html Msg
 pastProjectLink externallink linkText =
     Html.a
@@ -265,6 +303,11 @@ proposal p l =
         , Html.div [ Attrs.class "proposal-description" ] [ Html.text <| p.description l ]
         , p.action l
         ]
+
+picture : String -> Html Msg
+picture s =
+    Html.img [ Attrs.class "creations-picture", Attrs.src <| "/assets/made/" ++ s ++ ".png" ] []
+
 
 --- DATA
 
@@ -327,6 +370,7 @@ workshops =
         Html.a
             [ Attrs.class "proposal-button"
             , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
+                -- TODO I need a version in English too
             , Attrs.download <| L.makeString
                 "workshop-proposals-Jolanda-Nava"
                 "proposte-formazione-Jolanda-Nava"
@@ -343,7 +387,9 @@ coaching =
     , action = \l ->
         Html.a
             [ Attrs.class "proposal-button"
-            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf" -- TODO 
+            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
+                -- TODO create a pdf for proposals
+                -- TODO I need a version in English too
             , Attrs.download <| L.makeString
                 "coaching-proposals-Jolanda-Nava"
                 "proposte-coaching-Jolanda-Nava"
