@@ -106,7 +106,7 @@ content  { language } =
             [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
             , Html.div [ Attrs.class "work-with-me-container" ]
                 [ proposal workshops language
-                , proposal coaching language
+                , proposal organisations language
                 , proposal custom language
                 ]
             
@@ -379,23 +379,22 @@ workshops =
             [ Html.text <| L.downloadWorkshopProposals l ]
     }
 
-coaching : Proposal
-coaching =
-    { title = L.coachingTitle
-    , description = L.coachingBlurb
+organisations : Proposal
+organisations =
+    { title = L.orgsTitle
+    , description = L.orgsBlurb
     , image = "proposals/sprout.png"
     , action = \l ->
         Html.a
             [ Attrs.class "proposal-button"
-            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
-                -- TODO create a pdf for proposals
+            , Attrs.href <| "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
                 -- TODO I need a version in English too
             , Attrs.download <| L.makeString
-                "coaching-proposals-Jolanda-Nava"
-                "proposte-coaching-Jolanda-Nava"
+                "proposals-orgs-Jolanda-Nava"
+                "proposte-organizzazioni-Jolanda-Nava"
                 l
             ]
-            [ Html.text <| L.downloadCoachingProposals l ]
+            [ Html.text <| L.downloadOrgsProposals l ]
     }
 
 custom : Proposal

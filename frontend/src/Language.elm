@@ -33,8 +33,8 @@ makeString en it l =
 tagline : Language -> String
 tagline =
     makeString
-        "listening and facilitation"
-        "facilitazione e ascolto"
+        "facilitating change"
+        "facilitando cambiamenti"
 
 aboutMe : Language -> String
 aboutMe =
@@ -71,8 +71,8 @@ intro =
 
         """
         """
-            Facilito dialoghi, processi decisionali, e formazioni per portare strumenti 
-            utili ai gruppi e alle persone che lavorano per portare un cambiamento 
+            Facilito dialoghi, processi decisionali, e formazioni per dare strumenti 
+            utili a gruppi e persone che cercano di portare un cambiamento 
             positivo nel mondo. Parto dall'ascolto attivo e dalla comunicazione efficace, 
             esplorando i temi dell'intersezionalità, della queerness, e della costruzione 
             di comunità. 
@@ -230,17 +230,24 @@ gruppoLesbicoBlurb =
 workWithMeBlurb : Language -> String
 workWithMeBlurb = -- TODO
     makeString
-        loremIpsum
-        loremIpsum
+        """
+            Wether you are a young change-maker, a seasoned activist, someone running an organisation, or 
+            a freelancer, I want to work with people trying to change the world for the better. Here are 
+            some of the things I enjoy doing and the value they can bring. If you have any ideas, questions, 
+            or concerns, send me an email and we will find a time to talk.
+        """
+        """
 
-coachingTitle : Language -> String
-coachingTitle =
+        """
+
+orgsTitle : Language -> String
+orgsTitle =
     makeString
-        "coaching"
-        "coaching"
+        "Organisations"
+        "Organizzazioni"
 
-coachingBlurb : Language -> String
-coachingBlurb = -- TODO
+orgsBlurb : Language -> String
+orgsBlurb = -- TODO
     makeString
         loremIpsum
         loremIpsum
@@ -260,7 +267,7 @@ workshopsBlurb = -- TODO
 customTitle : Language -> String
 customTitle =
     makeString
-        "tailored"
+        "ad-hoc"
         "su misura"
 
 customBlurb : Language -> String
@@ -275,11 +282,11 @@ downloadWorkshopProposals =
         "workshop proposals"
         "proposte di formazione"
 
-downloadCoachingProposals : Language -> String
-downloadCoachingProposals =
+downloadOrgsProposals : Language -> String
+downloadOrgsProposals =
     makeString
-        "coaching proposals"
-        "proposte di coaching"
+        "proposals for organisations"
+        "proposte per le organizzazioni"
 
 -- creations
 
