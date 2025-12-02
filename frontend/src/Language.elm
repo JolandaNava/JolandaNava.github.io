@@ -279,13 +279,13 @@ customBlurb = -- TODO
 downloadWorkshopProposals : Language -> String
 downloadWorkshopProposals =
     makeString
-        "workshop proposals"
+        "workshop offerings"
         "proposte di formazione"
 
 downloadOrgsProposals : Language -> String
 downloadOrgsProposals =
     makeString
-        "proposals for organisations"
+        "offerings for organisations"
         "proposte per le organizzazioni"
 
 -- creations

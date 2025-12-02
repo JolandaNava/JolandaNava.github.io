@@ -243,7 +243,7 @@ email : String
 email = "jolanda@nava.pro"
 
 mailto : String
-mailto = "mailto" ++ email
+mailto = "mailto:" ++ email
 
 emailButton : String -> Html Msg
 emailButton btnText =
@@ -369,8 +369,10 @@ workshops =
     , action = \l ->
         Html.a
             [ Attrs.class "proposal-button"
-            , Attrs.href <| "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
-                -- TODO I need a version in English too
+            , Attrs.href <| L.makeString
+                "/assets/proposals/workshop-proposals-Jolanda-Nava.pdf"
+                "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
+                l
             , Attrs.download <| L.makeString
                 "workshop-proposals-Jolanda-Nava"
                 "proposte-formazione-Jolanda-Nava"
@@ -387,8 +389,10 @@ organisations =
     , action = \l ->
         Html.a
             [ Attrs.class "proposal-button"
-            , Attrs.href <| "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
-                -- TODO I need a version in English too
+            , Attrs.href <| L.makeString
+                "/assets/proposals/proposals-orgs-Jolanda-Nava.pdf"
+                "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
+                l
             , Attrs.download <| L.makeString
                 "proposals-orgs-Jolanda-Nava"
                 "proposte-organizzazioni-Jolanda-Nava"
