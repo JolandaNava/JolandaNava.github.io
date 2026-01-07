@@ -404,7 +404,7 @@ creationsBlurb =
             piegare la carta, annodare, disegnare, lavorare la ceramica, e sono sicura che la lista non farà che 
             crescere negli anni. La gioia di creare qualcosa o di imparare una nuova tecnica è una costante per me, 
             e mi premeva includerla qui. Imparare assieme e insegnarci l'un l'altra è alla base di molto del mio 
-            lavoro di costruione di comunità.
+            lavoro di costruzione di comunità.
         """
 
 ravelry : Language -> String

@@ -376,12 +376,7 @@ workshops =
                 "/assets/proposals/workshop-proposals-Jolanda-Nava.pdf"
                 "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
                 l
-            , Attrs.target "_blank" -- TODO check that it works when deployed
-            
-            -- , Attrs.download <| L.makeString
-            --     "workshop-proposals-Jolanda-Nava"
-            --     "proposte-formazione-Jolanda-Nava"
-            --     l
+            , Attrs.target "_blank"
             ]
             [ Html.text <| L.downloadWorkshopProposals l ]
     }
@@ -399,10 +394,6 @@ organisations =
                 "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
                 l
             , Attrs.target "_blank"
-            -- , Attrs.download <| L.makeString
-            --     "proposals-orgs-Jolanda-Nava"
-            --     "proposte-organizzazioni-Jolanda-Nava"
-            --     l
             ]
             [ Html.text <| L.downloadOrgsProposals l ]
     }
