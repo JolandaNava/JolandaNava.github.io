@@ -376,10 +376,12 @@ workshops =
                 "/assets/proposals/workshop-proposals-Jolanda-Nava.pdf"
                 "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
                 l
-            , Attrs.download <| L.makeString
-                "workshop-proposals-Jolanda-Nava"
-                "proposte-formazione-Jolanda-Nava"
-                l
+            , Attrs.target "_blank" -- TODO check that it works when deployed
+            
+            -- , Attrs.download <| L.makeString
+            --     "workshop-proposals-Jolanda-Nava"
+            --     "proposte-formazione-Jolanda-Nava"
+            --     l
             ]
             [ Html.text <| L.downloadWorkshopProposals l ]
     }
@@ -396,10 +398,11 @@ organisations =
                 "/assets/proposals/proposals-orgs-Jolanda-Nava.pdf"
                 "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
                 l
-            , Attrs.download <| L.makeString
-                "proposals-orgs-Jolanda-Nava"
-                "proposte-organizzazioni-Jolanda-Nava"
-                l
+            , Attrs.target "_blank"
+            -- , Attrs.download <| L.makeString
+            --     "proposals-orgs-Jolanda-Nava"
+            --     "proposte-organizzazioni-Jolanda-Nava"
+            --     l
             ]
             [ Html.text <| L.downloadOrgsProposals l ]
     }
@@ -411,9 +414,11 @@ custom =
     , image = "proposals/flower.png"
     , action = \l ->
         Html.a
-            [ Attrs.class "proposal-button", Attrs.href mailto ]
-            [ Html.text <| L.getInTouch l ]
-            -- TODO add a way to book a timeslot to chat? https://calendar.app.google/H93zJmWdWPtTN9Vc6
+        [ Attrs.class "proposal-button"
+        , Attrs.href "https://timetuna.com/jolanda-nava"
+        , Attrs.target "_blank"
+        ]
+        [ Html.text <| L.bookChat l ]
     }
 
 -- navigation sections
