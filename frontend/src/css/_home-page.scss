@@ -130,10 +130,13 @@
         width: 100%;
         display: flex;
         flex-direction: row;
-        gap: 60px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
     }
 
     .vertical-buttons {
+        flex: 1 0 230px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -141,11 +144,12 @@
         gap: 30px;
         .main-button {
             width: 100%;
+            max-width: 230px;
         }
     }
 
     .about-me-text {
-        width: 40%;
+        flex: 2 0;
         max-width: 400px;
     }
 
@@ -154,6 +158,18 @@
         pointer-events: none;
         top: -100px;
         left: 370px;
+    }
+
+    .me {
+        flex: 2 0;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .mini-me {
+        max-width: 270px;
+        max-height: 270px;
+        display: none;
     }
 
     // PAST PROJECTS

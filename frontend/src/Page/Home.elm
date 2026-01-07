@@ -68,19 +68,19 @@ content  { language } =
                 [ Html.div [ Attrs.class "about-me-text" ] 
                     <| List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
                 , Html.div [ Attrs.class "vertical-buttons" ]
-                    -- TODO update cv pdf
-                    [ downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_en" <| L.downloadCVEN language
-                    , downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_it" <| L.downloadCVIT language
+                    [ Html.div [ Attrs.class "mini-me" ] [ Html.img [ Attrs.src <| "/assets/me.png" ] [] ]
+                    , linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
+                    -- downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_en" <| L.downloadCVEN language
+                    -- , downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_it" <| L.downloadCVIT language -- TODO update IT CV
                     , emailButton <| L.getInTouch language 
                     , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
-
-                    -- TODO add a way to book a timeslot to chat? https://calendar.app.google/H93zJmWdWPtTN9Vc6
                     ]
-
+                , Html.div [ Attrs.class "me" ] [ Html.img [ Attrs.src <| "/assets/me.png" ] [] ]
                 ]
             
             -- floating elements
             , Html.img [ Attrs.class "flower", Attrs.src <| "/assets/flower.png" ] []
+            
             ]
         , sectionTitle Right PastProjects language
         , section PastProjects
