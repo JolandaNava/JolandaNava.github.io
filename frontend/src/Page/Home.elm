@@ -65,13 +65,16 @@ content  { language } =
         , sectionTitle Left AboutMe language
         , section AboutMe
             [ Html.div [ Attrs.class "about-me-container" ]
-                [ Html.div [ Attrs.class "about-me-text" ] [ Html.text <| L.aboutMeBlurb language ]
+                [ Html.div [ Attrs.class "about-me-text" ] 
+                    <| List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
                 , Html.div [ Attrs.class "vertical-buttons" ]
                     -- TODO update cv pdf
                     [ downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_en" <| L.downloadCVEN language
                     , downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_it" <| L.downloadCVIT language
-                    , emailButton <| L.getInTouch language
+                    , emailButton <| L.getInTouch language 
                     , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
+
+                    -- TODO add a way to book a timeslot to chat? https://calendar.app.google/H93zJmWdWPtTN9Vc6
                     ]
 
                 ]
@@ -333,7 +336,7 @@ ribes =
     { title = L.ribesTitle
     , description = L.ribesBlurb
     , link = "https://www.instagram.com/p/DFfM0KisOy5"
-    , image = "past-projects/ribes2"
+    , image = "past-projects/ribes"
     }
 
 qualityAssurance : PastProject
@@ -348,8 +351,8 @@ gruppoLesbico : PastProject
 gruppoLesbico =
     { title = L.gruppoLesbicoTitle
     , description = L.gruppoLesbicoBlurb
-    , link = "https://www.instagram.com/p/C_2rIIOtrGT/"
-    , image = "past-projects/gruppo-lesbico2"
+    , link = "https://www.instagram.com/p/DQoMEu_jbpD/"
+    , image = "past-projects/lesbonautə"
     }
 
 -- work with me
@@ -410,6 +413,7 @@ custom =
         Html.a
             [ Attrs.class "proposal-button", Attrs.href mailto ]
             [ Html.text <| L.getInTouch l ]
+            -- TODO add a way to book a timeslot to chat? https://calendar.app.google/H93zJmWdWPtTN9Vc6
     }
 
 -- navigation sections
