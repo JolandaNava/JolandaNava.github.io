@@ -10,6 +10,7 @@ import Url exposing (Url)
 import Route exposing (Route(..))
 import Cmd.Extra as Cmd
 import Html
+import Json.Decode as Decode exposing (Value)
 
 ---- MODEL ----
 
@@ -25,11 +26,11 @@ type CurrentPage
     | Home Home.Model
 
 
-init : () -> Url -> Key -> ( Model, Cmd Msg )
-init _ url _ =
+init : Value -> Url -> Key -> ( Model, Cmd Msg )
+init value url _ =
     { route = Route.NotFound
     , page = Redirect
-    , language = Lang.EN -- TODO we could get this from browser preferences/settings
+    , language = Lang.decodeLanguage value
     }
         |> changeRouteTo (Route.urlToRoute url)
 
@@ -98,7 +99,6 @@ mapView : (msg -> Msg) -> Document msg -> Document Msg
 mapView subMsg {title, body} =
     { title = title
     , body = 
-        -- TODO make the language switch always visible?
         (Lang.languageSwitch UpdateLanguage)
         :: List.map (Html.map subMsg) body
     }
@@ -114,7 +114,7 @@ redirect_view =
 ---- PROGRAM ----
 
 
-main : Program () Model Msg
+main : Program Value Model Msg
 main =
     Browser.application
         { view = view

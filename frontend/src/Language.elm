@@ -3,6 +3,7 @@ module Language exposing (..)
 import Html exposing (Html)
 import Html.Attributes as Attrs
 import Html.Events
+import Json.Decode as Decode exposing (Value)
 
 type Language
     = IT
@@ -25,6 +26,21 @@ makeString en it l =
         EN -> en
         IT -> it
 
+
+decodeLanguage : Value -> Language
+decodeLanguage value =
+    case Decode.decodeValue (Decode.field "language" Decode.string) value of
+        Ok l -> chooseLanguage l
+        Err _ -> EN
+
+chooseLanguage : String -> Language
+chooseLanguage l =
+    let 
+        -- only keep language (ignore suffixes related to countries in strings like "en-GB")
+        -- for reference https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags
+        lang = String.toLower <| String.left 2 l
+    in
+        if lang == "it" then IT else EN
 
 -- All site-related strings
 
