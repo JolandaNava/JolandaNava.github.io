@@ -1,10 +1,12 @@
 module Page.Home exposing (Model, Msg, init, update, view)
 
 import Html exposing (Html)
-import Html.Events
+import Html.Events as Events
 import Browser exposing (Document)
 import Cmd.Extra as Cmd
 import Html.Attributes as Attrs
+import Browser.Dom
+import Task exposing (Task)
 
 import Illustrations
 import Language as L exposing (Language)
@@ -28,12 +30,21 @@ init l =
 
 type Msg
     = NoOp
+    | ScrollRight
+    | ScrollLeft
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model = 
     case msg of
-        NoOp -> (model, Cmd.none)
+        NoOp ->
+            (model, Cmd.none)
+
+        ScrollRight ->
+            (model, taskScrollRight "past-projects-scroll")
+        
+        ScrollLeft ->
+            (model, taskScrollLeft "past-projects-scroll")
 
 
 ---- VIEW ----
@@ -86,9 +97,15 @@ content  { language } =
         , section PastProjects
             [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
             , Html.div [ Attrs.class "past-projects-container" ]
-                [ -- TODO add scrolling on click?
-                    Html.div [ Attrs.class "scroll-left" ] [ Illustrations.arrow_left ]
-                , Html.div [ Attrs.class "past-projects-scroll" ]
+                [ Html.button
+                    [ Attrs.class "scroll-left" 
+                    , Events.onClick ScrollLeft
+                    ]
+                    [ Illustrations.arrow_left ]
+                , Html.div
+                    [ Attrs.class "past-projects-scroll"
+                    , Attrs.id "past-projects-scroll"
+                    ]
                     [ Html.div [ Attrs.class "past-projects-list" ]
                         [ pastProject qualityAssurance language
                         , pastProject ribes language
@@ -96,8 +113,11 @@ content  { language } =
                         , pastProject itcilo language
                         ]
                     ]
-                -- TODO add scrolling on click?
-                , Html.div [ Attrs.class "scroll-right" ] [ Illustrations.arrow_right ]
+                , Html.button
+                    [ Attrs.class "scroll-right"
+                    , Events.onClick ScrollRight
+                    ]
+                    [ Illustrations.arrow_right ]
                 ]
             
             -- floating elements
@@ -150,7 +170,6 @@ content  { language } =
             , circle_medium "ceramica"
             ]
         , footer language 
-        -- TODO add some decorations to the footer
         ]
 
 
@@ -277,6 +296,15 @@ footer l =
             , link PastProjects
             , link WorkWithMe
             , link Creations
+            ]
+
+        , Html.div [] [ Html.text <| L.allRights l ]
+        , Html.div [ Attrs.class "contents-note" ] [ Html.text <| L.contentsStatement l ]
+        
+        -- floating elements
+        , Html.div [ Attrs.class "footer-floating-elements" ]
+            [ Html.img [ Attrs.class "branch-3", Attrs.src <| "/assets/branch_3.png" ] []
+            , Html.img [ Attrs.class "branch-2", Attrs.src <| "/assets/branch_2.png" ] []
             ]
         ]
 
@@ -452,3 +480,20 @@ sectionName =
 sectionId : Sections -> String
 sectionId =
     .id << getSection
+
+
+-- scrolling helpers
+
+scrollX : Float -> String ->Task Browser.Dom.Error ()
+scrollX x elementId =
+    Browser.Dom.setViewportOf elementId x 0
+
+
+taskScrollRight : String -> Cmd Msg
+taskScrollRight =
+    Task.attempt (\_ -> NoOp) << scrollX 1300
+
+
+taskScrollLeft : String -> Cmd Msg
+taskScrollLeft =
+    Task.attempt (\_ -> NoOp) << scrollX 0

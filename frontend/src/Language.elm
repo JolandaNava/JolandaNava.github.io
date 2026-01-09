@@ -432,3 +432,17 @@ ravelry =
 loremIpsum : String
 loremIpsum =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dictum viverra ex, in sagittis augue ultricies id. In hac habitasse platea dictumst. Vivamus vehicula urna sed enim ultrices condimentum. Aenean tristique mi eu metus tempor, sit amet dignissim turpis malesuada. Nunc non volutpat lacus. Proin placerat, nisl et dapibus varius, ante nisl imperdiet sem, vitae pellentesque est dui in erat."
+
+-- footer
+
+allRights : Language -> String
+allRights =
+    makeString
+        "© 2026 Jolanda Nava - All Rights Reserved"
+        "© 2026 Jolanda Nava - Tutti i diritti riservati"
+
+contentsStatement : Language -> String
+contentsStatement =
+    makeString
+        "All pictures and illustrations were created by me or are used with permission from the author, no generative AI was used in the making of this site or any of its contents"
+        "Tutte le foto e le illustrazioni sono state create da me o usate con permesso dellə autorə, non sono state utilizzate tecnologie di IA generativa per la creazione di questo sito o dei suoi contenuti"
