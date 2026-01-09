@@ -79,14 +79,21 @@ content  { language } =
                 [ Html.div [ Attrs.class "about-me-text" ] 
                     <| List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
                 , Html.div [ Attrs.class "vertical-buttons" ]
-                    [ Html.div [ Attrs.class "mini-me" ] [ Html.img [ Attrs.src <| "/assets/me.png" ] [] ]
+                    [ circle_medium "mini-me"
                     , linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
-                    -- downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_en" <| L.downloadCVEN language
-                    -- , downloadButton "/cv//Jolanda_Nava_CV__Dec_2024_.pdf" "jolanda_nava_cv_it" <| L.downloadCVIT language -- TODO update IT CV
+                    , Html.a
+                        [ Attrs.class "main-button"
+                        , Attrs.href <| L.makeString
+                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
+                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
+                            language
+                        , Attrs.target "_blank"
+                        ]
+                        [ Html.text <| L.downloadCV language ]
                     , emailButton <| L.getInTouch language 
                     , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
                     ]
-                , Html.div [ Attrs.class "me" ] [ Html.img [ Attrs.src <| "/assets/me.png" ] [] ]
+                , circle_medium "me"
                 ]
             
             -- floating elements
@@ -244,16 +251,6 @@ navigationButton s buttonText =
     Html.a
         [ Attrs.class "main-button", Attrs.href <| (++) "#" <| sectionId s ]
         [ Html.text buttonText]
-
-downloadButton : String -> String -> String -> Html Msg
-downloadButton fileName downloadName buttonText =
-    Html.a
-        [ Attrs.class "main-button"
-        , Attrs.href <| "/assets" ++ fileName
-        , Attrs.download downloadName
-        ]
-        [ Html.text buttonText ]
-
 
 linkButton : String -> String -> Html Msg
 linkButton href buttonText =

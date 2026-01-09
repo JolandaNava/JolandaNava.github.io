@@ -57,10 +57,11 @@ $small-smartphone: 550px;
             flex-direction: column;
             align-items: center;
             gap: 60px;
-            
-            div {
-                width: 100%;
-            }
+        }
+
+        .about-me-text,
+        .vertical-buttons {
+            width: 100%;
         }
 
         .about-me-text {
@@ -141,8 +142,14 @@ $small-smartphone: 550px;
             gap: 20px;
         }
 
-        .about-me-text, .me {
+        .about-me-text, .circle-me {
             flex: 1 0 40%;
+        }
+
+        .circle-me {
+            margin: 0px;
+            display: flex;
+            justify-content: center;
         }
 
         .vertical-buttons {
@@ -214,11 +221,11 @@ $small-smartphone: 550px;
 
 @media (min-width: 801px) and (max-width: 1200px) {
     .page.home {
-        .me {
+        .circle-me {
             display: none;
         }
 
-        .mini-me {
+        .circle-mini-me {
             display: block;
         }
 

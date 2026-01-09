@@ -119,7 +119,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
     }
 
     .vertical-buttons {
@@ -136,7 +136,7 @@
     }
 
     .about-me-text {
-        flex: 2 0;
+        flex: 3 0 230px;
         max-width: 400px;
     }
 
@@ -147,15 +147,13 @@
         left: 370px;
     }
 
-    .me {
-        flex: 2 0;
-        max-width: 400px;
-        max-height: 400px;
+    .circle-me {
+        flex: 3 0 230px;
+        margin: -30px;
     }
 
-    .mini-me {
-        max-width: 270px;
-        max-height: 270px;
+    .circle-mini-me {
+        margin: -40px -40px -40px -10px;
         display: none;
     }
 

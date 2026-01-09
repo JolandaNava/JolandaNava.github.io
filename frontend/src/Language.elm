@@ -143,17 +143,11 @@ learnMore =
         "Learn more"
         "Scopri di più"
 
-downloadCVEN : Language -> String
-downloadCVEN =
+downloadCV : Language -> String
+downloadCV =
     makeString
-        "Download my CV (EN)"
-        "Scarica il mio CV (EN)"
-
-downloadCVIT : Language -> String
-downloadCVIT =
-    makeString
-        "Download my CV (IT)"
-        "Scarica il mio CV (IT)"
+        "Download my CV"
+        "Scarica il mio CV"
 
 getInTouch : Language -> String
 getInTouch =
