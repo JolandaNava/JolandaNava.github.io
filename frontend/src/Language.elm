@@ -96,7 +96,7 @@ aboutMeBlurb : Language -> List String
 aboutMeBlurb = 
     makeString
         [   """
-                I grew up immersed in nature on the hills of Northen Italy, moved to the city of Turin 
+                I grew up immersed in nature on the hills of northern Italy, moved to the city of Turin 
                 for high school, left home at 16 to study at UWC Adriatic, then attended university at Yale-NUS College
                 in Singapore, where I lived for 7 years. Each move allowed me to widen my view of the world 
                 and engage with the complexities of building purposeful communities that make space 
@@ -111,7 +111,7 @@ aboutMeBlurb =
                 Since 2018 I have been working as a programmer first, and tech lead after. I built a team
                 of software engineers across Europe, facilitating collaboration and decision-making to create a 
                 sustainable working environment. In 2020 I moved back to Turin, where I continue to use 
-                my active listening and facilitation skills to create and strenghten communities, 
+                my active listening and facilitation skills to create and strengthen communities, 
                 especially in queer spaces.
             """
         ]
@@ -180,14 +180,14 @@ pastProjectsBlurb : Language -> String
 pastProjectsBlurb =
     makeString
         """
-            I find ways to facilitate conversations in all the spaces I traverse, wether with friends, 
+            I find ways to facilitate conversations in all the spaces I traverse, whether with friends, 
             conducting trainings, leading workshops, or running a D&D campaign! These are some of the most 
-            recent oppurtunities I have had to work with groups and start a dialogue around active listening, 
+            recent opportunities I have had to work with groups and start a dialogue around active listening, 
             intersectionality, conflict management... and much more.
         """
         """
             Colgo occasioni per facilitare conversazioni in tutti i contesti che attraverso: 
-            che sia fra amichə, durante formazioni specifiche, in workshop tematici, o in una campagna di D&D! 
+            che sia fra amicə, durante formazioni specifiche, in workshop tematici, o in una campagna di D&D! 
             Questi sono alcuni dei momenti più recenti in cui ho avuto l'opportunità di lavorare con gruppi  
             di persone per instaurare un dialogo sui temi dell'ascolto attivo, dell'intersezionalità, 
             della gestione del conflitto... e molto altro.
@@ -211,15 +211,15 @@ itciloBlurb =
         """
             During Inclusion Day 2025 at the ITCILO (International Training Centre of the International Labour Organization) in Turin, 
             I delivered the interactive workshop "Meet Me" to bring an experiential component to the exploration of the day's theme: 
-            "Intersectionality in Action". The activity was conducted on behalf of Giosef Torino, which developped it as part of the 
-            project "MARTI - Make it relevant: tools for intersectionlity", and was tailored to best work in the context 
+            "Intersectionality in Action". The activity was conducted on behalf of Giosef Torino, who developed it as part of the 
+            project "MARTI - Make it relevant: tools for intersectionality", and was tailored to best work in the context 
             of the ITCILO's program.
         """
         """
             Durante l'Inclusion Day 2025 presso l'ITCILO (Centro Internazionale di Formazione dell'Organizzazione Internazionale del Lavoro) di Torino,
             ho tenuto il workshop interattivo "Meet Me", portando una componente esperienziale all'esplorazione del tema della giornata:
             "Intersezionalità in azione". L'attività è stata condotta per conto di Giosef Torino, che l'ha sviluppata nell'ambito del
-            progetto "MARTI - Make it relevant: tools for intersectionlity", ed è stata adattata per funzionare al meglio nel contesto
+            progetto "MARTI - Make it relevant: tools for intersectionality", ed è stata adattata per funzionare al meglio nel contesto
             del programma dell'ITCILO.
         """
 
@@ -234,7 +234,7 @@ ribesBlurb =
     makeString
         """
             I structured and facilitated three separate trainings on communication for "Il Forno delle Idee", a 
-            learning centre that works primarely with young people with learning disabilities. The trainings were 
+            learning centre that works primarily with young people with learning disabilities. The trainings were 
             aimed at the tutors working there and they covered (i) the basics of active listening, (ii) introduction 
             to non violent communication, and (iii) guidelines for constructively receiving disclosure from young people. 
             
@@ -256,7 +256,7 @@ ribesBlurb =
 qualityAssuranceTitle : Language -> String
 qualityAssuranceTitle =
     makeString
-        "Conflict Management Evaluation - Qality Assurance for All"
+        "Conflict Management Evaluation - Quality Assurance for All"
         "Valutazione della gestione del conflitto - Quality Assurance for All"
 
 qualityAssuranceBlurb : Language -> String
@@ -267,7 +267,7 @@ qualityAssuranceBlurb =
             of the Erasmus+ project "Quality Assurance for All: Ensuring quality of youth work through intersectionality and human rights".
 
             After attending the initial training and providing feedback on early drafts of the manual, 
-            I put the "conflcit management" section into practice by conducting an evaluation process for the 
+            I put the "conflict management" section into practice by conducting an evaluation process for the 
             cultural association Centro Studi Sereno Regis.
         """
         """
@@ -305,7 +305,7 @@ gruppoLesbicoBlurb =
             Creiamo un ambiente accogliente in cui imparare insieme: dal conoscere altri gruppi/iniziative
             a Torino e in Italia, all'esplorare di "Il corpo lesbico" di Wittig.
 
-            Gli incontri sono aperti a tutte le persone che si sentono coinvolte dall'eperienza lesbica o si 
+            Gli incontri sono aperti a tutte le persone che si sentono coinvolte dall'esperienza lesbica o si 
             riconoscono nell'identità lesbica (a prescindere dalla propria identità di genere o orientamento sessuale).
         """
 
@@ -315,7 +315,7 @@ workWithMeBlurb : Language -> String
 workWithMeBlurb =
     makeString
         """
-            I want to work with people trying to change the world for the better, wether you are a young change-maker, a seasoned activist, 
+            I want to work with people trying to change the world for the better, whether you are a young change-maker, a seasoned activist, 
             someone running an organisation, or a freelancer. These are some of the things I enjoy doing and the value I think they can bring. 
             If you have any idea, question, or concern, get in touch and let's talk!
         """
@@ -422,6 +422,12 @@ ravelry =
     makeString
         "Find me on Raverly"
         "Trovami su Raverly"
+
+github : Language -> String
+github =
+    makeString
+        "Find me on Github"
+        "Trovami su Github"
 
 loremIpsum : String
 loremIpsum =

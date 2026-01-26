@@ -171,7 +171,10 @@ content  { language } =
                 , picture "pot"
                 , picture "cups"
                 ]
-            , Html.div [ Attrs.class "ravelry-container" ] [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language ]
+            , Html.div [ Attrs.class "find-me-container" ]
+                [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
+                , linkButton "https://github.com/JolandaNava" <| L.github language
+                ]
 
             -- floating elements
             , circle_medium "ceramica"

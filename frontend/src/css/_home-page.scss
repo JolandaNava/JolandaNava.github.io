@@ -342,9 +342,12 @@
         left: 50px;
     }
 
-    .ravelry-container {
+    .find-me-container {
+        display: flex;
         width: 100%;
-        text-align: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
     
     // FOOTER
