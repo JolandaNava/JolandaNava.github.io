@@ -38,6 +38,11 @@ $alegraya-sans: "Alegreya Sans", sans-serif;
   text-transform: uppercase;
 }
 
+@mixin heavy-subtitle {
+  @include subtitle;
+  font-weight: 600;
+}
+
 @mixin text {
   font-family: $alegraya-sans;
   font-size: 16px;

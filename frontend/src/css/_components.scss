@@ -6,7 +6,7 @@
     background-color: $background-color;
     color: $text-color;
     cursor: pointer;
-    padding: 15px 30px;
+    padding: 12px 25px;
     border: 0px;
     border-radius: 30px;
     text-align: center;
@@ -17,14 +17,6 @@
 
 @mixin button {
     @include base-button(elements.$navy, elements.$whiteish, elements.$azzurro);
-}
-
-@mixin proposal-button {
-    @include base-button(elements.$green, elements.$whiteish, elements.$yellow)
-}
-
-@mixin past-project-button {
-    @include base-button(elements.$red, elements.$whiteish, elements.$yellow)
 }
 
 @mixin link {

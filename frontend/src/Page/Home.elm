@@ -8,7 +8,6 @@ import Html.Attributes as Attrs
 import Browser.Dom
 import Task exposing (Task)
 
-import Illustrations
 import Language as L exposing (Language)
 import Route
 import Page
@@ -77,10 +76,9 @@ content  { language } =
         , section AboutMe
             [ Html.div [ Attrs.class "about-me-container" ]
                 [ Html.div [ Attrs.class "about-me-text" ] 
-                    <| List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
+                    <| aboutMeParagraph language
                 , Html.div [ Attrs.class "vertical-buttons" ]
-                    [ circle_medium "mini-me"
-                    , linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
+                    [ linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
                     , Html.a
                         [ Attrs.class "main-button"
                         , Attrs.href <| L.makeString
@@ -90,48 +88,17 @@ content  { language } =
                         , Attrs.target "_blank"
                         ]
                         [ Html.text <| L.downloadCV language ]
-                    , emailButton <| L.getInTouch language 
                     , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
                     ]
                 , circle_medium "me"
+                , spotify
                 ]
             
             -- floating elements
             , Html.img [ Attrs.class "flower", Attrs.src <| "/assets/flower.png" ] []
             
             ]
-        , sectionTitle Right PastProjects language
-        , section PastProjects
-            [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
-            , Html.div [ Attrs.class "past-projects-container" ]
-                [ Html.button
-                    [ Attrs.class "scroll-left" 
-                    , Events.onClick ScrollLeft
-                    ]
-                    [ Illustrations.arrow_left ]
-                , Html.div
-                    [ Attrs.class "past-projects-scroll"
-                    , Attrs.id "past-projects-scroll"
-                    ]
-                    [ Html.div [ Attrs.class "past-projects-list" ]
-                        [ pastProject qualityAssurance language
-                        , pastProject ribes language
-                        , pastProject gruppoLesbico language
-                        , pastProject itcilo language
-                        ]
-                    ]
-                , Html.button
-                    [ Attrs.class "scroll-right"
-                    , Events.onClick ScrollRight
-                    ]
-                    [ Illustrations.arrow_right ]
-                ]
-            
-            -- floating elements
-            , Html.img [ Attrs.class "branch-4", Attrs.src <| "/assets/branch_4.png" ] []
-
-            ]
-        , sectionTitle Left WorkWithMe language
+        , sectionTitle Right WorkWithMe language
         , section WorkWithMe
             [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
             , Html.div [ Attrs.class "work-with-me-container" ]
@@ -142,6 +109,20 @@ content  { language } =
             
             -- floating elements
             , circle_large "lemons"
+            ]
+        , sectionTitle Left PastProjects language
+        , section PastProjects
+            [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
+            , Html.div [ Attrs.class "past-projects-container" ]
+                [ pastProject qualityAssurance language
+                , pastProject ribes language
+                , pastProject gruppoLesbico language
+                , pastProject itcilo language
+                ]
+            
+            -- floating elements
+            , Html.img [ Attrs.class "branch-4", Attrs.src <| "/assets/branch_4.png" ] []
+
             ]
         , sectionTitle Right Creations language
         , section Creations
@@ -168,8 +149,10 @@ content  { language } =
                 , picture "uncinetto-top"
                 , picture "ceramic-trio"
                 , picture "tazzine"
+                , picture "fish"
                 , picture "pot"
                 , picture "cups"
+                , picture "maglione"
                 ]
             , Html.div [ Attrs.class "find-me-container" ]
                 [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
@@ -220,7 +203,10 @@ circle_large_rotated =
 
 firma : Language -> Html Msg
 firma l =
-    Html.div [ Attrs.class "firma" ]
+    Html.div
+        [ Attrs.class "firma"
+        , Attrs.title "Jolanda Nava"
+        ]
         [ Html.img [ Attrs.src "/assets/firma.png" ] []
         , Html.h2 [] [ Html.text <| L.tagline l ]    
         ]
@@ -273,6 +259,22 @@ emailButton btnText =
         [ Attrs.class "main-button", Attrs.href mailto ]
         [ Html.text btnText ]
 
+aboutMeParagraph : Language -> List (Html Msg)
+aboutMeParagraph language =
+    let
+        title = Html.h2 [ Attrs.class "about-me-name" ] [ Html.text "Jolanda Nava" ]
+        paragraphs = List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
+        
+        emailme = 
+            Html.p []
+                [ Html.text <| L.emailMe language
+                , Html.a
+                    [ Attrs.href mailto , Attrs.class "about-me-email"]
+                    [ Html.text email ]
+                ]
+    in
+        [ title ] ++ paragraphs ++ [ emailme ]
+
 footer : Language -> Html Msg
 footer l =
     let
@@ -291,7 +293,6 @@ footer l =
                 [ Html.text email ]
             ]
         , Html.div []
-            <| List.intersperse (Html.text " | ")
             [ link AboutMe
             , link PastProjects
             , link WorkWithMe
@@ -322,7 +323,7 @@ pastProject project l =
         [ circle_small project.image
         , Html.h2 [ Attrs.class "past-project-name" ] [ Html.text <| project.title l ]
         , Html.div [ Attrs.class "project-description" ] [ Html.text <| project.description l ]
-        , pastProjectLink project.link <| L.pastProjectLink l
+        , Html.div [ Attrs.class "project-action" ] [ pastProjectLink project.link <| L.pastProjectLink l ]
         ]
 
 proposal : Proposal -> Language -> Html Msg
@@ -439,6 +440,22 @@ custom =
         ]
         [ Html.text <| L.bookChat l ]
     }
+
+-- spotify embed
+
+spotify : Html msg
+spotify =
+    Html.iframe
+        [ Attrs.class "spotify-embed"
+        , Attrs.attribute "data-testid" "embed-iframe"
+        , Attrs.style "border-radius" "12px"
+        , Attrs.src "https://open.spotify.com/embed/episode/0YoPxvLJwr4I1d7vkzyMaA?utm_source=generator"
+        , Attrs.height 152
+        , Attrs.attribute "frameborder" "0"
+        , Attrs.attribute "loading" "lazy"
+        ]
+        []
+    
 
 -- navigation sections
 

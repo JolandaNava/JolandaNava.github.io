@@ -137,6 +137,12 @@ aboutMeBlurb =
             """
         ]
 
+emailMe : Language -> String
+emailMe =
+    makeString
+        "You can email me at: "
+        "Puoi scrivermi a: "
+
 learnMore : Language -> String
 learnMore =
     makeString
@@ -154,12 +160,6 @@ getInTouch =
     makeString
         "Get in touch"
         "Contattami"
-
-emailMe : Language -> String
-emailMe =
-    makeString
-        "email me"
-        "scrivimi un'e-mail"
 
 bookChat : Language -> String
 bookChat =
@@ -444,5 +444,5 @@ allRights =
 contentsStatement : Language -> String
 contentsStatement =
     makeString
-        "All pictures and illustrations were created by me or are used with permission from the author, no generative AI was used in the making of this site or any of its contents"
-        "Tutte le foto e le illustrazioni sono state create da me o usate con permesso dellə autorə, non sono state utilizzate tecnologie di IA generativa per la creazione di questo sito o dei suoi contenuti"
+        "All illustrations were created by me and all pictures are used with permission from the authors, no generative AI was used in the making of this site or any of its contents"
+        "Tutte le illustrazioni sono state create da me e tutte le foto sono usate con il permesso dellə autorə, non sono state utilizzate tecnologie di IA generativa per la creazione di questo sito o dei suoi contenuti"
