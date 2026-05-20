@@ -73,112 +73,99 @@ content  { language } =
             , circle_small_rotated "basil"
             ]
         , section language Left AboutMe
-            -- [ sectionTitle Left AboutMe language
-            -- , sectionContent AboutMe
-                [ Html.div [ Attrs.class "about-me-container" ]
-                    [ Html.div [ Attrs.class "about-me-text" ] 
-                        <| aboutMeParagraph language
-                    , Html.div [ Attrs.class "vertical-buttons" ]
-                        [ linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
-                        , Html.a
-                            [ Attrs.class "main-button"
-                            , Attrs.href <| L.makeString
-                                "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
-                                "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
-                                language
-                            , Attrs.target "_blank"
-                            ]
-                            [ Html.text <| L.downloadCV language ]
-                        , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
+            [ Html.div [ Attrs.class "about-me-container" ]
+                [ Html.div [ Attrs.class "about-me-text" ] 
+                    <| aboutMeParagraph language
+                , Html.div [ Attrs.class "vertical-buttons" ]
+                    [ linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
+                    , Html.a
+                        [ Attrs.class "main-button"
+                        , Attrs.href <| L.makeString
+                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
+                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
+                            language
+                        , Attrs.target "_blank"
                         ]
-                    , circle_medium "me"
-                    , spotify language
+                        [ Html.text <| L.downloadCV language ]
+                    , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
                     ]
-                
-                -- floating elements
-                , Html.img
-                    [ Attrs.class "flower"
-                    , Attrs.src <| "/assets/flower.png" 
-                    , Attrs.alt ""
-                    , rolePresentation
-                    ] []
-                
+                , circle_medium "me"
+                , spotify language
                 ]
-            -- ]
+            
+            -- floating elements
+            , Html.img
+                [ Attrs.class "flower"
+                , Attrs.src <| "/assets/flower.png" 
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
+            ]
         , section language Right WorkWithMe
-            -- [ sectionTitle Right WorkWithMe language
-            -- , sectionContent WorkWithMe
-                [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
-                , Html.div [ Attrs.class "work-with-me-container" ]
-                    [ proposal workshops language
-                    , proposal organisations language
-                    , proposal custom language
-                    ]
-                
-                -- floating elements
-                , circle_large "lemons"
+            [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
+            , Html.div [ Attrs.class "work-with-me-container" ]
+                [ proposal workshops language
+                , proposal organisations language
+                , proposal custom language
                 ]
-            -- ]
+            
+            -- floating elements
+            , circle_large "lemons"
+            ]
         , section language Left PastProjects
-            -- [ sectionTitle Left PastProjects language
-            -- , sectionContent PastProjects
-                [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
-                , Html.div [ Attrs.class "past-projects-container" ]
-                    [ pastProject qualityAssurance language
-                    , pastProject ribes language
-                    , pastProject gruppoLesbico language
-                    , pastProject itcilo language
-                    ]
-                
-                -- floating elements
-                , Html.img
-                    [ Attrs.class "branch-4"
-                    , Attrs.src <| "/assets/branch_4.png"
-                    , Attrs.alt ""
-                    , rolePresentation
-                    ] []
+            [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
+            , Html.div [ Attrs.class "past-projects-container" ]
+                [ pastProject qualityAssurance language
+                , pastProject ribes language
+                , pastProject gruppoLesbico language
+                , pastProject itcilo language
                 ]
-            -- ]
+            
+            -- floating elements
+            , Html.img
+                [ Attrs.class "branch-4"
+                , Attrs.src <| "/assets/branch_4.png"
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
+            ]
         , section language Right Creations
-            -- [ sectionTitle Right Creations language
-            -- , sectionContent Creations
-                [ Html.div [ Attrs.class "creations-text" ] [ Html.text <| L.creationsBlurb language ]
-                , Html.div [ Attrs.class "creations-container" ]
-                    [ picture language "porta-posate"
-                    , picture language "catania"
-                    , picture language "torta"
-                    , picture language "ceramica-jewelry"
-                    , picture language "ibiscus-seeds"
-                    , picture language "clitoris"
-                    , picture language "soap-dispenser"
-                    , picture language "sospended-pot"
-                    , picture language "carved-donut"
-                    , picture language "mending"
-                    , picture language "potus"
-                    , picture language "bowl1"
-                    , picture language "tip-top-tank"
-                    , picture language "yarn-bowl"
-                    , picture language "pangolin"
-                    , picture language "bowl2"
-                    , picture language "woman"
-                    , picture language "donut"
-                    , picture language "uncinetto-top"
-                    , picture language "ceramic-trio"
-                    , picture language "tazzine"
-                    , picture language "fish"
-                    , picture language "pot"
-                    , picture language "cups"
-                    , picture language "maglione"
-                    ]
-                , Html.div [ Attrs.class "find-me-container" ]
-                    [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
-                    , linkButton "https://github.com/JolandaNava" <| L.github language
-                    ]
-
-                -- floating elements
-                , circle_medium "ceramica"
+            [ Html.div [ Attrs.class "creations-text" ] [ Html.text <| L.creationsBlurb language ]
+            , Html.div [ Attrs.class "creations-container" ]
+                [ picture language "porta-posate"
+                , picture language "catania"
+                , picture language "torta"
+                , picture language "ceramica-jewelry"
+                , picture language "ibiscus-seeds"
+                , picture language "clitoris"
+                , picture language "soap-dispenser"
+                , picture language "sospended-pot"
+                , picture language "carved-donut"
+                , picture language "mending"
+                , picture language "potus"
+                , picture language "bowl1"
+                , picture language "tip-top-tank"
+                , picture language "yarn-bowl"
+                , picture language "pangolin"
+                , picture language "bowl2"
+                , picture language "woman"
+                , picture language "donut"
+                , picture language "uncinetto-top"
+                , picture language "ceramic-trio"
+                , picture language "tazzine"
+                , picture language "fish"
+                , picture language "pot"
+                , picture language "cups"
+                , picture language "maglione"
                 ]
-            -- ]
+            , Html.div [ Attrs.class "find-me-container" ]
+                [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
+                , linkButton "https://github.com/JolandaNava" <| L.github language
+                ]
+
+            -- floating elements
+            , circle_medium "ceramica"
+            ]
         , footer language 
         ]
 
@@ -268,7 +255,6 @@ type Align
     = Left
     | Right
 
-
 alignClass : Align -> Html.Attribute msg
 alignClass al =
     case al of
@@ -281,9 +267,6 @@ section l alignment s c =
         [ sectionTitle alignment s l
         , sectionContent s c
         ]
-            -- , section AboutMe
-            -- [ sectionTitle Left AboutMe language
-            -- , sectionContent AboutMe
 
 sectionContent : Sections -> List (Html Msg) -> Html Msg
 sectionContent s =
