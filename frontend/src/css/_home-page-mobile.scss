@@ -1,10 +1,56 @@
 $small-smartphone: 550px;
 
 // GENERAL LAYOUT 
-// less than 550
+
+// below 500 (accessibility - needs to work for 320px)
+// 500 - 550
 // between 551 - 800
 // above 800 (standard layout)
 // between 800 - 1200 (about-me special layout)
+
+@media (max-width: 500px) {
+
+    .language-switch-container {
+        height: 30px !important;
+    }
+
+    .page.home {
+        
+        .branch-4,
+        .footer-floating-elements,
+        .separator {
+            display: none;
+        }
+
+        .firma .tagline {
+            left: 20px;
+            bottom: 50px;
+        }
+
+        .about-me-container {
+            display: block;
+        }
+
+        .spotify-embed {
+            width: 100%;
+        }
+
+        .past-projects-container {
+            display: block;
+        }
+
+        .past-project {
+            width: 100%;
+        }
+
+        .link-list {
+            flex-direction: column;
+            padding-inline-start: 0px;
+            text-align: center;
+        }
+
+    }
+}
 
 @media (max-width: $small-smartphone) {
     .page.home {
@@ -49,8 +95,8 @@ $small-smartphone: 550px;
 
         .branch-4 {
             width: 200px;
-            top: -130px;
-            left: 20px;
+            top: -120px;
+            right: 20px;
         }
 
         .about-me-container {
@@ -169,7 +215,7 @@ $small-smartphone: 550px;
         .branch-4 {
             width: 200px;
             top: -130px;
-            left: 20px;
+            right: 20px;
         }
 
         .work-with-me-text {
@@ -257,11 +303,22 @@ $small-smartphone: 550px;
 
 // CIRCLEs 
 
-// up to 550
+// below 500 (accessibility - needs to work for 320px)
+// 500 - 550
 // 551 - 700
 // 701  - 800
 // 801  - 1000
 // above 1000 (standard placement)
+
+@media (max-width: 500px) {
+    .page.home {
+
+        .circle-knit {
+            display: none;
+        }
+
+    }
+}
 
 @media (max-width: $small-smartphone) {
     .page.home {

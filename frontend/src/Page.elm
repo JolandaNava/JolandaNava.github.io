@@ -29,6 +29,7 @@ homePageView pageName class content =
     [ Html.div
         [ Attrs.class "page"
         , Attrs.class class
+        , Attrs.attribute "role" "main"
         ]
         content
     ]

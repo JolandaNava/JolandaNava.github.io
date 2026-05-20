@@ -12,11 +12,20 @@ type Language
 
 languageSwitch : (Language -> msg) -> Html msg
 languageSwitch changeLanguageTo =
-    Html.th [ Attrs.class "language-switch-container" ]
+    Html.th
+        [ Attrs.class "language-switch-container" 
+        , Attrs.attribute "role" "banner"
+        ]
         [ Html.div [ Attrs.class "language-switch" ]
-            [ Html.button [ Html.Events.onClick <| changeLanguageTo EN ] [ Html.text "EN" ]
+            [ Html.button
+                [ Html.Events.onClick <| changeLanguageTo EN
+                , Attrs.attribute "aria-label" "English"
+                ] [ Html.text "EN" ]
             , Html.text " | "
-            , Html.button [ Html.Events.onClick <| changeLanguageTo IT ] [ Html.text "IT" ]
+            , Html.button
+                [ Html.Events.onClick <| changeLanguageTo IT
+                , Attrs.attribute "aria-label" "Italiano"
+                ] [ Html.text "IT" ]
             ]
         ]
 
@@ -173,6 +182,18 @@ linkedIn =
     makeString
         "Find me on LinkedIn"
         "Trovami su LinkedIn"
+
+spotify : Language -> String
+spotify =
+    makeString
+        "Spotify - listen to the CUG in Podcast episode"
+        "Spotify - ascolta la puntata con CUG in Podcast"
+
+creation : Language -> String
+creation =
+    makeString
+        "photo depicting something I made: "
+        "foto di un oggetto che ho creato: "
 
 -- past projects
 
@@ -446,3 +467,18 @@ contentsStatement =
     makeString
         "All illustrations were created by me and all pictures are used with permission from the authors, no generative AI was used in the making of this site or any of its contents"
         "Tutte le illustrazioni sono state create da me e tutte le foto sono usate con il permesso dellə autorə, non sono state utilizzate tecnologie di IA generativa per la creazione di questo sito o dei suoi contenuti"
+
+
+-- aria label helpers
+
+goToSection : Language -> String
+goToSection =
+    makeString
+        "go to the site's section named "
+        "vai alla sezione del sito: "
+
+introduction : Language -> String
+introduction =
+    makeString
+        "introduction"
+        "introduzione"

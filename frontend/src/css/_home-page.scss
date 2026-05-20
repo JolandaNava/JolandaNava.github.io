@@ -87,7 +87,8 @@
             top: 0px;
             left: 0px;
         }
-        h2 {
+        .tagline {
+            @include elements.heavy-subtitle;
             position: absolute;
             bottom: 10px;
             left: 230px;
@@ -147,6 +148,7 @@
     .about-me-email {
         color: elements.$navy;
         text-decoration: underline;
+        border-radius: 5px;
         &:hover {
             color: elements.$azzurro;
         }
@@ -360,13 +362,21 @@
         flex-direction: column;
         gap: 25px;
         align-items: center;
+
+        .link-list {
+            list-style: none;
+            display: flex;
+        }
+
         .link {
             @include components.link;
             text-transform: lowercase;
             padding: 2px 7px;
-            &:not(:last-child) {
-                border-right: 1px solid elements.$blackish;
-            }
+            border-radius: 5px;
+        }
+
+        .separator {
+            border-right: 1px solid elements.$blackish;
         }
     }
 

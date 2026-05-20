@@ -58,12 +58,12 @@ view model =
 content :  Model -> List (Html Msg)
 content  { language } =
     Page.homePageView "Home" "home"
-        [ Html.div [ Attrs.class "intro-section" ]
+        [ Html.section [ Attrs.class "intro-section", ariaLabel <| L.introduction language ]
             [ firma language
             , Html.div [ Attrs.class "intro-text" ] [ Html.text <| L.intro language ]
             , Html.div [ Attrs.class "buttons" ]
-                [ navigationButton WorkWithMe <| L.workWithMe language
-                , navigationButton AboutMe <| L.learnMore language
+                [ navigationButton language WorkWithMe <| L.workWithMe language
+                , navigationButton language AboutMe <| L.learnMore language
                 ]
             
             -- floating elements
@@ -72,108 +72,156 @@ content  { language } =
             , circle_large "gomitolo"
             , circle_small_rotated "basil"
             ]
-        , sectionTitle Left AboutMe language
-        , section AboutMe
-            [ Html.div [ Attrs.class "about-me-container" ]
-                [ Html.div [ Attrs.class "about-me-text" ] 
-                    <| aboutMeParagraph language
-                , Html.div [ Attrs.class "vertical-buttons" ]
-                    [ linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
-                    , Html.a
-                        [ Attrs.class "main-button"
-                        , Attrs.href <| L.makeString
-                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
-                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
-                            language
-                        , Attrs.target "_blank"
+        , section language Left AboutMe
+            -- [ sectionTitle Left AboutMe language
+            -- , sectionContent AboutMe
+                [ Html.div [ Attrs.class "about-me-container" ]
+                    [ Html.div [ Attrs.class "about-me-text" ] 
+                        <| aboutMeParagraph language
+                    , Html.div [ Attrs.class "vertical-buttons" ]
+                        [ linkButton "https://timetuna.com/jolanda-nava" <| L.bookChat language
+                        , Html.a
+                            [ Attrs.class "main-button"
+                            , Attrs.href <| L.makeString
+                                "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
+                                "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
+                                language
+                            , Attrs.target "_blank"
+                            ]
+                            [ Html.text <| L.downloadCV language ]
+                        , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
                         ]
-                        [ Html.text <| L.downloadCV language ]
-                    , linkButton "https://www.linkedin.com/in/jolandanava" <| L.linkedIn language
+                    , circle_medium "me"
+                    , spotify language
                     ]
-                , circle_medium "me"
-                , spotify
+                
+                -- floating elements
+                , Html.img
+                    [ Attrs.class "flower"
+                    , Attrs.src <| "/assets/flower.png" 
+                    , Attrs.alt ""
+                    , rolePresentation
+                    ] []
+                
                 ]
-            
-            -- floating elements
-            , Html.img [ Attrs.class "flower", Attrs.src <| "/assets/flower.png" ] []
-            
-            ]
-        , sectionTitle Right WorkWithMe language
-        , section WorkWithMe
-            [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
-            , Html.div [ Attrs.class "work-with-me-container" ]
-                [ proposal workshops language
-                , proposal organisations language
-                , proposal custom language
+            -- ]
+        , section language Right WorkWithMe
+            -- [ sectionTitle Right WorkWithMe language
+            -- , sectionContent WorkWithMe
+                [ Html.div [ Attrs.class "work-with-me-text" ] [ Html.text <| L.workWithMeBlurb language ]
+                , Html.div [ Attrs.class "work-with-me-container" ]
+                    [ proposal workshops language
+                    , proposal organisations language
+                    , proposal custom language
+                    ]
+                
+                -- floating elements
+                , circle_large "lemons"
                 ]
-            
-            -- floating elements
-            , circle_large "lemons"
-            ]
-        , sectionTitle Left PastProjects language
-        , section PastProjects
-            [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
-            , Html.div [ Attrs.class "past-projects-container" ]
-                [ pastProject qualityAssurance language
-                , pastProject ribes language
-                , pastProject gruppoLesbico language
-                , pastProject itcilo language
+            -- ]
+        , section language Left PastProjects
+            -- [ sectionTitle Left PastProjects language
+            -- , sectionContent PastProjects
+                [ Html.div [ Attrs.class "past-project-text" ] [ Html.text <| L.pastProjectsBlurb language ]
+                , Html.div [ Attrs.class "past-projects-container" ]
+                    [ pastProject qualityAssurance language
+                    , pastProject ribes language
+                    , pastProject gruppoLesbico language
+                    , pastProject itcilo language
+                    ]
+                
+                -- floating elements
+                , Html.img
+                    [ Attrs.class "branch-4"
+                    , Attrs.src <| "/assets/branch_4.png"
+                    , Attrs.alt ""
+                    , rolePresentation
+                    ] []
                 ]
-            
-            -- floating elements
-            , Html.img [ Attrs.class "branch-4", Attrs.src <| "/assets/branch_4.png" ] []
+            -- ]
+        , section language Right Creations
+            -- [ sectionTitle Right Creations language
+            -- , sectionContent Creations
+                [ Html.div [ Attrs.class "creations-text" ] [ Html.text <| L.creationsBlurb language ]
+                , Html.div [ Attrs.class "creations-container" ]
+                    [ picture language "porta-posate"
+                    , picture language "catania"
+                    , picture language "torta"
+                    , picture language "ceramica-jewelry"
+                    , picture language "ibiscus-seeds"
+                    , picture language "clitoris"
+                    , picture language "soap-dispenser"
+                    , picture language "sospended-pot"
+                    , picture language "carved-donut"
+                    , picture language "mending"
+                    , picture language "potus"
+                    , picture language "bowl1"
+                    , picture language "tip-top-tank"
+                    , picture language "yarn-bowl"
+                    , picture language "pangolin"
+                    , picture language "bowl2"
+                    , picture language "woman"
+                    , picture language "donut"
+                    , picture language "uncinetto-top"
+                    , picture language "ceramic-trio"
+                    , picture language "tazzine"
+                    , picture language "fish"
+                    , picture language "pot"
+                    , picture language "cups"
+                    , picture language "maglione"
+                    ]
+                , Html.div [ Attrs.class "find-me-container" ]
+                    [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
+                    , linkButton "https://github.com/JolandaNava" <| L.github language
+                    ]
 
-            ]
-        , sectionTitle Right Creations language
-        , section Creations
-            [ Html.div [ Attrs.class "creations-text" ] [ Html.text <| L.creationsBlurb language ]
-            , Html.div [ Attrs.class "creations-container" ]
-                [ picture "porta-posate"
-                , picture "catania"
-                , picture "torta"
-                , picture "ceramica-jewelry"
-                , picture "ibiscus-seeds"
-                , picture "clitoris"
-                , picture "soap-dispenser"
-                , picture "sospended-pot"
-                , picture "carved-donut"
-                , picture "mending"
-                , picture "potus"
-                , picture "bowl1"
-                , picture "tip-top-tank"
-                , picture "yarn-bowl"
-                , picture "pangolin"
-                , picture "bowl2"
-                , picture "woman"
-                , picture "donut"
-                , picture "uncinetto-top"
-                , picture "ceramic-trio"
-                , picture "tazzine"
-                , picture "fish"
-                , picture "pot"
-                , picture "cups"
-                , picture "maglione"
+                -- floating elements
+                , circle_medium "ceramica"
                 ]
-            , Html.div [ Attrs.class "find-me-container" ]
-                [ linkButton "https://www.ravelry.com/projects/jolinava" <| L.ravelry language
-                , linkButton "https://github.com/JolandaNava" <| L.github language
-                ]
-
-            -- floating elements
-            , circle_medium "ceramica"
-            ]
+            -- ]
         , footer language 
         ]
 
 
 -- View helper functions
 
+
+-- ARIA helpers
+
+rolePresentation : Html.Attribute msg
+rolePresentation =
+    Attrs.attribute "role" "presentation"
+
+ariaLabel : String -> Html.Attribute msg
+ariaLabel =
+    Attrs.attribute "aria-label"
+
+role : String -> Html.Attribute msg
+role =
+    Attrs.attribute "role"
+
+ariaLabelledby : String -> Html.Attribute msg
+ariaLabelledby =
+    Attrs.attribute "aria-labelledby"
+
+-- circle images helpers
+
 circle : Bool -> String -> String -> Html Msg
 circle rotated circle_type image =
     Html.div [ Attrs.class <| "circle-" ++ image, Attrs.class "no-pointer-events" ]
         [ Html.div [ Attrs.class circle_type, Attrs.classList [("rotated", rotated)] ]
-            [ Html.img [ Attrs.class "circle-image", Attrs.src <| "/assets/" ++ image ++ ".png" ] []
-            , Html.img [ Attrs.class "circle-outline", Attrs.src <| "/assets/" ++ circle_type ++ ".png" ] []
+            [ Html.img
+                [ Attrs.class "circle-image"
+                , Attrs.src <| "/assets/" ++ image ++ ".png" 
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
+            , Html.img
+                [ Attrs.class "circle-outline"
+                , Attrs.src <| "/assets/" ++ circle_type ++ ".png"
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
             ]
         ]
 
@@ -203,27 +251,43 @@ circle_large_rotated =
 
 firma : Language -> Html Msg
 firma l =
-    Html.div
+    Html.h1
         [ Attrs.class "firma"
-        , Attrs.title "Jolanda Nava"
+        , Attrs.title "Jolanda"
         ]
-        [ Html.img [ Attrs.src "/assets/firma.png" ] []
-        , Html.h2 [] [ Html.text <| L.tagline l ]    
+        [ Html.img
+            [ Attrs.src "/assets/firma.png"
+            , Attrs.alt "Jolanda"
+            ] []
+        , Html.div [ Attrs.class "tagline" ] [ Html.text <| L.tagline l ]    
         ]
 
-section : Sections -> List (Html Msg) -> Html Msg
-section s =
-    Html.div [ Attrs.class "section", Attrs.class <| sectionId s]
-
+-- section helpers
 
 type Align
     = Left
     | Right
 
+
+alignClass : Align -> Html.Attribute msg
 alignClass al =
     case al of
         Left -> Attrs.class "left-align"
         Right -> Attrs.class "right-align"
+
+section : Language -> Align -> Sections -> List (Html Msg) -> Html Msg
+section l alignment s c =
+    Html.section [ ariaLabelledby <| sectionId s ]
+        [ sectionTitle alignment s l
+        , sectionContent s c
+        ]
+            -- , section AboutMe
+            -- [ sectionTitle Left AboutMe language
+            -- , sectionContent AboutMe
+
+sectionContent : Sections -> List (Html Msg) -> Html Msg
+sectionContent s =
+    Html.div [ Attrs.class "section", Attrs.class <| sectionId s]
 
 sectionTitle : Align -> Sections -> Language -> Html Msg
 sectionTitle al s l =
@@ -232,13 +296,18 @@ sectionTitle al s l =
         , Attrs.class "section-title"
         , alignClass al
         ]
-        [ Html.h1 [] [ Html.text <| sectionName s l ] ]
+        [ Html.h2 [] [ Html.text <| sectionName s l ] ]
 
 
-navigationButton : Sections -> String -> Html Msg
-navigationButton s buttonText =
+-- content helpers
+
+navigationButton : Language -> Sections -> String -> Html Msg
+navigationButton l s buttonText =
     Html.a
-        [ Attrs.class "main-button", Attrs.href <| (++) "#" <| sectionId s ]
+        [ Attrs.class "main-button"
+        , Attrs.href <| (++) "#" <| sectionId s 
+        , ariaLabel <| L.goToSection l ++ sectionName s l
+        ]
         [ Html.text buttonText]
 
 linkButton : String -> String -> Html Msg
@@ -262,7 +331,7 @@ emailButton btnText =
 aboutMeParagraph : Language -> List (Html Msg)
 aboutMeParagraph language =
     let
-        title = Html.h2 [ Attrs.class "about-me-name" ] [ Html.text "Jolanda Nava" ]
+        title = Html.h3 [ Attrs.class "about-me-name" ] [ Html.text "Jolanda Nava" ]
         paragraphs = List.map (\p -> Html.p [] [ Html.text p ]) <| L.aboutMeBlurb language
         
         emailme = 
@@ -279,66 +348,95 @@ footer : Language -> Html Msg
 footer l =
     let
         link s =
-            Html.a
-                [ Attrs.href <| (++) "#" <| sectionId s
-                ,  Attrs.class "link"
+            Html.li [ Attrs.class "link-element" ]
+                [ Html.a
+                    [ Attrs.href <| (++) "#" <| sectionId s
+                    , Attrs.class "link"
+                    ]
+                    [ Html.text <| sectionName s l ]
                 ]
-                [ Html.text <| sectionName s l ]
+        
+        separator =
+            Html.div [Attrs.class "separator", Attrs.attribute "aria-hidden" "true" ] []
 
     in
-    Html.div [ Attrs.class "footer" ]
+    Html.div [ Attrs.class "footer", role "contentinfo" ]
         [ Html.div []
             [ Html.a
                 [ Attrs.href mailto , Attrs.class "link"]
                 [ Html.text email ]
             ]
-        , Html.div []
-            [ link AboutMe
-            , link PastProjects
-            , link WorkWithMe
-            , link Creations
+        , Html.ul
+            [ Attrs.class "link-list"
+            , role "navigation"
             ]
+                <| List.intersperse separator
+                [ link AboutMe
+                , link PastProjects
+                , link WorkWithMe
+                , link Creations
+                ]
 
         , Html.div [] [ Html.text <| L.allRights l ]
         , Html.div [ Attrs.class "contents-note" ] [ Html.text <| L.contentsStatement l ]
         
         -- floating elements
-        , Html.div [ Attrs.class "footer-floating-elements" ]
-            [ Html.img [ Attrs.class "branch-3", Attrs.src <| "/assets/branch_3.png" ] []
-            , Html.img [ Attrs.class "branch-2", Attrs.src <| "/assets/branch_2.png" ] []
+        , Html.div [ Attrs.class "footer-floating-elements"]
+            [ Html.img
+                [ Attrs.class "branch-3"
+                , Attrs.src <| "/assets/branch_3.png"
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
+            , Html.img
+                [ Attrs.class "branch-2"
+                , Attrs.src <| "/assets/branch_2.png"
+                , Attrs.alt ""
+                , rolePresentation
+                ] []
             ]
         ]
-
-pastProjectLink : String -> String -> Html Msg
-pastProjectLink externallink linkText =
-    Html.a
-        [ Attrs.href externallink, Attrs.target "_blank", Attrs.class "past-project-link" ]
-        [ Html.text linkText ]
-
 
 pastProject : PastProject -> Language -> Html Msg
 pastProject project l =
     Html.div
         [ Attrs.class "past-project" ]
         [ circle_small project.image
-        , Html.h2 [ Attrs.class "past-project-name" ] [ Html.text <| project.title l ]
+        , Html.h3 [ Attrs.class "past-project-name" ] [ Html.text <| project.title l ]
         , Html.div [ Attrs.class "project-description" ] [ Html.text <| project.description l ]
-        , Html.div [ Attrs.class "project-action" ] [ pastProjectLink project.link <| L.pastProjectLink l ]
+        , Html.div [ Attrs.class "project-action" ]
+            [ Html.a
+                [ Attrs.href project.link
+                , Attrs.target "_blank"
+                , Attrs.class "past-project-link"
+                , ariaLabel <| project.title l ++ " - " ++ L.pastProjectLink l
+                ]
+                [ Html.text <| L.pastProjectLink l ]
+            ]
         ]
 
 proposal : Proposal -> Language -> Html Msg
 proposal p l =
     Html.div
         [ Attrs.class "work-proposal" ]
-        [ Html.img [ Attrs.class "proposal-image", Attrs.src <| "/assets/" ++ p.image ] []
-        , Html.h2 [ Attrs.class "proposal-name" ] [ Html.text <| p.title l ]
+        [ Html.img
+            [ Attrs.class "proposal-image"
+            , Attrs.src <| "/assets/" ++ p.image 
+            , Attrs.alt ""
+            , rolePresentation
+            ] []
+        , Html.h3 [ Attrs.class "proposal-name" ] [ Html.text <| p.title l ]
         , Html.div [ Attrs.class "proposal-description" ] [ Html.text <| p.description l ]
         , p.action l
         ]
 
-picture : String -> Html Msg
-picture s =
-    Html.img [ Attrs.class "creations-picture", Attrs.src <| "/assets/made/" ++ s ++ ".png" ] []
+picture : Language -> String -> Html Msg
+picture l s =
+    Html.img
+        [ Attrs.class "creations-picture"
+        , Attrs.src <| "/assets/made/" ++ s ++ ".png"
+        , Attrs.alt <| (L.creation l) ++ s
+        ] []
 
 
 --- DATA
@@ -406,6 +504,7 @@ workshops =
                 "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
                 l
             , Attrs.target "_blank"
+            , ariaLabel <| L.workshopsTitle l ++ ": " ++ L.downloadWorkshopProposals l
             ]
             [ Html.text <| L.downloadWorkshopProposals l ]
     }
@@ -423,6 +522,7 @@ organisations =
                 "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
                 l
             , Attrs.target "_blank"
+            , ariaLabel <| L.orgsTitle l ++ ": " ++ L.downloadOrgsProposals l
             ]
             [ Html.text <| L.downloadOrgsProposals l ]
     }
@@ -437,16 +537,18 @@ custom =
         [ Attrs.class "proposal-button"
         , Attrs.href "https://timetuna.com/jolanda-nava"
         , Attrs.target "_blank"
+        , ariaLabel <| L.customTitle l ++ ": " ++ L.bookChat l
         ]
         [ Html.text <| L.bookChat l ]
     }
 
 -- spotify embed
 
-spotify : Html msg
-spotify =
+spotify : Language -> Html msg
+spotify l =
     Html.iframe
         [ Attrs.class "spotify-embed"
+        , ariaLabel <| L.spotify l
         , Attrs.attribute "data-testid" "embed-iframe"
         , Attrs.style "border-radius" "12px"
         , Attrs.src "https://open.spotify.com/embed/episode/0YoPxvLJwr4I1d7vkzyMaA?utm_source=generator"
