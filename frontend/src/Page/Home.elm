@@ -503,8 +503,10 @@ organisations =
         Html.a
             [ Attrs.class "proposal-button"
             , Attrs.href <| L.makeString
-                "/assets/proposals/proposals-orgs-Jolanda-Nava.pdf"
-                "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
+                "/proposals/organisations"
+                "/proposte/organizzazioni"
+                -- "/assets/proposals/proposals-orgs-Jolanda-Nava.pdf"
+                -- "/assets/proposals/proposte-organizzazioni-Jolanda-Nava.pdf"
                 l
             , Attrs.target "_blank"
             , ariaLabel <| L.orgsTitle l ++ ": " ++ L.downloadOrgsProposals l
