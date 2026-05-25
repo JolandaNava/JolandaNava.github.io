@@ -8,7 +8,6 @@ import Url exposing (Url)
 import Url.Parser as Parser exposing (Parser, oneOf, s, (</>))
 import Url.Builder as Builder
 import Browser.Dom exposing (Error(..))
-import Types as T
 import Html exposing (a)
 
 

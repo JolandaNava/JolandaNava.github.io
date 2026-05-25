@@ -483,8 +483,10 @@ workshops =
         Html.a
             [ Attrs.class "proposal-button"
             , Attrs.href <| L.makeString
-                "/assets/proposals/workshop-proposals-Jolanda-Nava.pdf"
-                "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
+                "/proposals/workshops"
+                "/proposte/formazioni"
+                -- "/assets/proposals/workshop-proposals-Jolanda-Nava.pdf"
+                -- "/assets/proposals/proposte-formazione-Jolanda-Nava.pdf"
                 l
             , Attrs.target "_blank"
             , ariaLabel <| L.workshopsTitle l ++ ": " ++ L.downloadWorkshopProposals l
