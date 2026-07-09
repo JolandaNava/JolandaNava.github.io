@@ -23,7 +23,7 @@ $small-smartphone: 550px;
         }
 
         .firma .tagline {
-            left:  calc(50% + 80px); // width of the tagline is 165px, centering
+            left:  calc(50% - 80px); // width of the tagline is 165px, centering
             bottom: 20px;
         }
 
