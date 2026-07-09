@@ -81,8 +81,8 @@ content  { language } =
                     , Html.a
                         [ Attrs.class "main-button"
                         , Attrs.href <| L.makeString
-                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf"
-                            "assets/cv/Jolanda_Nava_CV__Dec_2024_.pdf" -- TODO need IT version
+                            "assets/cv/Jolanda_Nava_CV__Jul_2026_EN.pdf"
+                            "assets/cv/Jolanda_Nava_CV__Jul_2026_EN.pdf" -- TODO need IT version
                             language
                         , Attrs.target "_blank"
                         ]

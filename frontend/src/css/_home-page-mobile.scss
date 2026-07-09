@@ -23,8 +23,8 @@ $small-smartphone: 550px;
         }
 
         .firma .tagline {
-            left: 20px;
-            bottom: 50px;
+            left:  calc(50% + 80px); // width of the tagline is 165px, centering
+            bottom: 20px;
         }
 
         .about-me-container {

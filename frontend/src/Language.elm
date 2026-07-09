@@ -310,7 +310,7 @@ gruppoLesbicoBlurb : Language -> String
 gruppoLesbicoBlurb =
     makeString
         """
-            Hosted by Maurice GLBTQ+, Lesbonautə is a group of queer women 
+            Hosted by Maurice LGBTQIA+, Lesbonautə is a group of queer women 
             that organises bi-monthly events to explore themes related to lesbian identities and spaces. 
             
             We create a welcoming environment to learn together: from getting to know other groups/initiatives 
@@ -320,7 +320,7 @@ gruppoLesbicoBlurb =
             as lesbian (regardless of gender identity or sexual orientation).
         """
         """
-            Lesbonautə è un gruppo di donne queer che opera all'interno dell'associazione Maurice GLBTQ+ 
+            Lesbonautə è un gruppo di donne queer che opera all'interno dell'associazione Maurice LGBTQIA+ 
             organizzando eventi bimestrali per esplorare le identità e gli spazi lesbici.
 
             Creiamo un ambiente accogliente in cui imparare insieme: dal conoscere altri gruppi/iniziative
